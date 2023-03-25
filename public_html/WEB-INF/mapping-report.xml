@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>
+       
+        <form-bean name="reportType" type="com.form.report.reportType.FReportType"/>
+      <form-bean name="reports" type="com.form.report.FReport"/>
+      <form-bean name="reportsSelect" type="com.form.report.FReport"/>  
+  </form-beans>
+  
+  <action-mappings>
+    
+    
+     <action name="reportType" path="/reportType" type="com.action.report.reportType.AReportType" unknown="false" validate="false">
+      <forward name="_SUCCESS" path="/report/reportType/Context.jsp"/>
+    </action>   
+    
+   <action name="reports" path="/reports" type="com.action.report.AReport" unknown="false" validate="false">
+       <forward name="_SUCCESS" path="/report/indexView.jsp"/>
+         <forward name="_CREATE" path="/report/preparedView.jsp"/>
+         <forward name="_EDIT" path="/report/preparedView.jsp"/>
+         <forward name="_PREPARED_CREATE" path="/report/preparedView.jsp"/>
+         <forward name="_PREPARED_EDIT" path="/report/preparedView.jsp"/>
+    </action> 
+    
+    <action name="reportsSelect" path="/reportsSelect" type="com.action.report.AReport" unknown="false" validate="false">
+       <forward name="_SUCCESS" path="/report/indexView.jsp"/>
+         <forward name="_CREATE" path="/report/preparedView.jsp"/>
+         <forward name="_EDIT" path="/report/preparedView.jsp"/>
+         <forward name="_PREPARED_CREATE" path="/report/preparedView.jsp"/>
+         <forward name="_PREPARED_EDIT" path="/report/preparedView.jsp"/>
+    </action> 
+    
+  </action-mappings>
+</struts-config>
+

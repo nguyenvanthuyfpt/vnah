@@ -1,0 +1,122 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans> 
+         <form-bean name="change" type="com.form.tasks.problem.FProblem"/>                
+         <form-bean name="directory" type="com.form.directory.FDirectory"/>
+         <form-bean name="main" type="com.form.main.FMain"/>       
+         <form-bean name="addPortlet" type="com.form.main.FMain"/>       
+         
+         <form-bean name="theme" type="com.form.theme.FTheme"/>
+  </form-beans>  
+  <action-mappings>  
+   <action name="directory" path="/directory" type="com.action.directory.ADirectory" unknown="false" validate="false">  
+     <forward name="_SEARCH" path="/directory/list.jsp"/>  
+     <forward name="_SHOW" path="/directory/detailt.jsp"/>  
+     
+   </action>
+   <action name="theme" path="/theme" type="com.action.theme.ATheme" unknown="false" validate="false">
+       <forward name="_SHOW" path="/theme/form.jsp"/>
+       <forward name="_VIEW" path="/theme/content.jsp"/>
+    </action>
+   <action name="addPortlet" path="/addPortlet" type="com.action.main.AMain" unknown="false" validate="false">  
+     <forward name="_HOME" path="/main/index.jsp"/>
+     <forward name="_DELETE_MYCONTACT" path="/mycontact/index.jsp"/>     
+     <forward name="AJAX_DOCSRECV" path="/main/docsRecv.jsp"/>
+     <forward name="AJAX_DOCSSEND" path="/main/docsSend.jsp"/>
+     <forward name="AJAX_DOCSSEND_DT" path="/main/docsDt.jsp"/>
+     <forward name="AJAX_MESSAGES" path="/main/messages.jsp"/>
+     <forward name="AJAX_CABIN" path="/main/cabin.jsp"/>
+     <forward name="AJAX_REPORT" path="/main/report.jsp"/>
+     <forward name="AJAX_TASK" path="/main/tasks.jsp"/>
+     <forward name="AJAX_PUBLIC_CALENDA" path="/main/calendapublic.jsp"/>
+     <forward name="AJAX_PRIVATE_CALENDA" path="/main/calendaprivate.jsp"/>
+     <forward name="AJAX_TEMPLATE" path="/main/listTemplate.jsp"/>
+     <forward name="CONTACT_NEW" path="/main/myContact.jsp"/>
+     <forward name="AJAX_BROADCASTLIST" path="/main/broadcastList.jsp"/>
+     <forward name="AJAX_MYCONTACT" path="/main/myContact.jsp"/>
+   </action>  
+   
+   <action name="main" path="/main" type="com.action.main.AMain" unknown="false" validate="false">  
+            <forward name="_CLOSE_PORTLET" path="/commons/application.jsp"/>
+            <forward name="_SHOW_MODULE" path="/main/listModules.jsp"/>
+            <forward name="_HOME" path="/main/index.jsp"/>
+            <forward name="_DELETE_MYCONTACT" path="/mycontact/index.jsp"/>     
+            <forward name="AJAX_DOCSRECV" path="/main/docsRecv.jsp"/>
+            <forward name="AJAX_DOCSSEND" path="/main/docsSend.jsp"/>
+            <forward name="AJAX_DOCSSEND_DT" path="/main/docsDt.jsp"/>
+            <forward name="AJAX_MESSAGES" path="/main/messages.jsp"/>
+            <forward name="AJAX_CABIN" path="/main/cabin.jsp"/>
+            <forward name="AJAX_REPORT" path="/main/report.jsp"/>
+            <forward name="AJAX_TASK" path="/main/tasks.jsp"/>
+            <forward name="AJAX_PUBLIC_CALENDA" path="/main/calendapublic.jsp"/>
+            <forward name="AJAX_PRIVATE_CALENDA" path="/main/calendaprivate.jsp"/>
+            <forward name="AJAX_TEMPLATE" path="/main/listTemplate.jsp"/>
+            <forward name="CONTACT_NEW" path="/main/myContact.jsp"/>
+            <forward name="AJAX_BROADCASTLIST" path="/main/broadcastList.jsp"/>
+            <forward name="AJAX_MYCONTACT" path="/main/myContact.jsp"/>
+            <forward name="_MANAGER_REQUIRE" path="/require/requires/index.jsp"/>
+            <forward name="_REQUIRE_LIST" path="/require/requires/view.jsp"/>
+            <forward name="_DELETE_CLENDAR" path="/calendar/calendarDep.jsp"/>
+            <forward name="_POST_USER_ONLINE" path="/main/listUserOnline.jsp"/>
+            
+            <forward name="_LIST_ACCOUNT" path="/mail/register/index.jsp"/>
+            <forward name="_LIST_FILTER" path="/mail/mailFilter/index.jsp"/>
+            
+     
+   </action>
+   
+    <action name="change" path="/change" type="com.action.AChange" unknown="false" validate="false">
+      
+            <forward name="_DOCS_REPORTS" path="/doc/docReport/index.jsp"/>  
+            <forward name="_TASKS_ASSIGN" path="/tasks/problem/index.jsp"/>  
+            <forward name="_CREATE" path="/tasks/categories/list.jsp"/> 
+            <forward name="_PREPARE_RULES" path="/tasks/rules/index.jsp"/>    
+            <forward name="_MESSAGES" path="/messages/view/view.jsp"/>
+            <forward name="_TASKS_ASSIGN_CATEGORY" path="/tasks/categories/index.jsp"/>  
+            <forward name="_PREPARE_FORYOURULES" path="/foryou/rules/index.jsp"/>             
+            <forward name="_SUCCESS" path="/doc/category/indexView.jsp"/>          
+           
+            <forward name="_MAIL_ACCOUNT" path="/mail/mailAccount/mailAccountView.jsp"/>  
+            <forward name="_DATABASE_SERVER" path="/admin/doc/category/dataBaseServer/dataBaseServerView.jsp"/>  
+            <forward name="_CATEGORY_SERVEY" path="/servey/serveyView.jsp"/>  
+            <forward name="_CATEGORY_SERVEYQUESTIONS" path="/serveyQuestions/View.jsp"/>             
+           
+            <forward name="_FORYOU__PREPARE" path="/foryou/indexAdd.jsp"/>
+            <forward name="_FORYOU_LIST" path="/foryou/indexView.jsp"/>
+            <forward name="_FORYOU_EDIT" path="/foryou/indexEdit.jsp"/>
+            <forward name="_DELETE" path="/foryou/indexEdit.jsp"/>          
+            <forward name="_FORYOU_CREATE" path="/foryou/indexEdit.jsp"/>
+
+
+            <forward name="_DOSSIERS_LIST" path="/admin/doc/category/dossiers/indexView.jsp"/>
+            <forward name="_DOCS_RECV_LIST" path="/doc/docsrecv/view.jsp"/>
+            <forward name="_DOCS_SEND_LIST" path="/doc/docssend/view.jsp"/>
+            <forward name="_DOCS_SEARCH" path="/doc/docsSearch/indexSearch.jsp"/>
+            <forward name="_DOCS_TNCVD" path="/doc/docsrecv/indexView.jsp"/>
+             <forward name="_CABIN_PUBLIC" path="/admin/cabin/index.jsp"/>  
+            
+            
+            <forward name="_TEMPLATE" path="/template/indexView.jsp"/>
+            <forward name="_REPORT" path="/report/indexView.jsp"/>
+            <forward name="_DIRECTIONARY_PREPARE" path="/directory/index.jsp"/>
+            <forward name="_HELP" path="/help/index.jsp"/>       
+            <forward name="_PREPARE_BROADCAST" path="/broadcast/index.jsp"/>  
+            <forward name="_USERS_ONLINE" path="/main/listUserOnline.jsp"/> 
+            <forward name="_LIST_MYCONTACT" path="/mycontact/manager/index.jsp"/> 
+            <forward name="_SHOW_MYCONTACT" path="/mycontact/show.jsp"/> 
+            <forward name="_UNITS_LIST" path="/doc/from/indexList.jsp"/>  
+
+            <forward name="_PREPARED_TEMPLATE" path="/template/preparedView.jsp"/>
+            
+            <forward name="_CABIN" path="/cabin/indexList.jsp"/>
+            <forward name="_CATEGORY_TYPE_CABIN" path="/admin/cabin/cabinType/indexView.jsp"/>              
+            <forward name="_CATEGORY_TYPE_CABIN_ADMIN" path="/cabin/cabinType/indexView.jsp"/> 
+
+            <forward name="_PREPARED_CABIN" path="/cabin/indexEdit.jsp"/>
+            <forward name="_CALENDA_PRIVATE" path="/calendar/month/index.jsp"/>
+            <forward name="_CALENDA_MEETING" path="/calendarMeeting/month/index.jsp"/>
+            <forward name="_CALENDAR_XE" path="/calendarXe/month/index.jsp"/>
+    </action> 
+  </action-mappings>
+</struts-config>

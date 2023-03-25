@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<request-mappings>
+	
+	<action-def action="DSDVSD_SD_ACH" 			useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="ST12" 					useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="ST23" 					useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="BC23" 					useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="CHUANOP_BC26" 			useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="ST10" 					useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="BC8" 					useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="ST21" 					useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="ST11" 					useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="BC20" 					useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="DS_DN_BO_KD" 			useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="ST12_KHO" 				useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="SL_ACHI_CQT_CAPDUOI" 	useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="TH_CP_ACHI_CQT_CAPDUOI" useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="BC24_CD" 				useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="TH_ACH_BAN" 			useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="QLAC_BC24" 				useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="CTT25" 					useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="QLAC_CTT25" 			useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="NIN02" 					useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="NIN03" 					useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="QLAC_BTH_IN" 			useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="ST_KYHIEU_IN_ACH" 		useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="QLAC_BC26" 				useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="QLAC_KYHIEU_TUIN" 		useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="BKE_HDON_STIEN_BAN" 	useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="IN_TB_KQUA_HUY" 		useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="BC21_TBAO_DCHINH" 		useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="IN_TB_PHATHANH" 		useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="IN_CAPLE_HD" 			useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="THONG_TIN_PHIEU_BAN" 	useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="BAN_HD_ACH" 			useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="BC26_NHAN" 				useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="IN_DCHINH_BC26" 		useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="MAU_BANHD_TUIN" 		useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="IN_ST13AC" 				useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="THOP_BANLE_HD" 			useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>	
+	<action-def action="IN_ST14AC"	 			useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="BC26MOI"	 			useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="BC27_DP_NEW"	 		useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+	<action-def action="BC27_NEW"	 			useWorkerBean="false" requires-authentication="true"  security-action="none"></action-def>
+</request-mappings>

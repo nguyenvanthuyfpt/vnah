@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="forYou" type="com.form.foryou.FForYou"/>
+	</form-beans>
+
+	<action-mappings>
+		<action name="forYou" path="/forYou" type="com.action.foryou.AForYou" unknown="false" validate="false">
+			<forward name="_PREPARE" path="/foryou/indexEdit.jsp"/>
+			<forward name="_VIEW" path="/foryou/indexView.jsp"/>
+			<forward name="_EDIT" path="/foryou/indexEdit.jsp"/>
+			<forward name="_CREATE" path="/foryou/indexEdit.jsp"/>
+			<forward name="_PREPARED_EDIT" path="/foryou/edit.jsp"/>
+			<forward name="_FORYOU_CREATE" path="/foryou/popup.jsp"/>
+			<forward name="_SELECT" path="/foryou/option.jsp"/>
+			<forward name="_SHOW" path="/foryou/infor.jsp"/>
+			<forward name="_FORYOU_LIST" path="/foryou/indexView.jsp"/>
+			<forward name="_VIEW_DOCS" path="/foryou/listDocWindow.jsp"/>
+		</action>   
+	</action-mappings>
+</struts-config>
+

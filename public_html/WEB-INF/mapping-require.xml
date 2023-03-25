@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>  
+  <form-beans>
+    <form-bean name="frmRequireEmp" type="com.form.require.requires.FRequire"/>
+     <form-bean name="frmRequire" type="com.form.require.requires.FRequire"/>
+    <form-bean name="frmRequireRule" type="com.form.admin.require.trailer.FRequireTrailer"/>
+  </form-beans>
+  
+  <action-mappings>
+    
+    <action name="frmRequire" path="/frmRequire" type="com.action.require.requires.ARequires" unknown="false" validate="false">      
+      <forward name="_REQUIRE_LIST" path="/require/requires/view.jsp"/>
+      <forward name="_CREATE" path="/require/requires/index.jsp"/>
+      <forward name="_SHOW_REQUIRE" path="/require/requires/excuteRequire.jsp"/>
+      <forward name="_DETAIL" path="/require/requires/detail.jsp"/>
+      <forward name="_SELECT_EMP" path="/require/requires/winPopup/openPopup.jsp"/>
+      <forward name="DOC_TRAILER_RECV_VIEW" path="/require/requires/inforTrailer.jsp"/>
+      <forward name="_PREPARED_REVIEW" path="/require/requires/reviewList.jsp"/>
+      <forward name="_TRAILER_CREATE" path="/require/requires/index.jsp"/>   
+      <forward name="_UPDATE_STORE" path="/require/requires/view.jsp"/>  
+      <forward name="_PREPARE_EDIT" path="/require/requires/index.jsp"/>
+    </action>    
+    
+    <action name="frmRequireEmp" path="/frmRequireEmp" type="com.action.require.requires.ARequires" unknown="false" validate="false">              
+        <forward name="_SHOW_ALL" path="/require/requires/winPopup/list.jsp"/>
+        <forward name="_CREATE_FROM_DOC" path="/require/requires/winPopup/openPopup.jsp"/>
+        <forward name="_REQUIRE_LIST" path="/require/requires/view.jsp"/>         
+    </action>
+    
+    <action name="frmRequireRule" path="/frmRequireRule" type="com.action.admin.require.trailer.ARequireTrailer" unknown="false" validate="false">              
+        <forward name="_PREPARE_REQUIRE_RULE" path="/admin/require/trailer/index.jsp"/>
+        <forward name="_PREPARE" path="/admin/require/trailer/options.jsp"/>
+        <forward name="_SHOW" path="/admin/require/trailer/empsList.jsp"/>
+        <forward name="_GET" path="/admin/require/trailer/inforForm.jsp"/>
+        <forward name="_DELETE" path="/admin/require/trailer/listCmd.jsp"/>
+        <forward name="_PREPARED_EDIT" path="/admin/require/trailer/form.jsp"/>        
+        <forward name="_PREPARE_STATUS" path="/admin/require/trailer/status/status.jsp"/>        
+        <forward name="_VIEW_FORM" path="/admin/require/trailer/list.jsp"/> 
+        <forward name="_SET" path="/admin/require/trailer/observer/list.jsp"/> 
+        <forward name="_SHOW_USERS" path="/admin/require/trailer/observer/userInDep.jsp"/> 
+        <forward name="_CREATE_OBSERVER" path="/admin/require/trailer/observer/listCmd.jsp"/> 
+        <forward name="_DELETE_OBSERVER" path="/admin/require/trailer/observer/listCmd.jsp"/>                         
+    </action>    
+  </action-mappings>
+</struts-config>

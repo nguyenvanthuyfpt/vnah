@@ -1,0 +1,273 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>         
+        
+        <form-bean name="docsrecv" type="com.form.doc.docsrecv.FDocsrecv"/>
+        <form-bean name="docsrecvMain" type="com.form.doc.docsrecv.FDocsrecv"/>
+        <form-bean name="dossRecv" type="com.form.doc.docsrecv.FDocsrecv"/>
+        <form-bean name="docssend" type="com.form.doc.docssend.FDocssend"/>
+        <form-bean name="docReference" type="com.form.doc.docsSearch.FDocsSearch"/>
+        <form-bean name="docssendMain" type="com.form.doc.docssend.FDocssend"/>
+        <form-bean name="docsSearch" type="com.form.doc.docsSearch.FDocsSearch"/> 
+        <form-bean name="docAssign" type="com.form.doc.assign.FDocAssign"/> 
+        <form-bean name="docMainAssignSend" type="com.form.doc.assign.FDocAssign"/> 
+        <form-bean name="docAssignSend" type="com.form.doc.assign.FDocAssign"/> 
+        <form-bean name="docAssignRecv" type="com.form.doc.assign.FDocAssign"/>
+        <form-bean name="docReviewSend" type="com.form.doc.assign.FDocAssign"/>
+        <form-bean name="docSendClassify" type="com.form.doc.assign.FDocAssign"/>
+        <form-bean name="docMainAssignRecv" type="com.form.doc.assign.FDocAssign"/> 
+        <form-bean name="docReviewRecv" type="com.form.doc.assign.FDocAssign"/>
+        <form-bean name="docRecvClassify" type="com.form.doc.assign.FDocAssign"/>
+        <form-bean name="docsSearchTemp" type="com.form.doc.docsrecv.FDocsrecv"/>     
+        <form-bean name="docDirectRecv" type="com.form.doc.assign.FDocAssign"/>     
+        <form-bean name="docDirectSend" type="com.form.doc.assign.FDocAssign"/>
+        <form-bean name="docreport" type="com.form.doc.docreport.FDocReport"/>
+        <form-bean name="docreportLeft" type="com.form.doc.docreport.FDocReport"/>	
+         <form-bean name="dossiers" type="com.form.admin.doc.category.dossiers.FDossiers"/>       
+  </form-beans>
+  
+  
+  <action-mappings>
+  
+   <action name="dossiers" path="/dossiers" type="com.action.admin.doc.category.dossiers.ADossiers" unknown="false" validate="false">
+      <forward name="_SUCCESS" path="/admin/doc/category/indexView.jsp"/>
+      <forward name="_PREPARE" path="/admin/doc/category/dossiers/indexEdit.jsp"/>
+      <forward name="_VIEW" path="/admin/doc/category/dossiers/indexView.jsp"/>
+      <forward name="_VIEW_LIST_DOCS" path="/admin/doc/category/dossiers/list.jsp"/>
+      <forward name="_LIST_PAGING" path="/admin/doc/category/dossiers/list.jsp"/>
+      <forward name="_LIST" path="/admin/doc/category/dossiers/view.jsp"/>
+      <forward name="_CREATE_ADD" path="/admin/doc/category/dossiers/indexDoc.jsp"/>
+      <forward name="_SAVE_NEW_RECV" path="/admin/doc/category/dossiers/comboDossiersRecv.jsp"/>
+      <forward name="_SAVE_NEW_SEND" path="/admin/doc/category/dossiers/comboDossiersSend.jsp"/>
+    </action>   
+
+     
+     <action name="docsrecv" path="/docsrecv" type="com.action.doc.docsrecv.ADocsrecv" unknown="false" validate="false">
+      <forward name="_SUCCESS" path="/doc/docsrecv/indexView.jsp"/>
+      <forward name="_SELECT" path="/doc/docsrecv/indexView.jsp"/>
+      <forward name="_PREPARE_DOC_REVIEW_RECV" path="/doc/reviews/recv/index.jsp"/>
+      <forward name="_PREPARED_SEARCH_RECV" path="/forYou/docsSearch/indexSearch.jsp"/>
+      <forward name="_BACK" path="/doc/docsrecv/view.jsp"/>
+      <forward name="_VIEW" path="/doc/docsrecv/view.jsp"/>
+      <forward name="_FILEDINHKEM" path="/doc/docsrecv/listFile.jsp"/>
+      <forward name="_DETAIL" path="/doc/docsrecv/excuteDoc.jsp"/>
+      <forward name="_TIP_FORYOU" path="/doc/docsrecv/tipForYou.jsp"/>
+      <forward name="_SELECT_STATUS" path="/doc/docsrecv/listView.jsp"/>
+      <forward name="_CREATE_FROM" path="/doc/from/popup.jsp"/>
+      <forward name="_CREATE_DOSS_RECV" path="/admin/doc/category/dossiers/indexDoc.jsp"/>
+      <forward name="_SCANNER" path="/doc/vOfficeControl.jsp"/>
+      <forward name="_GET_FILESCANS" path="/doc/draft/scans.jsp"/>
+      <forward name="_VIEW_FROM" path="/doc/from/optionsRecv.jsp"/>
+     <forward name="_VIEW_CODE" path="/doc/docsrecv/localCode1.jsp"/>	
+      <forward name="_PREPARE_CHOSE_RECV" path="/doc/reviews/recv/openPopup.jsp"/>
+      <forward name="_PREPARE_CHOSE_RECV_IN_CREATE" path="/doc/reviews/recv/openPopup.jsp"/>
+      <forward name="DOC_DETAILT" path="/doc/reviews/recv/docInfor.jsp"/>
+      <forward name="_UPDATE_CLASSIFY" path="/doc/docsrecv/updateClassify.jsp"/>
+	<forward name="_VIEW_LIST_TILE" path="/admin/doc/rules/sign/listOption.jsp"/>
+   </action> 
+    
+ <action name="docreport" path="/docreport" type="com.action.doc.docreport.ADocReport" unknown="false" validate="false">
+        <forward name="_SELECT" path="/doc/docReport/index.jsp"/>
+        <forward name="_OPEN_CHOSE" path="/doc/docReport/choseObjRecv.jsp"/>
+        <forward name="_OPEN_CHOSE_SEND" path="/doc/docReport/choseObjSend.jsp"/>
+        <forward name="_TOTALS" path="/doc/docReport/totals.jsp"/>
+        <forward name="_SHOW" path="/doc/docReport/user.jsp"/> 
+ </action>
+
+<action name="docreportLeft" path="/docreportLeft" type="com.action.doc.docreport.ADocReport" unknown="false" validate="false">
+        <forward name="_SELECT" path="/doc/docReport/index.jsp"/>       
+ </action>
+
+
+    <action name="docsrecvMain" path="/docsrecvMain" type="com.action.doc.docsrecv.ADocsrecv" unknown="false" validate="false">
+        <forward name="_SELECT" path="/doc/docsrecv/indexView.jsp"/>
+        <forward name="_GET_FILESCANS" path="/doc/draft/scans.jsp"/>
+        <forward name="_SEARCH_REFERENCE" path="/doc/docssend/docReference/list.jsp"/>
+         <forward name="_SEARCH_STORES" path="/doc/docsrecv/store/list.jsp"/>
+    </action>
+    
+    <action name="searchDocsrecv" path="/searchDocsrecv" type="com.action.doc.docsrecv.ADocsrecv" unknown="false" validate="false">
+        <forward name="_SEARCH" path="/doc/docsrecv/view.jsp"/>
+    </action>
+    
+     <action name="searchDocssend" path="/searchDocssend" type="com.action.doc.docssend.ADocssend" unknown="false" validate="false">
+        <forward name="_SEARCH" path="/doc/docssend/view.jsp"/>
+
+    </action> 
+    
+  
+    <action name="docssend" path="/docssend" type="com.action.doc.docssend.ADocssend" unknown="false" validate="false">
+
+        <forward name="_LIST_FILE_EMIT" path="/doc/docssend/listFileEmit.jsp"/>
+        <forward name="_PREPARED_EMIT" path="/doc/docssend/layoutEmit.jsp"/>
+        <forward name="_SUCCESS" path="/doc/docssend/indexView.jsp"/>
+        <forward name="_SELECT" path="/doc/docssend/indexView.jsp"/>
+        <forward name="_PREPARED_SEARCH_SEND" path="/forYou/docsSearch/indexSearch.jsp"/>
+        <forward name="_BACK" path="/doc/docssend/view.jsp"/>
+        <forward name="_PREPARE_DOC_REVIEW_SEND" path="/doc/reviews/send/index.jsp"/>
+        <forward name="_VIEW" path="/doc/docssend/view.jsp"/>
+        <forward name="_CREATE_FROM" path="/doc/from/popup.jsp"/>
+        <forward name="_DETAIL" path="/doc/docssend/excuteDoc.jsp"/>
+        <forward name="_FILEDINHKEM" path="/doc/docssend/listFile.jsp"/>
+        <forward name="_PREPARED_SAVE" path="/doc/docssend/docsedit/indexFormDt.jsp"/>
+        <forward name="_TIP_FORYOU" path="/doc/docssend/tipForYou.jsp"/>
+        <forward name="_SELECT_STATUS" path="/doc/docssend/listView.jsp"/>
+        <forward name="_CREATE_DOSS_SEND" path="/admin/doc/category/dossiers/indexDoc.jsp"/>
+        <forward name="_PREPARE_CHOSE_RECV" path="/doc/reviews/send/openPopup.jsp"/>    
+        <forward name="_CREATE_DOS_REFERENCE" path="/doc/docssend/docReference/index.jsp"/>   
+        <forward name="DOC_DETAILT" path="/doc/reviews/send/docInfor.jsp"/>
+        <forward name="_SEARCH_RECV" path="/doc/docssend/docReference/listtemp.jsp"/>
+	  <forward name="_UPDATE_CLASSIFY" path="/doc/docssend/updateClassify.jsp"/>        
+        <forward name="_VIEW_LIST_TILE" path="/admin/doc/rules/sign/listOption.jsp"/>
+
+        <forward name="_VIEW_CODE" path="/doc/docssend/localCode.jsp"/>
+
+    </action> 
+
+    <action name="docssendMain" path="/docssendMain" type="com.action.doc.docssend.ADocssend" unknown="false" validate="false">
+    <forward name="_SELECT" path="/doc/docssend/indexView.jsp"/>
+    <forward name="_PREPARED_SAVE" path="/doc/docssend/indexFormDt.jsp"/>
+    </action> 
+    <action name="docsSearch" path="/docsSearch" type="com.action.doc.docsSearch.ADocsSearch" unknown="false" validate="false">
+      <forward name="_SUCCESS" path="/doc/docsSearch/indexSearch.jsp"/>
+      <forward name="_SEARCH_RECV" path="/doc/docsSearch/resultRecv.jsp"/>
+      <forward name="_SEARCH_SEND" path="/doc/docsSearch/resultSend.jsp"/>
+      <forward name="_PRINTER_FORM_DOCS" path="/doc/docsSearch/searchChoseResult.jsp"/>
+      <forward name="_REVIEW" path="/doc/docsSearch/reviewDocs.jsp"/>
+    </action> 
+    
+    <action name="docsSearchTemp" path="/docsSearchTemp" type="com.action.doc.docsrecv.ADocsrecv" unknown="false" validate="false">
+            <forward name="_SEARCH" path="/doc/docsSearch/searchResult.jsp"/>
+    </action> 
+      
+   
+     
+    
+    
+    
+    
+  
+    
+     
+    
+    
+    
+    
+    <action name="docAssign" path="/docAssign" type="com.action.doc.assign.AAssignRecv" unknown="false" validate="false">
+          <forward name="_SUCCESS" path="/doc/category/via/context.jsp"/>    
+          <forward name="_DOC_ASSIGN_CREATE" path="/doc/reviews/recv/index.jsp"/>
+     </action> 
+   
+    
+     <action name="docAssignSend" path="/docAssignSend" type="com.action.doc.assign.AAssignSend" unknown="false" validate="false">
+          
+          <forward name="_SUCCESS" path="/doc/category/via/context.jsp"/>
+          <forward name="_CREATE" path="/doc/reviews/send/openwin.jsp"/>    
+          <forward name="_SEARCH_PAGE" path="/doc/assign/send/list.jsp"/>        
+          <forward name="_PREPARE" path="/doc/reviews/send/view.jsp"/>
+          <forward name="_PREPARED_CREATE" path="/doc/reviews/send/index.jsp"/>
+          <forward name="_DOC_ASSIGN_CREATE" path="/doc/reviews/send/index.jsp"/>
+          <forward name="_VIEWUSERS" path="/doc/assign/send/userList.jsp"/>
+          <forward name="_SEARCH" path="/doc/reviews/send/list.jsp"/>
+          <forward name="_CREATE_FROM_DOC" path="/doc/reviews/send/openPopup.jsp"/>
+          <forward name="_SHOW_GROUP" path="/doc/assign/send/listGroup.jsp"/>
+          <forward name="_SHOW" path="/doc/assign/send/listDepartment.jsp"/>
+          <forward name="_SHOW_ALL" path="/doc/assign/send/list.jsp"/>
+    </action> 
+    <action name="docAssignRecv" path="/docAssignRecv" type="com.action.doc.assign.AAssignRecv" unknown="false" validate="false">
+          <forward name="_SUCCESS" path="/doc/category/via/context.jsp"/>
+          <forward name="_CREATE" path="/doc/reviews/recv/openwin.jsp"/>    
+          <forward name="_SEARCH_PAGE" path="/doc/assign/recv/list.jsp"/>
+          <forward name="_SEARCH" path="/doc/reviews/recv/list.jsp"/>          
+          <forward name="_PREPARE" path="/doc/reviews/recv/view.jsp"/>
+          <forward name="_PREPARED_CREATE" path="/doc/reviews/recv/index.jsp"/>
+         <forward name="_CREATE_FROM_DOC" path="/doc/reviews/recv/openPopup.jsp"/>
+         <forward name="_CREATE_REVIEW" path="/doc/docssend/review.jsp"/>
+         <forward name="_VIEWUSERS" path="/doc/assign/recv/userList.jsp"/>
+         <forward name="_SHOW_GROUP" path="/doc/assign/recv/listGroup.jsp"/>
+         <forward name="_SHOW" path="/doc/assign/recv/listDepartment.jsp"/>
+         <forward name="_SHOW_ALL" path="/doc/assign/recv/list.jsp"/>
+         
+          
+    </action> 
+    
+    <action name="docSendClassify" path="/docSendClassify" type="com.action.doc.assign.AAssignSend" unknown="false" validate="false">
+	    <forward name="_OK_UPDATE_CLASSIFY" path="/admin/alert.jsp"/>
+   </action> 
+
+    <action name="docReviewSend" path="/docReviewSend" type="com.action.doc.assign.AAssignSend" unknown="false" validate="false">
+          <forward name="_SHOW" path="/doc/assign/send/userList.jsp"/>
+          <forward name="_PREPARE" path="/doc/reviews/send/view.jsp"/>
+          <forward name="_PREPARED_CREATE" path="/doc/reviews/send/index.jsp"/>
+          <forward name="_DOCS_SEND_LIST" path="/doc/docssend/view.jsp"/>
+          <forward name="_CREATE_REVIEW_TEMP" path="/doc/docssend/listReview.jsp"/>
+          <forward name="_GET_DRAFT" path="/doc/draft/draft.jsp"/>
+          <forward name="_FORM_ASSIGN" path="/doc/reviews/send/openPopup.jsp"/>
+          <forward name="_DOC_ASSIGN_CREATE" path="/doc/reviews/send/index.jsp"/>
+          <forward name="_VIEW_LIST_TILE" path="/doc/reviews/send/listTitle.jsp"/>
+          <forward name="_DETAIL" path="/doc/docssend/detail.jsp"/>
+          <forward name="DOC_TRAILER_RECV_VIEW" path="/doc/docmove/view.jsp"/>
+          <forward name="_SEARCH" path="/doc/docssend/view.jsp"/>
+
+    </action> 
+ <action name="docRecvClassify" path="/docRecvClassify" type="com.action.doc.assign.AAssignRecv" unknown="false" validate="false">
+	    	    <forward name="_OK_UPDATE_CLASSIFY" path="/admin/alert.jsp"/>
+   </action> 
+    
+     <action name="docReviewRecv" path="/docReviewRecv" type="com.action.doc.assign.AAssignRecv" unknown="false" validate="false">
+          <forward name="_SUCCESS" path="/doc/category/via/context.jsp"/>
+          <forward name="_CREATE" path="/doc/assign/recv/view.jsp"/>
+          <forward name="_SEARCH_PAGE" path="/doc/assign/recv/list.jsp"/>
+          <forward name="_DOCS_RECV_LIST" path="/doc/docsrecv/view.jsp"/>
+          <forward name="_CREATE_REVIEW_TEMP" path="/doc/docsrecv/listReview.jsp"/>
+          <forward name="_SHOW" path="/doc/assign/recv/userList.jsp"/>
+          <forward name="_PREPARE" path="/doc/reviews/recv/view.jsp"/>
+          <forward name="_PREPARED_CREATE" path="/doc/reviews/recv/index.jsp"/>
+          <forward name="_DOC_ASSIGN_CREATE" path="/doc/reviews/recv/index.jsp"/>
+          <forward name="_VIEW_LIST_TILE" path="/doc/reviews/recv/listTitle.jsp"/>
+          <forward name="_DETAIL" path="/doc/docsrecv/detail.jsp"/>
+          <forward name="DOC_TRAILER_RECV_VIEW" path="/doc/docmove/view.jsp"/>
+          <forward name="_SEARCH" path="/doc/docsrecv/view.jsp"/>
+
+    </action> 
+    
+    <action name="docDirectRecv" path="/docDirectRecv" type="com.action.doc.assign.AAssignRecv" unknown="false" validate="false">          
+          <forward name="_DOC_ASSIGN_CREATE" path="/doc/reviews/recv/index.jsp"/>
+    </action>
+    
+    <action name="docDirectSend" path="/docDirectSend" type="com.action.doc.assign.AAssignSend" unknown="false" validate="false">          
+          <forward name="_DOC_ASSIGN_CREATE" path="/doc/reviews/send/index.jsp"/>
+    </action>
+    
+    
+    
+    <action name="docMainAssignSend" path="/docMainAssignSend" type="com.action.doc.assign.AAssignSend" unknown="false" validate="false">
+      <forward name="_DOC_ASSIGN" path="/doc/assign/send/view.jsp"/>
+      <forward name="_SHOW" path="/doc/assign/send/userList.jsp"/>
+      <forward name="_PREPARED_SAVE" path="/doc/reviews/send/view.jsp"/>    
+     <forward name="DOC_TRAILER_SEND_VIEW" path="/doc/docmove/view.jsp"/>
+     <forward name="DOC_TRAILER_RECV_VIEW" path="/doc/docmove/view.jsp"/>
+     <forward name="DOC_DETAILT" path="/doc/reviews/send/docInfor.jsp"/>
+     <forward name="_DOC_REVIEW" path="/doc/reviews/send/list.jsp"/>
+     <forward name="_DOC_ASSIGN_CREATE" path="/doc/reviews/send/index.jsp"/>
+     <forward name="_TRANFER_DOCS" path="/doc/reviews/send/ok.jsp"/>
+      <forward name="_DOC_GROUP_SELECT" path="/doc/assign/send/optionGroup.jsp"/>
+    <forward name="_DOC_DEPARMENT_SELECT" path="/doc/assign/send/optionDep.jsp"/>
+    </action> 
+ 
+   <action name="docMainAssignRecv" path="/docMainAssignRecv" type="com.action.doc.assign.AAssignRecv" unknown="false" validate="false">
+      <forward name="_DOC_ASSIGN" path="/doc/assign/recv/view.jsp"/>
+      <forward name="_SHOW" path="/doc/assign/recv/userList.jsp"/>      
+      <forward name="_PREPARED_SAVE" path="/doc/reviews/recv/view.jsp"/>    
+      <forward name="DOC_TRAILER_SEND_VIEW" path="/doc/docmove/view.jsp"/>
+      <forward name="DOC_TRAILER_RECV_VIEW" path="/doc/docmove/view.jsp"/>
+     <forward name="DOC_DETAILT" path="/doc/reviews/recv/docInfor.jsp"/>
+     <forward name="_DOC_REVIEW" path="/doc/reviews/recv/list.jsp"/>
+      <forward name="_DOC_GROUP_SELECT" path="/doc/assign/recv/optionGroup.jsp"/>
+       <forward name="_DOC_DEPARMENT_SELECT" path="/doc/assign/recv/optionDep.jsp"/>
+    </action> 
+  </action-mappings>
+</struts-config>
+
+

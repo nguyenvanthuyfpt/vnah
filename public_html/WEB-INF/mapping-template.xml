@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>
+       
+     <form-bean name="templateType" type="com.form.template.templateType.FTemplateType"/>
+     <form-bean name="template" type="com.form.template.FTemplate"/>
+     <form-bean name="templateEdit" type="com.form.template.FTemplate"/> 
+        
+  </form-beans>
+  
+  <action-mappings>
+    
+    
+    <action name="templateType" path="/templateType" type="com.action.template.templateType.ATemplateType" unknown="false" validate="false">
+      <forward name="_SUCCESS" path="/template/templateType/Context.jsp"/>
+    </action>   
+   
+   <action name="templateEdit" path="/templateEdit" type="com.action.template.ATemplate" unknown="false" validate="false">
+         <forward name="_CREATE" path="/template/preparedView.jsp"/>
+         <forward name="_EDIT" path="/template/preparedView.jsp"/>
+   </action>
+    <action name="template" path="/template" type="com.action.template.ATemplate" unknown="false" validate="false">
+         <forward name="_SUCCESS" path="/template/indexView.jsp"/>
+         <forward name="_PREPARED_CREATE" path="/template/preparedView.jsp"/>
+         <forward name="_SAVE_FALSE" path="/template/listFile.jsp"/>
+         <forward name="_SEARCH_MAIN" path="/main/contentTemplate.jsp"/>
+    </action>   
+    
+  </action-mappings>
+</struts-config>
+

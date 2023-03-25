@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>
+    <form-bean name="mailFilter" type="com.form.mail.mailFilter.FMailFilter"/>
+    <form-bean name="loginEmail" type="com.form.mail.FMail"/>
+    <form-bean name="registerMail" type="com.form.admin.mail.FMailAccount"/>
+    <form-bean name="control" type="com.form.mail.FMail"/>
+    <form-bean name="sendMail" type="com.form.mail.FMail"/>
+    <form-bean name="emailListMain" type="com.form.mail.FMail"/>
+    <form-bean name="formMyContact" type="com.form.mycontact.FMycontact"/>
+    <form-bean name="pgroup" type="com.form.pgroups.FPgroup"/>
+    <form-bean name="openMycontact" type="com.form.mycontact.FMycontact"/>
+    
+  </form-beans>
+  
+  <action-mappings>
+   
+   <action name="mailFilter" path="/mailFilter" type="com.action.mail.mailFilter.AMailFilter" unknown="false" validate="false">
+      <forward name="_SUCCESS" path="/mail/mailFilter/index.jsp"/>
+      <forward name="_EDIT" path="/mail/mailFilter/edit.jsp"/>
+      <forward name="_ORDERS" path="/mail/mailFilter/list.jsp"/>
+    </action>
+    
+   
+    <action name="registerMail" path="/registerMail" type="com.action.mail.register.ARegister" unknown="false" validate="false">
+      <forward name="_SUCCESS" path="/mail/register/index.jsp"/>
+      <forward name="_EDIT" path="/mail/register/edit.jsp"/>
+      <forward name="_ORDERS" path="/mail/register/list.jsp"/>
+    </action>
+    
+    <action name="loginEmail" path="/loginEmail" type="com.action.mail.login.ALoginMail" unknown="false" validate="false">
+      <forward name="_SUCCESS" path="/mail/receiveMail/listTemp.jsp"/>
+      <forward name="_ERROR" path="/mail/register/index.jsp"/>
+    </action>
+
+ <action name="control" path="/control" type="com.action.mail.AControl" unknown="false" validate="false">
+      <forward name="_INBOX" path="/mail/receiveMail/listTemp.jsp"/>
+      <forward name="_SEND" path="/mail/sendMail/formTemp.jsp"/>
+      <forward name="_PREPARE_SEND" path="/mail/sendMail/form.jsp"/>
+      <forward name="_DETAIL_SEND" path="/mail/sendMail/detail.jsp"/>
+  </action>
+
+<action name="formMyContact" path="/formMyContact" type="com.action.mycontact.AMycontact" unknown="false" validate="false">
+    <forward name="_CREATE" path="/admin/alert.jsp"/>
+    <forward name="_VIEW" path="/mycontact/show.jsp"/>      
+    <forward name="_LIST_MYCONTACT" path="/mycontact/manager/index.jsp"/> 
+    <forward name="_PREPARED_CREATE" path="/mycontact/popup.jsp"/> 
+    <forward name="_LIST_MYCONTACT_VIEW" path="/mycontact/show.jsp"/> 
+    <forward name="_PREPARED_SAVE" path="/main/seaarchMycontact.jsp"/> 
+    <forward name="_PREPARED_DELETE" path="/mycontact/show.jsp"/> 
+    <forward name="_VIEW_MYCONTACT" path="/mycontact/detailt.jsp"/> 
+    <forward name="_OPEN_WINDOW" path="/mycontact/mainMyContactEdit.jsp"/> 
+    <forward name="_VIEW_PGROUP" path="/pgroup/popup.jsp"/>    
+    <forward name="_SEARCH_PAGE" path="/mycontact/searchList.jsp"/>
+    <forward name="_EMPLOYER" path="/mail/menu/deps.jsp"/>
+    <forward name="_SHOW_USER" path="/mail/menu/userlist.jsp"/>
+</action>
+ <action name="openMycontact" path="/openMycontact" type="com.action.mycontact.AMycontact" unknown="false" validate="false">        
+        <forward name="_LIST_MYCONTACT_VIEW" path="/mycontact/show.jsp"/>
+        <forward name="_EDIT_OPEN" path="/mycontact/listshow.jsp"/>
+    </action>
+      <action name="pgroup" path="/pgroup" type="com.action.pgroups.APgroups" unknown="false" validate="false">          
+          
+          <forward name="_CREATE_FALSE" path="/pgroup/manager/openLayout.jsp"/>
+          <forward name="_PREPARED_CREATE" path="/pgroup/manager/openLayout.jsp"/>
+          <forward name="_CREATE" path="/mycontact/show.jsp"/>
+          <forward name="_EDIT" path="/mycontact/show.jsp"/>
+          <forward name="_SELECT" path="/pgroup/edit.jsp"/>
+          <forward name="_VIEW" path="/pgroup/popup.jsp"/>    
+          <forward name="_PREPARE" path="/pgroup/popup.jsp"/>                         
+    </action>
+    
+  <action name="emailListMain" path="/emailListMain" type="com.action.mail.AControl" unknown="false" validate="false">
+      <forward name="_SEND" path="/mail/sendMail/formTemp.jsp"/>
+      <forward name="_PREPARE_SEND" path="/mail/sendMail/form.jsp"/>
+  </action>
+    
+    <action name="sendMail" path="/sendMail" type="com.action.mail.AControl" unknown="false" validate="false">
+      <forward name="_TRANSFER_MESSAGE" path="/messages/create/popup.jsp"/>
+      <forward name="_TRANSFER_RECV" path="/doc/docsrecv/indexView.jsp"/>
+      <forward name="_SEND" path="/mail/sendMail/formTemp.jsp"/>
+      <forward name="_ADD_ADDRES" path="/mail/sendMail/toAddress.jsp"/>
+      <forward name="_DETAIL_SEND" path="/mail/sendMail/detail.jsp"/>
+      <forward name="_INBOX" path="/mail/receiveMail/listTemp.jsp"/>
+      <forward name="_INBOX_AJAX" path="/mail/receiveMail/list.jsp"/>
+      <forward name="_INFOR_CC" path="/mail/sendMail/inforCcToFrom.jsp"/>
+      <forward name="_SEND_MSG" path="/mail/sendMail/MSGTemp.jsp"/>
+      <forward name="_SEND_FAST" path="/mail/sendMail/alertMsg.jsp"/>
+      <forward name="_PREPARE_SEND" path="/mail/sendMail/form.jsp"/>
+    </action>
+  </action-mappings>
+</struts-config>

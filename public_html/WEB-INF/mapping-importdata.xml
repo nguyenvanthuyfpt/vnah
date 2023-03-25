@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>       
+        <form-bean name="changedata" type="com.form.importdata.FImportData"/>
+        <form-bean name="importdata" type="com.form.importdata.FImportData"/>
+  </form-beans>
+  
+  <action-mappings>
+    <action name="changedata" path="/changedata" type="com.action.importdata.AChangeData" unknown="false" validate="false">
+         <forward name="_SUCCESS" path="/importdata/indexList.jsp"/>
+    </action>
+    <action name="importdata" path="/importdata" type="com.action.importdata.AChangeData" unknown="false" validate="false">
+         <forward name="_SUCCESS" path="/importdata/indexList.jsp"/>
+         <forward name="_CREATE" path="/admin/alert.jsp"/>
+         <forward name="_SELECT_SQL" path="/importdata/recordList.jsp"/>
+         <forward name="_SELECT_TABLE" path="/importdata/tableList.jsp"/>
+    </action>
+  </action-mappings>
+</struts-config>
+

@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>          
+         <form-bean name="categories" type="com.form.tasks.categories.FCategories"/>  
+         <form-bean name="tasks" type="com.form.tasks.categories.FCategories"/> 
+         <form-bean name="formCate" type="com.form.tasks.categories.FCategories"/> 
+         
+         <form-bean name="problemSelect" type="com.form.tasks.problem.FProblem"/>
+         <form-bean name="problem" type="com.form.tasks.problem.FProblem"/>
+         <form-bean name="problemMain" type="com.form.tasks.problem.FProblem"/>
+         <form-bean name="formProblem" type="com.form.tasks.problem.FProblem"/> 
+         <form-bean name="report" type="com.form.tasks.report.FReport"/>        
+         
+  </form-beans>  
+  <action-mappings>  
+    <action name="categories" path="/categories" type="com.action.tasks.categories.ACategories" unknown="false" validate="false">      
+      <forward name="_PREPARED_CREATE" path="/tasks/categories/form.jsp"/>  
+      <forward name="_CREATE" path="/tasks/categories/list.jsp"/>    
+      <forward name="_PREPARE" path="/tasks/problem/index.jsp"/>   
+    </action>        
+    
+    <action name="tasks" path="/tasks" type="com.action.tasks.categories.ACategories" unknown="false" validate="false">      
+        <forward name="_SELECT" path="/tasks/categories/index.jsp"/>  
+        <forward name="_PREPARE_RULES" path="/tasks/rules/index.jsp"/>        
+    </action>     
+    
+    <action name="formCate" path="/formCate" type="com.action.tasks.categories.ACategories" unknown="false" validate="false">           
+      <forward name="_CREATE" path="/tasks/categories/index.jsp"/> 
+      <forward name="_PREPARED_CREATE" path="/tasks/categories/form.jsp"/>          
+    </action> 
+    
+    <action name="report" path="/report" type="com.action.tasks.report.AReport" unknown="false" validate="false">           
+      <forward name="_CREATE" path="/tasks/problem/index.jsp"/>
+      <forward name="_SEARCH_PAGE" path="/tasks/report/mainList.jsp"/> 
+      <forward name="_REPORT" path="/tasks/report/index.jsp"/> 
+    </action> 
+    
+    <action name="problem" path="/problem" type="com.action.tasks.problem.AProblem" unknown="false" validate="false">      
+      
+      <forward name="_SELECT" path="/tasks/problem/index.jsp"/>  
+      <forward name="_PREPARED_CREATE" path="/tasks/problem/form.jsp"/>       
+      <forward name="_SHOW" path="/tasks/problem/empsList.jsp"/> 
+      <forward name="_CREATE" path="/tasks/problem/index.jsp"/>  
+      <forward name="_ACTIVE" path="/tasks/problem/mainList.jsp"/>
+      <forward name="_REPORT" path="/tasks/report/formReport.jsp"/>   
+      <forward name="_PREPARE" path="/tasks/problem/mainList.jsp"/>
+      <forward name="_VIEW" path="/tasks/problem/window.jsp"/>
+      <forward name="_PUT" path="/tasks/problem/reportList.jsp"/>      
+      <forward name="_SAVE_NEW" path="/tasks/problem/lists/problem.jsp"/> 
+       
+      <forward name="_TASK_ASSIGN_CREATE" path="/tasks/problem/index.jsp"/>
+      <forward name="_TASK_ROOT" path="/tasks/problem/viewProplem.jsp"/>
+      <forward name="_TASK_PROBLEM_STOP" path="/tasks/problem/mainList.jsp"/>
+      <forward name="_TASK_ASSIGN_STOP" path="/tasks/problem/mainList.jsp"/>
+      <forward name="_TASK_ASSIGN_ACCEPTED" path="/tasks/problem/lists/problem.jsp"/>   
+      <forward name="_CREATE_REPORT" path="/tasks/problem/index.jsp"/>
+      <forward name="_CREATE_SIGN" path="/tasks/problem/editSign.jsp"/>
+      
+      
+      
+    </action> 
+     <action name="problemSelect" path="/problemSelect" type="com.action.tasks.problem.AProblem" unknown="false" validate="false">      
+      <forward name="_PREPARED_CREATE" path="/tasks/problem/form.jsp"/>       
+      <forward name="_SHOW" path="/tasks/problem/empsList.jsp"/> 
+    </action> 
+    
+    
+    <action name="problemMain" path="/problemMain" type="com.action.tasks.problem.AProblem" unknown="false" validate="false">      
+    <forward name="_PREPARED_CREATE" path="/tasks/problem/form.jsp"/>       
+    </action> 
+    
+    <action name="formProblem" path="/formProblem" type="com.action.tasks.problem.AProblem" unknown="false" validate="false">      
+      <forward name="_SELECT" path="/tasks/categories/index.jsp"/>  
+      <forward name="_CREATE" path="/tasks/categories/mainList.jsp"/>     
+      <forward name="_VIEW_REPORT" path="/tasks/problem/lists/viewReport.jsp"/>  
+      <forward name="_VIEW_DETAIL" path="/tasks/problem/viewProplem.jsp"/> 
+      <forward name="_REVIEW_REPORT" path="/tasks/problem/lists/reviewReport.jsp"/>  
+    </action> 
+    
+   
+  </action-mappings>
+</struts-config>

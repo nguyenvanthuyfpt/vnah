@@ -1,0 +1,106 @@
+<?xml version = '1.0' encoding = 'windows-1252'?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+    <description>web.xml file for VIETSOFTWARE Framework Web Application</description>
+    <listener>
+        <listener-class>com.users.OnlineSessions</listener-class>
+    </listener>
+     <listener>
+        <listener-class>com.util.Tasks</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>com.action.AServlet</servlet-class>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>/WEB-INF/struts-config.xml,/WEB-INF/mapping-config.xml,/WEB-INF/mapping-messages.xml,/WEB-INF/mapping-admin.xml,/WEB-INF/mapping-tasks.xml,/WEB-INF/mapping-foryou.xml,/WEB-INF/mapping-calendar.xml,/WEB-INF/mapping-cabin.xml,/WEB-INF/mapping-doc.xml,/WEB-INF/mapping-template.xml,/WEB-INF/mapping-report.xml,/WEB-INF/mapping-mail.xml,/WEB-INF/mapping-require.xml,/WEB-INF/mapping-importdata.xml,/WEB-INF/mapping-disability.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>ChartDisServlet</servlet-name>
+        <servlet-class>com.util.ChartDisServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>ChartDisServlet</servlet-name>
+        <url-pattern>/chartDis</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ChartPersonServlet</servlet-name>
+        <servlet-class>com.util.ChartPersonServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>ChartPersonServlet</servlet-name>
+        <url-pattern>/chartPerson</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ChartHoursServlet</servlet-name>
+        <servlet-class>com.util.ChartHoursServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChartHoursServlet</servlet-name>
+        <url-pattern>/chartHours</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ChartEventServlet</servlet-name>
+        <servlet-class>com.util.ChartEventServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>ChartEventServlet</servlet-name>
+        <url-pattern>/chartEvent</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>175</session-timeout>
+    </session-config>
+    <mime-mapping>
+        <extension>html</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>txt</extension>
+        <mime-type>text/plain</mime-type>
+    </mime-mapping>
+    <welcome-file-list>
+        <welcome-file>/index.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/</location>
+    </error-page>
+    <jsp-config>
+        <taglib>
+            <taglib-uri>/WEB-INF/struts-html.tld</taglib-uri>
+            <taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/WEB-INF/struts-bean.tld</taglib-uri>
+            <taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/WEB-INF/struts-logic.tld</taglib-uri>
+            <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/WEB-INF/struts-tiles.tld</taglib-uri>
+            <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/WEB-INF/struts-nested.tld</taglib-uri>
+            <taglib-location>/WEB-INF/struts-nested.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+</web-app>

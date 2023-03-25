@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>
+        <form-bean name="agenda" type="com.form.calendar.agenda.FAgenda"/>
+        <form-bean name="agendaMeeting" type="com.form.calendarMeeting.agenda.FAgendaMeeting"/>
+        <form-bean name="agendaXe" type="com.form.calendarXe.FCalendarXe"/>
+        <form-bean name="calendar" type="com.form.calendar.agenda.FAgenda"/>
+        <form-bean name="calendarMeeting" type="com.form.calendarMeeting.agenda.FAgendaMeeting"/>
+        <form-bean name="calendarXe" type="com.form.calendarXe.FCalendarXe"/>
+  </form-beans>
+  <action-mappings>
+  
+    <action name="calendar" path="/calendar" type="com.action.calendar.agenda.ACalendar" unknown="false" validate="false">
+         <forward name="_SUCCESS" path="/calendar/formPrivate.jsp"/>
+         <forward name="_SELECT_WEEK" path="/calendar/week/index.jsp"/>
+         <forward name="_SELECT_MONTH" path="/calendar/month/index.jsp"/>
+    </action>
+    <action name="calendarXe" path="/calendarXe" type="com.action.calendarXe.ACalendarXe" unknown="false" validate="false">
+         <forward name="_SUCCESS" path="/calendarXe/formPrivate.jsp"/>
+         <forward name="_SELECT_WEEK" path="/calendarXe/week/index.jsp"/>
+         <forward name="_SELECT_MONTH" path="/calendarXe/month/index.jsp"/>
+    </action>
+    
+    <action name="calendarMeeting" path="/calendarMeeting" type="com.action.calendarMeeting.agenda.ACalendarMeeting" unknown="false" validate="false">
+         <forward name="_SUCCESS" path="/calendarMeeting/formPrivate.jsp"/>
+         <forward name="_SELECT_WEEK" path="/calendarMeeting/week/index.jsp"/>
+         <forward name="_SELECT_MONTH" path="/calendarMeeting/month/index.jsp"/>
+    </action>
+    
+    
+     <action name="agenda" path="/agenda" type="com.action.calendar.agenda.AAgenda" unknown="false" validate="false">
+         <forward name="_SUCCESS" path="/calendar/agenda/context.jsp"/>
+         <forward name="_DETAIL_CALENDAR" path="/calendar/detailTip.jsp"/>
+         <forward name="_PREPARED_CREATE" path="/calendar/formPrivate.jsp"/>
+         <forward name="_SELECT_WEEK" path="/calendar/week/index.jsp"/>
+         <forward name="_CALENDAR_MONTH" path="/calendar/month/index.jsp"/>
+         <forward name="_CALENDAR_WEEK" path="/calendar/week/week.jsp" />
+         <forward name="_SHOW" path="/calendar/layoutEditPublic.jsp"/>
+         <forward name="_CALENDAR_EXCUTE" path="/calendar/formPublic.jsp"/>
+         <forward name="_SEARCH_MAIN" path="/calendar/calendarDep.jsp"/>
+    </action>
+    
+    <action name="agendaXe" path="/agendaXe" type="com.action.calendarXe.ACalendarXe" unknown="false" validate="false">
+         <forward name="_SUCCESS" path="/calendarXe/agenda/context.jsp"/>
+         <forward name="_DETAIL_CALENDAR" path="/calendarXe/detailTip.jsp"/>
+         <forward name="_PREPARED_CREATE" path="/calendarXe/formPrivate.jsp"/>
+         <forward name="_SELECT_WEEK" path="/calendarXe/week/index.jsp"/>
+         <forward name="_CALENDAR_MONTH" path="/calendarXe/month/index.jsp"/>
+         <forward name="_CALENDAR_WEEK" path="/calendarXe/week/week.jsp" />
+         <forward name="_SHOW" path="/calendarXe/layoutEditPublic.jsp"/>
+         <forward name="_CALENDAR_EXCUTE" path="/calendarXe/formPublic.jsp"/>
+         <forward name="_SEARCH_MAIN" path="/calendarXe/calendarDep.jsp"/>
+    </action>
+    
+    
+    <action name="agendaMeeting" path="/agendaMeeting" type="com.action.calendarMeeting.agenda.AAgendaMeeting" unknown="false" validate="false">
+         <forward name="_SUCCESS" path="/calendarMeeting/agenda/context.jsp"/>
+         <forward name="_DETAIL_CALENDAR" path="/calendarMeeting/detailTip.jsp"/>
+         <forward name="_PREPARED_CREATE" path="/calendarMeeting/formPrivate.jsp"/>
+         <forward name="_SELECT_WEEK" path="/calendarMeeting/week/index.jsp"/>
+         <forward name="_CALENDAR_MONTH" path="/calendarMeeting/month/index.jsp"/>
+         <forward name="_CALENDAR_WEEK" path="/calendarMeeting/week/week.jsp" />
+         <forward name="_SHOW" path="/calendarMeeting/layoutEditPublic.jsp"/>
+         <forward name="_CALENDAR_EXCUTE" path="/calendarMeeting/formPublic.jsp"/>
+         <forward name="_SEARCH_MAIN" path="/calendarMeeting/calendarDep.jsp"/>
+    </action>    
+    
+  </action-mappings>
+</struts-config>
+

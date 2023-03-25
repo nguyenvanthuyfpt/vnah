@@ -1,0 +1,1 @@
+document.write('<center><a target=_blank href="http://a.tribalfusion.com/h.click/aTmyfb4WYO0tQJnW6N5ABS4sb6TsQ9UcJhRAYvWd3VTr7S3r2sWEQnVqJaSTYZaQc7ZbRFaqSH3iWGvS4rinodiOXaev4drCSVFZa5A3IotTyTdQ7YrM7XFQkXaeMSF3CTUU5WdUTmrZbxRVfFa1qNlr/http://www.whatadifference.org"><img src="http://cdn5.tribalfusion.com/media/1520716.gif" border=0 height=600 width=160 ><\/a><\/center>');

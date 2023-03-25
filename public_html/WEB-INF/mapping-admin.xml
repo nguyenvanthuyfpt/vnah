@@ -1,0 +1,341 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="language" type="com.form.admin.language.FLanguage"/>
+		<form-bean name="login" type="com.form.admin.login.FLoginSystem"/>
+		<form-bean name="function" type="com.form.admin.FFunction"/>
+		<form-bean name="users" type="com.form.admin.users.FUser"/>
+		<form-bean name="groups" type="com.form.admin.groups.FGroup"/>
+		<form-bean name="apps" type="com.form.admin.apps.FApp"/>
+		<form-bean name="departments" type="com.form.admin.departments.FDepartment"/>
+		<form-bean name="log" type="com.form.admin.log.FLog"/>
+
+		<form-bean name="smsControler" type="com.form.admin.sms.FSms"/>
+		<form-bean name="sms" type="com.form.admin.sms.FSms"/>
+		<form-bean name="logSms" type="com.form.admin.sms.FLogSms"/>
+		<form-bean name="rules" type="com.form.admin.tasks.rules.FRules"/>
+		<form-bean name="rulesOpen" type="com.form.admin.tasks.rules.FRules"/>
+		<form-bean name="ruleforyou" type="com.form.admin.foryou.rules.FRule"/>
+		<form-bean name="forYouRulesOpen" type="com.form.admin.foryou.rules.FRule"/>
+		<form-bean name="docrule" type="com.form.admin.doc.rules.FDocRules"/>    
+		<form-bean name="trailerStore" type="com.form.admin.doc.rules.FTrailerStore"/>    
+		<form-bean name="docRulesOpen" type="com.form.admin.doc.rules.FDocRules"/>
+		<form-bean name="observerrule" type="com.form.admin.doc.rules.FDocRules"/>
+		<form-bean name="doctag" type="com.form.admin.doc.rules.FDocRules"/>
+		<form-bean name="creatorrrule" type="com.form.admin.doc.rules.FDocRules"/>      
+		<form-bean name="sign" type="com.form.admin.doc.rules.FDocRules"/>      	
+		<form-bean name="reportRule" type="com.form.admin.reports.rules.FReportRule"/>
+		<form-bean name="reportRuleOpen" type="com.form.admin.reports.rules.FReportRule"/>
+		<form-bean name="templateRule" type="com.form.admin.templates.rules.FTemplatesRule"/>
+		<form-bean name="templateRuleOpen" type="com.form.admin.templates.rules.FTemplatesRule"/>    
+		<form-bean name="requireCat" type="com.form.admin.require.category.FCatRequire"/>
+		<form-bean name="rmStatus" type="com.form.admin.require.rm_status.FRmStatus"/>
+		<form-bean name="secure" type="com.form.admin.doc.category.secure.FSecure"/>
+		<form-bean name="form" type="com.form.admin.doc.category.form.FForm"/>
+		<form-bean name="status" type="com.form.admin.doc.category.status.FStatus"/>
+		<form-bean name="express" type="com.form.admin.doc.category.express.FExpress"/>
+		<form-bean name="via" type="com.form.admin.doc.category.via.FVia"/>
+		<form-bean name="classify" type="com.form.admin.doc.category.classify.FClassify"/>
+		<form-bean name="branch" type="com.form.admin.doc.category.branch.FBranch"/>
+		<form-bean name="thePen" type="com.form.admin.doc.category.thePen.FThePen"/>   
+		<form-bean name="dataBaseServer" type="com.form.admin.doc.category.dataBaseServer.FDataBaseServer"/>
+		<form-bean name="transfer" type="com.form.admin.doc.category.transfer.FTransfer"/>
+		<form-bean name="doctype" type="com.form.admin.doc.category.doctype.FDocType"/>
+		<form-bean name="servey" type="com.form.admin.servey.FServey"/>
+		<form-bean name="serveyQuestions" type="com.form.admin.servey.FServeyQuestions"/>   
+		<form-bean name="mailAccount" type="com.form.admin.mail.FMailAccount"/>
+		<form-bean name="reportSystem" type="com.form.admin.reportSystem.FReportSystem"/>
+
+		<form-bean name="home" 	type="com.form.disability.FUnit" />
+	</form-beans>
+	
+	
+	<action-mappings>
+		<action name="reportSystem" path="/reportSystem" type="com.action.admin.reportSystem.AReportSystem" unknown="false" validate="false">
+			<forward name="_ERROR" path="/admin/reportSystem/index.jsp"/>
+			<forward name="_PREPARED_EDIT" path="/admin/reportSystem/form.jsp"/>
+			<forward name="_VIEW" path="/admin/reportSystem/list.jsp"/>
+			<forward name="_LEFT" path="/admin/reportSystem/left.jsp"/>
+		</action> 
+		
+		<action name="mailAccount" path="/mailAccount" type="com.action.admin.mail.AMailAccount" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/mail/context.jsp"/>
+		</action> 
+
+		<action name="log" path="/log" type="com.action.admin.log.ALog" unknown="false" validate="false">
+			<forward name="_PREPARED_EDIT" path="/admin/users/userchangepass.jsp"/>
+			<forward name="_VIEW" path="/admin/log/listlog.jsp"/>
+		</action>
+		
+		<action name="smsControler" path="/smsControler" type="com.action.admin.sms.ASms" unknown="false" validate="false">
+		   <forward name="_PERMISION_SMS" path="/admin/sms/formPermision.jsp"/>
+		   <forward name="_LOG_SMS" path="/admin/sms/log/log.jsp"/>
+		</action>
+		
+		<action name="sms" path="/sms" type="com.action.admin.sms.ASms" unknown="false" validate="false">
+		   <forward name="_VIEW" path="/admin/sms/sms.jsp"/>
+		</action>    
+		
+		<action name="logSms" path="/logSms" type="com.action.admin.sms.ALogSms" unknown="false" validate="false">
+		   <forward name="_VIEW" path="/admin/sms/log/log.jsp"/>
+		</action>    
+
+		<action name="language" path="/language" type="com.action.admin.language.ALanguage" unknown="false" validate="false"/>
+		
+		<action name="login" path="/login" type="com.action.admin.login.ALoginSystem" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/forward.jsp"/>
+			<forward name="_PREPARED_EDIT" path="/admin/users/userchangepass.jsp"/>
+			<forward name="_ERROR" path="/admin/window.jsp"/>
+			<forward name="_HOME" path="/admin/login/index.jsp"/>
+		</action>
+		
+		<action name="users" path="/users" type="com.action.admin.users.AUsers" unknown="false" validate="false">
+		  <forward name="_ACTIVE" path="/admin/users/active.jsp"/>
+		  <forward name="_ERROR" path="/admin/window.jsp"/>
+		  <forward name="_CREATE" path="/admin/alert.jsp"/>
+		  <forward name="_EDIT" path="/admin/alert.jsp"/>
+		  <forward name="_DELETE" path="/admin/users/users.jsp"/>
+		  <forward name="_VIEW" path="/admin/menu/option.jsp"/>
+		  <forward name="_MENU_OPTION" path="/admin/role/menuTree.jsp"/>      
+		  <forward name="_SEARCH" path="/admin/users/list.jsp"/>
+		</action>
+		
+		<action name="groups" path="/groups" type="com.action.admin.groups.AGroups" unknown="false" validate="false">
+		  <forward name="_CREATE" path="/admin/groups/groupview.jsp"/>
+		  <forward name="_EDIT" path="/admin/groups/groupview.jsp"/>
+		  <forward name="_DELETE" path="/admin/groups/groupview.jsp"/>
+		</action>
+		
+		<action name="apps" path="/apps" type="com.action.admin.apps.AApps" unknown="false" validate="false">
+		  <forward name="_CREATE" path="/admin/apps/appview.jsp"/>
+		  <forward name="_EDIT" path="/admin/apps/appview.jsp"/>
+		  <forward name="_DELETE" path="/admin/apps/appview.jsp"/>
+		  <forward name="_VIEW" path="/admin/apps/appedit.jsp"/>
+		</action>
+
+		<action name="departments" path="/departments" type="com.action.admin.departments.ADepartments" unknown="false" validate="false">
+		  <forward name="_CREATE" path="/admin/departments/departmentView.jsp"/>
+		  <forward name="_EDIT" path="/admin/departments/departmentView.jsp"/>
+		  <forward name="_DELETE" path="/admin/departments/departmentView.jsp"/>
+		</action>
+		
+		<action name="function" path="/function" type="com.action.admin.AFunction" unknown="false" validate="false">          
+			<forward name="_SYSTEM_REPORT" path="/admin/reportSystem/index.jsp"/>
+			<forward name="_LISTUSERS" path="/admin/users/userslist.jsp"/>
+			<forward name="_EDITUSERS" path="/admin/users/userview.jsp"/>
+			<forward name="_VIEWUSERS" path="/admin/users/users.jsp"/>
+			<forward name="_PREPARED_EDIT" path="/admin/users/userchangepass.jsp"/>
+			<forward name="_LISTGROUPS" path="/admin/groups/groupview.jsp"/>
+			<forward name="_VIEWGROUPS" path="/admin/groups/groupedit.jsp"/>
+			<forward name="_EDITGROUPS" path="/admin/groups/groupview.jsp"/>
+			<forward name="_LISTAPPS" path="/admin/apps/appview.jsp"/>
+			<forward name="_LISTDEPARTMENTS" path="/admin/departments/departmentView.jsp"/>
+			<forward name="_VIEWDEPARTMENTS" path="/admin/departments/departmentForm.jsp"/>
+			<forward name="_LISTLOGS" path="/admin/log/listlog.jsp"/>
+			<forward name="_ACTIVE" path="/admin/window.jsp"/>            
+			<forward name="_PREPARE" path="/admin/tasks/rules/index.jsp"/>  
+			<forward name="_PREPARE_FORYOURULES" path="/admin/foryou/rules/index.jsp"/> 
+			<forward name="_PREPARE_DOCRULES" path="/admin/doc/rules/index.jsp"/>
+			<forward name="_PREPARE_REPORTRULES" path="/admin/reports/rules/index.jsp"/>      
+			<forward name="_PREPARE_TEMPLATES" path="/admin/templates/rules/index.jsp"/>
+			<forward name="_LIST_MYCONTACT" path="/admin/mycontact/myContactList.jsp"/>
+			<forward name="_ADD_CONTACT" path="/admin/mycontact/mycontactForm.jsp"/>
+			<forward name="_SHOW_CAT_REQUIRE" path="/admin/require/category/index.jsp"/>
+			<forward name="_SHOW_RM_STATUS" path="/admin/require/rm_status/index.jsp"/>
+			<forward name="_PREPARE_REQUIRE_RULE" path="/admin/require/trailer/index.jsp"/>
+			<forward name="_CATEGORY" path="/admin/doc/category/indexView.jsp"/>   
+			<forward name="_MAIL_ACCOUNT" path="/admin/mail/mailAccountView.jsp"/>  
+			<forward name="_CATEGORY_EXPRESS" path="/admin/doc/category/express/expressView.jsp"/>  
+			<forward name="_CATEGORY_VIA" path="/admin/doc/category/via/viaView.jsp"/>  
+			<forward name="_CATEGORY_BRANCH" path="/admin/doc/category/branch/branchView.jsp"/>  
+			<forward name="_CATEGORY_CLASSIFY" path="/admin/doc/category/classify/classifyView.jsp"/>  
+			<forward name="_CATEGORY_THEPEN" path="/admin/doc/category/thePen/thePenView.jsp"/>  
+			<forward name="_CATEGORY_TRANSFER" path="/admin/doc/category/transfer/transferView.jsp"/>  
+			<forward name="_CATEGORY_FORM" path="/admin/doc/category/form/formView.jsp"/>  
+			<forward name="_CATEGORY_STATUS" path="/admin/doc/category/status/statusView.jsp"/>  
+			<forward name="_CATEGORY_DOC_TYPE" path="/admin/doc/category/DocType/docTypeView.jsp"/>  
+			<forward name="_CATEGORY_REPORT_TYPE" path="/admin/reports/reportType/index.jsp"/>  
+			<forward name="_CATEGORY_TEMPLATE_TYPE" path="/admin/templates/templateType/index.jsp"/>   
+			<forward name="_DATABASE_SERVER" path="/admin/doc/category/dataBaseServer/dataBaseServerView.jsp"/>  
+			<forward name="_CATEGORY_SERVEY" path="/admin/servey/serveyView.jsp"/>
+			<forward name="_CATEGORY_SERVEYQUESTIONS" path="/admin/serveyQuestions/View.jsp"/>  
+			<forward name="_LIST_SMS" path="/admin/sms/listsms.jsp"/>  
+		</action>
+		
+		<action name="rules" path="/rules" type="com.action.admin.tasks.rules.ARules" unknown="false" validate="false"> 
+			<forward name="_PREPARE" path="/admin/tasks/rules/window.jsp"/>
+			<forward name="_CREATE" path="/admin/tasks/rules/form.jsp"/> 
+			<forward name="_PREPARED_EDIT" path="/admin/tasks/rules/form.jsp"/>  
+			<forward name="_DELETE" path="/admin/tasks/rules/listCmd.jsp"/>  
+			<forward name="_SHOW" path="/admin/tasks/rules/empsList.jsp"/>   
+		</action> 
+		
+		 <action name="ruleforyou" path="/ruleforyou" type="com.action.admin.foryou.rules.ARule" unknown="false" validate="false">      
+			<forward name="_PREPARE" path="/admin/foryou/rules/window.jsp"/>
+			<forward name="_CREATE" path="/admin/foryou/rules/listCmd.jsp"/> 
+			<forward name="_PREPARED_EDIT" path="/admin/foryou/rules/form.jsp"/>  
+			<forward name="_DELETE" path="/admin/foryou/rules/listCmd.jsp"/>       
+			<forward name="_SHOW" path="/admin/foryou/rules/empsList.jsp"/>       
+		</action>      
+	  
+		<action name="trailerStore" path="/trailerStore" type="com.action.admin.doc.rules.ATrailerStore" unknown="false" validate="false">      
+			<forward name="_PREPARE" path="/admin/doc/rules/trailerStore/index.jsp"/>
+			<forward name="_SHOW_USER_SEND" path="/admin/doc/rules/trailerStore/usersend.jsp"/>
+			<forward name="_SHOW_USER_RECV" path="/admin/doc/rules/trailerStore/userrecv.jsp"/>
+			<forward name="_VIEW" path="/admin/doc/rules/trailerStore/listDocs.jsp"/>
+			<forward name="_STORE_TRAILER_LOG" path="/admin/doc/rules/trailerStore/trailerList.jsp"/>        
+		</action>
+		 
+		 <action name="docrule" path="/docrule" type="com.action.admin.doc.rules.ADocRules" unknown="false" validate="false">      
+			<forward name="_PREPARE" path="/admin/doc/rules/options.jsp"/>
+			<forward name="_CREATE" path="/admin/doc/rules/listCmd.jsp"/> 
+			<forward name="_PREPARED_EDIT" path="/admin/doc/rules/form.jsp"/>  
+			<forward name="_DELETE" path="/admin/doc/rules/listCmd.jsp"/>      
+			<forward name="_PREPARED_CREATE" path="/admin/doc/rules/edit.jsp"/> 
+			<forward name="_GET" path="/admin/doc/rules/inforForm.jsp"/> 
+			<forward name="_SHOW" path="/admin/doc/rules/empsList.jsp"/>
+			<forward name="_PREPARE_STATUS" path="/admin/doc/rules/status/status.jsp"/>       
+		</action> 
+		 
+		<action name="docRulesOpen" path="/docRulesOpen" type="com.action.admin.doc.rules.ADocRules" unknown="false" validate="false">
+			 <forward name="_PREPARE" path="/admin/doc/rules/window.jsp"/>
+			 <forward name="_SHOW" path="/admin/doc/rules/empsList.jsp"/>
+		</action> 
+		
+		<action name="observerrule" path="/observerrule" type="com.action.admin.doc.rules.AObserverRules" unknown="false" validate="false">
+			<forward name="_PREPARE" path="/admin/doc/rules/window.jsp"/>
+			<forward name="_SHOW" path="/admin/doc/rules/empsList.jsp"/>
+			<forward name="_DELETE" path="/admin/doc/rules/observer/listCmd.jsp"/>
+			<forward name="_CREATE" path="/admin/doc/rules/observer/view.jsp"/> 
+			<forward name="_PREPARED_EDIT" path="/admin/doc/rules/observer/form.jsp"/>  
+			<forward name="_SHOW_USERS" path="/admin/doc/rules/observer/userInDep.jsp"/>  
+		</action> 
+		
+		<action name="creatorrrule" path="/creatorrrule" type="com.action.admin.doc.rules.ACreatorRules" unknown="false" validate="false">
+			<forward name="_PREPARE" path="/admin/doc/rules/window.jsp"/>
+			<forward name="_SHOW" path="/admin/doc/rules/empsList.jsp"/>
+			<forward name="_DELETE" path="/admin/doc/rules/creator/listCmd.jsp"/>
+			<forward name="_CREATE" path="/admin/doc/rules/creator/view.jsp"/> 
+			<forward name="_PREPARED_EDIT" path="/admin/doc/rules/creator/form.jsp"/>  
+			<forward name="_SEARCH_PAGE" path="/admin/doc/rules/creator/listCmd.jsp"/>
+			<forward name="_SHOW_USERS" path="/admin/doc/rules/observer/userInDep.jsp"/>  
+		</action> 
+
+		<action name="sign" path="/sign" type="com.action.admin.doc.rules.ASign" unknown="false" validate="false">
+			<forward name="_DELETE" path="/admin/doc/rules/sign/listCmd.jsp"/>
+			<forward name="_CREATE" path="/admin/doc/rules/sign/view.jsp"/> 
+			<forward name="_PREPARED_EDIT" path="/admin/doc/rules/sign/form.jsp"/>  
+			<forward name="_SEARCH_PAGE" path="/admin/doc/rules/sign	/listCmd.jsp"/>	
+			<forward name="_SHOW_USERS" path="/admin/doc/rules/observer/userInDep.jsp"/>  
+		</action> 
+
+		<action name="doctag" path="/doctag" type="com.action.admin.doc.rules.AObserverRules" unknown="false" validate="false">
+			<forward name="_PREPARED_SAVE" path="/admin/doc/rules/list.jsp"/>
+			<forward name="_GET" path="/admin/doc/rules/observer/list.jsp"/>
+			<forward name="_PUT" path="/admin/doc/rules/creator/list.jsp"/>  
+			<forward name="_STORE_TRAILER" path="/admin/doc/rules/trailerStore/index.jsp"/>
+			<forward name="_STORE_TRAILER_LOG" path="/admin/doc/rules/trailerStore/trailerList.jsp"/>
+		</action> 
+		
+		 <action name="reportRule" path="/reportRule" type="com.action.admin.reports.rules.AReportsRule" unknown="false" validate="false">
+			<forward name="_PREPARE" path="/admin/reports/rules/window.jsp"/>
+			<forward name="_SHOW" path="/admin/reports/rules/empsList.jsp"/>
+			<forward name="_DELETE" path="/admin/reports/rules/listCmd.jsp"/>
+			<forward name="_CREATE" path="/admin/reports/rules/form.jsp"/> 
+			<forward name="_PREPARED_EDIT" path="/admin/reports/rules/form.jsp"/>  
+			<forward name="_SEARCH_PAGE" path="/admin/reports/rules/listCmd.jsp"/>     
+		</action>
+		
+		<action name="templateRule" path="/templateRule" type="com.action.admin.templates.rules.ATemplatesRule" unknown="false" validate="false">
+			<forward name="_PREPARE" path="/admin/templates/rules/window.jsp"/>
+			<forward name="_SHOW" path="/admin/templates/rules/empsList.jsp"/>
+			<forward name="_DELETE" path="/admin/templates/rules/listCmd.jsp"/>
+			<forward name="_CREATE" path="/admin/templates/rules/form.jsp"/> 
+			<forward name="_PREPARED_EDIT" path="/admin/templates/rules/form.jsp"/>  
+			<forward name="_SEARCH_PAGE" path="/admin/templates/rules/listCmd.jsp"/>    
+		</action>    
+	   
+		<action name="secure" path="/secure" type="com.action.admin.doc.category.secure.ASecure" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/doc/category/secure/context.jsp"/>
+		</action>     
+
+		<action name="form" path="/form" type="com.action.admin.doc.category.form.AForm" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/doc/category/form/context.jsp"/>         
+		</action> 
+		
+		<action name="from" path="/from" type="com.action.admin.doc.category.from.AFrom" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/doc/from/indexList.jsp"/>
+			<forward name="_SEARCH_DOS_REFERENCE" path="/doc/from/comboList.jsp"/>
+			<forward name="_PREPARE" path="/doc/from/form.jsp"/>
+			<forward name="_SAVE_NEW_RECV" path="/doc/from/optionsRecv.jsp"/>       
+			<forward name="_SAVE_NEW_SEND" path="/doc/from/optionsSend.jsp"/>       
+			<forward name="_GET" path="/doc/from/popup.jsp"/>       
+			<forward name="_CREATE" path="/doc/from/indexList.jsp"/>  
+			<forward name="_EDIT" path="/doc/from/indexList.jsp"/>  
+			<forward name="_CREATE_SUCCESS" path="/doc/from/list.jsp"/>
+		</action>  
+		
+		<action name="status" path="/status" type="com.action.admin.doc.category.status.AStatus" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/doc/category/status/context.jsp"/>
+			<forward name="_COLOR" path="/admin/doc/category/transfer/color.jsp"/>
+		</action>  
+		
+		<action name="express" path="/express" type="com.action.admin.doc.category.express.AExpress" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/doc/category/express/context.jsp"/>
+			<forward name="_COLOR" path="/admin/doc/category/transfer/color.jsp"/>
+		</action> 
+		
+		<action name="via" path="/via" type="com.action.admin.doc.category.via.AVia" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/doc/category/via/context.jsp"/>
+		</action> 
+		
+		<action name="classify" path="/classify" type="com.action.admin.doc.category.classify.AClassify" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/doc/category/classify/context.jsp"/>
+			<forward name="_ADD_DEADLINE" path="/admin/doc/category/classify/deadLine.jsp"/>
+		</action> 
+		
+		<action name="branch" path="/branch" type="com.action.admin.doc.category.branch.ABranch" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/doc/category/branch/context.jsp"/>
+		</action> 
+
+		<action name="thePen" path="/thePen" type="com.action.admin.doc.category.thePen.AThePen" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/doc/category/thePen/context.jsp"/>
+		</action> 
+
+		<action name="transfer" path="/transfer" type="com.action.admin.doc.category.transfer.ATransfer" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/doc/category/transfer/context.jsp"/>
+			<forward name="_COLOR" path="/doc/category/transfer/color.jsp"/>
+		</action> 
+
+		<action name="doctype" path="/doctype" type="com.action.admin.doc.category.doctype.ADocType" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/doc/category/DocType/Context.jsp"/>
+		</action>
+
+		<action name="rmStatus" path="/rmStatus" type="com.action.admin.require.rm_status.ARmStatus" unknown="false" validate="false">
+			<forward name="_SHOW" path="/admin/require/rm_status/form.jsp"/>
+			<forward name="_VIEW" path="/admin/require/rm_status/content.jsp"/>
+		</action>
+
+		<action name="requireCat" path="/requireCat" type="com.action.admin.require.category.ACatRequire" unknown="false" validate="false">
+			<forward name="_SHOW" path="/admin/require/category/form.jsp"/>
+			<forward name="_VIEW" path="/admin/require/category/content.jsp"/>
+		</action>
+
+		<action name="dataBaseServer" path="/dataBaseServer" type="com.action.admin.doc.category.dataBaseServer.ADataBaseServer" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/doc/category/dataBaseServer/context.jsp"/>
+		</action> 
+
+		<action name="servey" path="/servey" type="com.action.admin.servey.AServey" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/servey/context.jsp"/>
+		</action> 
+		
+		<action name="serveyQuestions" path="/serveyQuestions" type="com.action.admin.servey.AServeyQuestions" unknown="false" validate="false">
+			<forward name="_SUCCESS" path="/admin/serveyQuestions/context.jsp"/>
+			<forward name="_COUNT" path="/admin/serveyQuestions/alert.jsp"/>
+			<forward name="_VIEW" path="/admin/serveyQuestions/popup.jsp"/>
+			<forward name="_SELECT_SERVEY" path="/admin/serveyQuestions/contextQuestion.jsp"/>      
+		</action>
+    
+  </action-mappings>
+</struts-config>

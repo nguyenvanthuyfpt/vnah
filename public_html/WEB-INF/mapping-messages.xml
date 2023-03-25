@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>          
+         <form-bean name="createMessage" type="com.form.messages.create.FCreate"/>
+         <form-bean name="messsagesList" type="com.form.messages.create.FCreate"/>         
+         <form-bean name="messsagesListMain" type="com.form.messages.create.FCreate"/>         
+         <form-bean name="lits" type="com.form.messages.create.FCreate"/> 
+         <form-bean name="broadcast" type="com.form.broadcast.FBroadcast"/>  
+         <form-bean name="sendSms" type="com.form.sms.FSendSms"/>  
+  </form-beans>
+  
+  <action-mappings>
+  
+    <action name="createMessage" path="/createMessage" type="com.action.messages.create.ACreate" unknown="false" validate="false">
+        <forward name="_SUCCESS" path="/admin/forward.jsp"/>
+        <forward name="_PREPARED_EDIT" path="/messages/create/popup.jsp"/>  
+        <forward name="_PREPARED_SAVE" path="/messages/view/list.jsp"/>
+        <forward name="_PREPARED_CREATE" path="/messages/create/view.jsp"/>      
+        <forward name="_SHOW" path="/messages/view/listView.jsp"/>
+        <forward name="_EDIT" path="/messages/view/view.jsp"/>        
+        <forward name="_PREPARE" path="/messages/view/view.jsp"/>         
+        <forward name="_PUT" path="/messages/create/options/toDepartments.jsp"/>   
+        <forward name="_SELECT" path="/messages/create/options/empDepartment.jsp"/>   
+        <forward name="_SEARCH" path="/messages/create/options/empGroup.jsp"/>   
+        <forward name="_CREATE_SUCCESS" path="/messages/view/form.jsp"/>  
+        <forward name="_CREATE" path="/messages/create/viewAlert.jsp"/>      
+        <forward name="_ERROR" path="/admin/window.jsp"/>
+        <forward name="_CREATE_FALSE" path="/messages/create/popup.jsp"/>  
+         <forward name="_SEARCH_TEXT" path="/messages/view/listView.jsp"/>
+        <forward name="_SEND_PAST_REPLY" path="/messages/create/messageMSG.jsp"/>       
+        <forward name="_PREPARED_SEND_EMAIL" path="/mail/sendMail/formTemp.jsp"/>
+        <forward name="_SEARCH_PAGE" path="/messages/create/searchList.jsp"/>
+    </action>
+     <action name="lits" path="/lits" type="com.action.messages.create.ACreate" unknown="false" validate="false">         
+      <forward name="_PREPARE" path="/messages/view/view.jsp"/>               
+    </action>    
+    <action name="messsagesList" path="/messsagesList" type="com.action.messages.view.AMessageList" unknown="false" validate="false">
+    
+      
+      <forward name="_SUCCESS" path="/admin/forward.jsp"/>    
+      <forward name="_PREPARED_SAVE" path="/messages/create/view.jsp"/>
+      <forward name="_SHOW" path="/messages/view/list.jsp"/>
+      <forward name="_SHOW_USER" path="/messages/create/options/form.jsp"/>
+      <forward name="_PUT" path="/messages/create/options/toDepartments.jsp"/>   
+      <forward name="_PREPARED_CREATE" path="/messages/create/popup.jsp"/>
+      <forward name="_CREATE_SUCCESS" path="/messages/view/view.jsp"/>  
+      <forward name="_VIEW" path="/messages/view/inforMessage.jsp"/>  
+      <forward name="_PREPARED_EDIT" path="/messages/create/popup.jsp"/>  
+      <forward name="_ERROR" path="/admin/window.jsp"/>
+      <forward name="_FILEDINHKEM" path="/messages/view/listFiles.jsp"/>  
+      
+    </action>
+    
+    <action name="messsagesListMain" path="/messsagesListMain" type="com.action.messages.view.AMessageList" unknown="false" validate="false">
+    <forward name="_PREPARED_CREATE" path="/messages/create/popup.jsp"/>
+    </action>
+    <action name="sendSms" path="/sendSms" type="com.action.sms.ASendSms" unknown="false" validate="false">
+        <forward name="_SEND_SMS" path="/main/sms.jsp"/>
+    </action>
+     <action name="broadcast" path="/broadcast" type="com.action.broadcast.ABroadcast" unknown="false" validate="false">
+        <forward name="_PREPARE" path="/broadcast/popup.jsp"/>
+        <forward name="_CREATE" path="/broadcast/popup.jsp"/> 
+        <forward name="_VIEW" path="/broadcast/index.jsp"/> 
+        <forward name="_MAIN_VIEW" path="/main/broadcastList.jsp"/> 
+        <forward name="_SHOW" path="/main/list.jsp"/> 
+        <forward name="_ORDERS" path="/broadcast/list.jsp"/>    
+        <forward name="_DETAIL" path="/broadcast/detail.jsp"/>    
+    </action>
+  </action-mappings>
+</struts-config>

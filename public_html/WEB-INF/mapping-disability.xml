@@ -1,0 +1,572 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+    <form-beans>
+        <form-bean name="exportExcel" type="com.form.disability.FImport"/>
+        <form-bean name="searchPanel" type="com.form.disability.search.FSearch"/>
+        <form-bean name="searchdispeople" type="com.form.disability.search.FSearch"/>
+        <form-bean name="list" type="com.form.disability.list.FList"/>
+        <form-bean name="disabilityFuntion" type="com.form.disability.FDisability"/>
+        <form-bean name="disability" type="com.form.disability.FDisability"/>
+        <form-bean name="dis_detail" type="com.form.disability.FDisability"/>
+        <form-bean name="disabilityTab" type="com.form.disability.FDisability"/>
+        <form-bean name="relative" type="com.form.disability.FRelative"/>
+        <form-bean name="tinh" type="com.form.disability.categorys.FTinh"/>
+        <form-bean name="dangtat" type="com.form.disability.categorys.FDangTat"/>
+        <form-bean name="phanloai" type="com.form.disability.FPhanLoai"/>
+        <form-bean name="rank" type="com.form.disability.FRank"/>
+        <form-bean name="population" type="com.form.disability.FPopulation"/>
+        <form-bean name="inforNKT" type="com.form.disability.FInforNKT"/>
+        <form-bean name="danSoHuyen" type="com.form.disability.FDanSoHuyen"/>
+        <form-bean name="danSoTinh" type="com.form.disability.FDanSoTinh"/>
+        <form-bean name="danSoTinhList" type="com.form.disability.FDanSoTinh"/>
+        <form-bean name="support" type="com.form.disability.FSupport"/>
+        <form-bean name="danhgia_nkt" type="com.form.disability.FDanhGia"/>
+        <form-bean name="danhgia_chon" type="com.form.disability.FDanhGia"/>
+        <form-bean name="dieukien" type="com.form.disability.categorys.FDieuKien"/>
+        <form-bean name="quanhe" type="com.form.disability.categorys.FQuanhe"/>
+        <form-bean name="donvi" type="com.form.disability.categorys.FDonvi"/>
+        <form-bean name="nguyennhan" type="com.form.disability.categorys.FNguyennhan"/>
+        <form-bean name="doituong" type="com.form.disability.categorys.FDoiTuong"/>
+        <form-bean name="nguonhotro" type="com.form.disability.categorys.FNguonhotro"/>
+        <form-bean name="mucdo" type="com.form.disability.categorys.FMucdo"/>
+        <form-bean name="dantoc" type="com.form.disability.categorys.FDantoc"/>
+        <form-bean name="dungcu" type="com.form.disability.categorys.FDungcu"/>
+        <form-bean name="hotro" type="com.form.disability.categorys.FHotro"/>
+        <form-bean name="danhgia" type="com.form.disability.categorys.FDanhgia"/>        
+        <!--BEGIN: KPI-->
+        <form-bean name="object" type="com.form.disability.categorys.FObject"/>
+        <form-bean name="indicator" type="com.form.disability.categorys.FIndicator"/>
+        <form-bean name="kpi_rank" type="com.form.disability.categorys.FRank"/>
+        <form-bean name="event" type="com.form.disability.categorys.FEvent"/>
+        <form-bean name="kpi" type="com.form.disability.FDataHdr"/>
+        <form-bean name="kpi_detail" type="com.form.disability.FDataHdr"/>
+        <form-bean name="person" type="com.form.disability.FPerson"/>
+        <form-bean name="reportkpi" type="com.form.disability.report.FReportKpi"/>
+
+        <form-bean name="dis_profile" type="com.form.disability.FDisProfile"/>
+        <form-bean name="dis_export" type="com.form.disability.FDisExport"/>
+        <form-bean name="dis_report" type="com.form.disability.FDisReport"/>
+        <form-bean name="dis_chart" type="com.form.disability.FDisChart" />
+        <!--END: KPI-->
+        <form-bean name="disabilityReport" type="com.form.admin.reportSystem.FReportSystem"/>
+        <form-bean name="exportdata" type="com.form.disability.FExport"/>
+        <!--<form-bean name="reportkpi" type="com.form.disability.report.FReportTotal"/>-->
+        <form-bean name="reporttotal" type="com.form.disability.report.FReportTotal"/>
+        <form-bean name="reporttab" type="com.form.disability.report.FReportTotal"/>
+        <form-bean name="reportinfo" type="com.form.disability.report.FReportTotal"/>        
+        <form-bean name="reportanalysis" type="com.form.disability.report.FReportAnalysis"/>
+        <form-bean name="reportcollect" type="com.form.disability.report.FReportCollect"/>
+        <form-bean name="reportqlc" type="com.form.disability.report.FReportQLC"/>
+        <form-bean name="thongtinTuyen" type="com.form.disability.FThongTinTuyen"/>
+        <form-bean name="dr_unit" type="com.form.disability.FUnit"/>
+    </form-beans>
+    <action-mappings>
+        <action name="disabilityReport" path="/disabilityReport" type="com.action.disability.AReport" unknown="false"
+                validate="false"/>
+                
+        <action name="reporttotal" path="/reporttotal" type="com.action.disability.report.AReportTotal" unknown="false"
+                validate="false">
+            <forward name="_REPORT_SELECT_TINH" path="/disability/report/reportCommune/option_area.jsp"/>
+            <forward name="_REPORT_TOTAL" path="/disability/report/reportCommune/index.jsp"/>            
+            <forward name="_EXPORT_DATA" path="/disability/export/indexExport.jsp"/>
+            <forward name="_SELECT_TINH" path="/disability/report/reportCommune/option_area.jsp"/>
+            <forward name="_REPORT_STATISTICS" path="/disability/report/reportStatistics/index.jsp"/>            
+            
+            <forward name="_REPORT_PARAM" path="/disability/report/reportParam/index.jsp"/>
+            <forward name="_REPORT_DETAIL" path="/disability/report/reportParam/form.jsp"/>
+            <forward name="_REPORT_OVERVIEW" path="/disability/report/reportParam/form2.jsp"/>
+        </action>
+        
+         <action name="reporttab" path="/reporttab" type="com.action.disability.report.AReportTab" unknown="false"
+                validate="false">
+            <forward name="_REPORT_DETAIL" path="/disability/report/reportParam/form.jsp"/>
+            <forward name="_REPORT_OVERVIEW" path="/disability/report/reportParam/form2.jsp"/>
+        </action>
+        
+        <action name="reportinfo" path="/reportinfo" type="com.action.disability.report.AReportTotal" unknown="false"
+                validate="false">
+            <forward name="_REPORT_SELECT_TINH" path="/disability/report/reportCommune/option_area.jsp"/>
+            <forward name="_SELECT_TINH" path="/disability/report/reportCommune/option_area.jsp"/>
+        </action>
+        
+        <action name="reportkpi" path="/reportkpi" type="com.action.disability.report.AReportKpi" unknown="false"
+                validate="false">
+            <forward name="_REPORT_SELECT_TINH" path="/disability/report/reportKpi/formReport.jsp"/>
+            <forward name="_CHANGE_DATATYPE" path="/disability/report/reportKpi/formReport.jsp"/>
+            <forward name="_REPORT_KPI" path="/disability/report/reportKpi/index.jsp"/>
+        </action>
+        
+        <action name="reportanalysis" path="/reportanalysis" type="com.action.disability.report.AReportAnalysis"
+                unknown="false" validate="false">
+            <forward name="_REPORT_ANALYSIS" path="/disability/report/reportAnalysis/index.jsp"/>
+            <forward name="_VIEW_OPTION" path="/disability/report/reportAnalysis/index.jsp"/>
+            <forward name="_SUCCESS" path="/disability/report/reportAnalysis/index.jsp"/>
+        </action>
+        
+        <action name="reportcollect" path="/reportcollect" type="com.action.disability.report.AReportCollect"
+                unknown="false" validate="false">
+            <forward name="_REPORT_SELECT_TINH" path="/disability/report/reportCommune/option_area.jsp"/>
+            <forward name="_CREATE" path="/disability/report/reportCollect/index.jsp"/>
+            <forward name="_SUCCESS" path="/disability/report/reportCollect/index.jsp"/>
+        </action>
+        
+        <action name="reportqlc" path="/reportqlc" type="com.action.disability.report.AReportQLC"
+                unknown="false" validate="false">
+            <forward name="_REPORT_QLC_DETAIL" path="/disability/report/reportQLCDetail/index.jsp"/>
+            <forward name="_REPORT_QLC_COLLECT" path="/disability/report/reportQLCCollect/index.jsp"/>
+            <forward name="_SUCCESS_DETAIL" path="/disability/report/reportQLCDetail/index.jsp"/>
+            <forward name="_SUCCESS_COLLECT" path="/disability/report/reportQLCCollect/index.jsp"/>
+        </action>
+        
+        <action name="exportdata" path="/exportdata" type="com.action.disability.export.AExport" unknown="false"
+                validate="false">
+            <forward name="_EXPORT_DATA" path="/disability/export/indexExport.jsp"/>
+            <forward name="_SELECT_EXPORTTYPE" path="/disability/export/indexExport.jsp"/>            
+            <forward name="_SUCCESS" path="/disability/export/indexExport.jsp"/>
+        </action>
+        
+        <action name="tinh" path="/tinh" type="com.action.disability.categorys.ATinh" unknown="false" validate="false">
+            <forward name="_CREATE" path="/disability/categorys/tinh/tinhView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/tinh/tinhView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/tinh/tinhView.jsp"/>
+            <forward name="_SUCCESS" path="/disability/categorys/tinh/tinhView.jsp"/>
+        </action>
+        
+        <action name="dangtat" path="/dangtat" type="com.action.disability.categorys.ADangTat" unknown="false"
+                validate="false">
+            <forward name="_CREATE" path="/disability/categorys/dangtat/dangTatView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/dangtat/dangTatView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/dangtat/dangTatView.jsp"/>
+        </action>
+        
+        <action name="dieukien" path="/dieukien" type="com.action.disability.categorys.ADieuKien" unknown="false"
+                validate="false">
+            <forward name="_CREATE" path="/disability/categorys/dieukien/dieuKienView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/dieukien/dieuKienView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/dieukien/dieuKienView.jsp"/>
+        </action>
+        
+        <action name="quanhe" path="/quanhe" type="com.action.disability.categorys.AQuanHe" unknown="false" validate="false">
+            <forward name="_CREATE" path="/disability/categorys/quanhe/quanheView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/quanhe/quanheView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/quanhe/quanheView.jsp"/>
+        </action>
+        
+        <action name="donvi" path="/donvi" type="com.action.disability.categorys.ADonvi" unknown="false"
+                validate="false">
+            <forward name="_CREATE" path="/disability/categorys/donvi/indexView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/donvi/indexView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/donvi/indexView.jsp"/>
+        </action>
+        
+        <action name="nguyennhan" path="/nguyennhan" type="com.action.disability.categorys.ANguyennhan" unknown="false"
+                validate="false">
+            <forward name="_CREATE" path="/disability/categorys/nguyennhan/indexView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/nguyennhan/indexView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/nguyennhan/indexView.jsp"/>
+        </action>
+        
+        <action name="doituong" path="/doituong" type="com.action.disability.categorys.ADoiTuong" unknown="false"
+                validate="false">
+            <forward name="_CREATE" path="/disability/categorys/doituong/indexView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/doituong/indexView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/doituong/indexView.jsp"/>
+        </action>
+        
+        <action name="mucdo" path="/mucdo" type="com.action.disability.categorys.AMucdo" unknown="false"
+                validate="false">
+            <forward name="_CREATE" path="/disability/categorys/mucdo/indexView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/mucdo/indexView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/mucdo/indexView.jsp"/>
+        </action>
+        
+        <action name="dantoc" path="/dantoc" type="com.action.disability.categorys.ADantoc" unknown="false"
+                validate="false">
+            <forward name="_CREATE" path="/disability/categorys/dantoc/indexView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/dantoc/indexView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/dantoc/indexView.jsp"/>
+        </action>
+        
+        <action name="dungcu" path="/dungcu" type="com.action.disability.categorys.ADungcu" unknown="false"
+                validate="false">
+            <forward name="_CREATE" path="/disability/categorys/dungcu/dungcuView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/dungcu/dungcuView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/dungcu/dungcuView.jsp"/>
+        </action>
+        
+        <action name="hotro" path="/hotro" type="com.action.disability.categorys.AHotro" unknown="false"
+                validate="false">
+            <forward name="_CREATE" path="/disability/categorys/hotro/hotroView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/hotro/hotroView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/hotro/hotroView.jsp"/>
+        </action>
+        
+        <action name="nguonhotro" path="/nguonhotro" type="com.action.disability.categorys.ANguonhotro" unknown="false"
+                validate="false">
+            <forward name="_CREATE" path="/disability/categorys/nguonhotro/indexView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/nguonhotro/indexView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/nguonhotro/indexView.jsp"/>
+        </action>
+        
+        <action name="danhgia" path="/danhgia" type="com.action.disability.categorys.ADanhgia" unknown="false"
+                validate="false">
+            <forward name="_CREATE" path="/disability/categorys/danhgia/danhgiaView.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/danhgia/danhgiaView.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/danhgia/danhgiaView.jsp"/>
+        </action>
+        
+        <!-- BEGIN: KPI -->
+        <action name="object" path="/object" type="com.action.disability.categorys.AObject" unknown="false" validate="false">
+            <forward name="_CREATE" path="/disability/categorys/object/index.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/object/index.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/object/index.jsp"/>
+            <forward name="_DETAIL" path="/disability/categorys/object/index.jsp"/>
+            <forward name="_VIEW" path="/disability/categorys/object/list.jsp"/>
+            <forward name="_SELECT" path="/disability/categorys/object/select.jsp"/>
+            <forward name="_SAVE_IND" path="/disability/categorys/object/select.jsp"/>
+            <forward name="_DELETE_IND" path="/disability/categorys/object/select.jsp"/>            
+            <forward name="_CANCEL_IND" path="/disability/categorys/object/index.jsp"/>
+            <forward name="_CHANGE_YEAR" path="/disability/categorys/object/listInd.jsp"/>
+        </action>
+        
+        <action name="kpi_rank" path="/kpi_rank" type="com.action.disability.categorys.ARank" unknown="false" validate="false">
+            <forward name="_CREATE" path="/disability/categorys/rank/index.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/rank/index.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/rank/index.jsp"/>
+            <forward name="_DETAIL" path="/disability/categorys/rank/index.jsp"/>
+            <forward name="_VIEW" path="/disability/categorys/rank/list.jsp"/>        
+        </action>
+        
+        <action name="indicator" path="/indicator" type="com.action.disability.categorys.AIndicator" unknown="false" validate="false">
+            <forward name="_CREATE" path="/disability/categorys/indicator/index.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/indicator/index.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/indicator/index.jsp"/>
+            <forward name="_DETAIL" path="/disability/categorys/indicator/index.jsp"/>            
+            <forward name="_VIEW" path="/disability/categorys/indicator/list.jsp"/>
+            <forward name="_CHANGE_DATATYPE" path="/disability/categorys/indicator/param.jsp"/>
+            
+            <forward name="_CANCEL_VALUE" path="/disability/categorys/indicator/index.jsp"/>
+            <forward name="_INPUT_VALUE" path="/disability/categorys/indicator/indexVal.jsp"/>
+            <forward name="_INSERT_VALUE" path="/disability/categorys/indicator/indexVal.jsp"/>
+            <forward name="_UPDATE_VALUE" path="/disability/categorys/indicator/indexVal.jsp"/>
+            <forward name="_DELETE_VALUE" path="/disability/categorys/indicator/indexVal.jsp"/>
+            <forward name="_DETAIL_VALUE" path="/disability/categorys/indicator/indexVal.jsp"/>
+            <forward name="_VIEW_VALUE" path="/disability/categorys/indicator/listVal.jsp"/>
+            <forward name="_CHANGE_TYPE" path="/disability/categorys/indicator/paramValue.jsp"/>
+            
+            <forward name="_CHANGE_OPTION" path="/disability/categorys/indicator/listDtl.jsp"/>
+        </action>
+        
+         <action name="event" path="/event" type="com.action.disability.categorys.AEvent" unknown="false" validate="false">
+            <forward name="_CREATE" path="/disability/categorys/event/index.jsp"/>
+            <forward name="_EDIT" path="/disability/categorys/event/index.jsp"/>
+            <forward name="_DELETE" path="/disability/categorys/event/index.jsp"/>
+            <forward name="_DETAIL" path="/disability/categorys/event/index.jsp"/>            
+            <forward name="_VIEW" path="/disability/categorys/event/list.jsp"/>
+            <forward name="_CHANGE_OPTION" path="/disability/categorys/event/list.jsp"/>
+        </action>
+        
+        <action name="dr_unit" path="/dr_unit" type="com.action.disability.AUnit" unknown="false" validate="false">
+            <forward name="_CREATE" path="/disability/unit/index.jsp"/>
+            <forward name="_SUCCESS" path="/disability/unit/index.jsp"/>
+            <forward name="_VIEW" path="/disability/unit/list.jsp"/>
+            <forward name="_VIEW_HOME" path="/disability/unit/listHomeView.jsp"/>            
+        </action>
+        
+        <action name="kpi" path="/kpi" type="com.action.disability.AIndicatorKpi" unknown="false" validate="false">
+            <forward name="_CREATE" path="/disability/kpi/index.jsp"/>
+            <forward name="_EDIT" path="/disability/kpi/index.jsp"/>
+            <forward name="_SUCCESS" path="/disability/kpi/index.jsp"/>        
+            
+            <forward name="_VIEW" path="/disability/kpi/listDis.jsp"/>            
+            <forward name="_LIST_DIS" path="/disability/kpi/listDis.jsp"/>
+            <forward name="_INFORMATION" path="/disability/kpi/formDis.jsp"/>
+            <forward name="_PHANLOAI" path="/disability/phanloai/list.jsp"/>
+            <forward name="_HOTRO" path="/disability/hotro/list.jsp"/>
+            <forward name="_PRE_CRUD_HOTRO" path="/disability/hotro/form.jsp"/>
+            
+            <forward name="_RANK" path="/disability/rank/list.jsp"/>
+            <forward name="_DETAIL_RANK" path="/disability/rank/list.jsp"/>
+            <forward name="_PRE_CRUD_RANK" path="/disability/rank/list.jsp"/>
+            <forward name="_PRE_CRUD_RE_RANK" path="/disability/rank/list.jsp"/>
+            <forward name="_PRE_EDIT_RANK" path="/disability/rank/list.jsp"/>            
+            <forward name="_DETAIL_RANK_DTL" path="/disability/rank/list.jsp"/>
+            <forward name="_PRE_INSERT_RANK" path="/disability/rank/index.jsp"/>
+            <forward name="_RANK_CHANGE_OPTION" path="/disability/rank/list.jsp"/>
+            
+            <forward name="_CRUD_RANK_CHANGE_OPTION" path="/disability/rank/list.jsp"/>
+            <forward name="_VIEW_RANK_CHANGE_OPTION" path="/disability/rank/list.jsp"/>
+            
+
+            <forward name="_COMMUNE" path="/disability/commune/list.jsp"/>
+            <forward name="_CHANGE_COMMUNE" path="/disability/commune/list.jsp"/>
+            <forward name="_DETAIL_COMMUNE" path="/disability/commune/list.jsp"/>
+            
+            <forward name="_PROFILE" path="/disability/profile/list.jsp"/>
+            <forward name="_DETAIL_PROFILE" path="/disability/profile/list.jsp"/>
+                        
+            <forward name="_SELECT" path="/disability/kpi/select.jsp"/>
+            <forward name="_CHANGE_OPTION" path="/disability/kpi/value.jsp"/>            
+            
+            <forward name="_VIEW_EVENT" path="/disability/kpi/listEvent.jsp"/>
+            <forward name="_SELECT_EVENT" path="/disability/kpi/index.jsp"/>
+            <forward name="_CREATE_EVENT" path="/disability/kpi/index.jsp"/>
+            <forward name="_CHOICE_EVENT" path="/disability/kpi/index.jsp"/>            
+            <forward name="_EDIT_EVENT" path="/disability/kpi/select.jsp"/>
+            <forward name="_DELETE_EVENT" path="/disability/kpi/index.jsp"/>
+            <forward name="_CANCEL_EVENT" path="/disability/kpi/index.jsp"/>
+            <forward name="_DETAIL_EVENT" path="/disability/kpi/select.jsp"/>
+            
+            <forward name="_VIEW_PERSON" path="/disability/kpi/listPerson.jsp"/>
+            <forward name="_VIEW_VALUE" path="/disability/kpi/listValue.jsp"/>            
+            
+            <forward name="_SELECT_PER" path="/disability/kpi/index.jsp"/>
+            <forward name="_CREATE_PER" path="/disability/kpi/selectPerson.jsp"/>
+            <forward name="_EDIT_PER" path="/disability/kpi/selectPerson.jsp"/>
+            <forward name="_DELETE_PER" path="/disability/kpi/selectPerson.jsp"/>
+            <forward name="_CANCEL_PER" path="/disability/kpi/selectPerson.jsp"/>
+            
+            <forward name="_SELECT_DIS" path="/disability/kpi/selectDis.jsp"/>
+            <forward name="_CREATE_DIS" path="/disability/kpi/selectDis.jsp"/>
+            <forward name="_EDIT_DIS" path="/disability/kpi/selectDis.jsp"/>
+            <forward name="_DELETE_DIS" path="/disability/kpi/formDis.jsp"/>
+            <forward name="_CANCEL_DIS" path="/disability/kpi/index.jsp"/>
+            
+            <forward name="_PREPARED_DGIA" path="/disability/hotro/danhgia.jsp"/>
+            <forward name="_POPUP_DIS_COUNTDOWN" path="/disability/kpi/popup.jsp"/>
+            
+            <forward name="_CHANGE_YEAR" path="/disability/kpi/listIndicator.jsp"/>            
+            
+            <forward name="_PERSON_CHANGE_OPTION" path="/disability/kpi/person.jsp"/>
+            <forward name="_PERSON_CHANGE_SEL_OPTION" path="/disability/kpi/selectPerson.jsp"/>
+            
+            <forward name="_PERSON_VIEW_DETAIL" path="/disability/kpi/person.jsp"/>
+            <forward name="_PERSON_AUTO_COMPLETE" path="/disability/kpi/person.jsp"/>
+            <forward name="_PERSON_SEL_DETAIL" path="/disability/kpi/selectPerson.jsp"/>
+            
+            <forward name="_PERSON_DELETE" path="/disability/kpi/person.jsp"/>
+            <forward name="_PERSON_SEL_DELETE" path="/disability/kpi/selectPerson.jsp"/>
+            
+            <forward name="_VALUE_CHANGE_OPTION" path="/disability/kpi/value.jsp"/>
+            <forward name="_VALUE_VIEW_DETAIL" path="/disability/kpi/value.jsp"/>
+            <forward name="_VALUE_DELETE" path="/disability/kpi/value.jsp"/>
+            
+            <forward name="_DIS_VIEW_DETAIL" path="/disability/kpi/formDis.jsp"/>
+            <forward name="_DIS_CHANGE_OPTION" path="/disability/kpi/formDis.jsp"/>
+            <forward name="_CHANGE_OPT_DISTRICT" path="/disability/kpi/formDis.jsp"/>
+            <forward name="_CHANGE_OPT_COMMUNE" path="/disability/kpi/formDis.jsp"/>
+        </action>
+        <!-- END: KPI -->
+        
+        <action name="disabilityFuntion" path="/disabilityFuntion" type="com.action.disability.ADisabilityFuntion"
+                unknown="false" validate="false">
+            <forward name="_IMPORT_DATA" path="/disability/import/indexImport.jsp"/>
+            <forward name="_EXPORT_DATA" path="/disability/export/indexExport.jsp"/>
+            <forward name="_PREPARED_CREATE" path="/disability/indexForm.jsp"/>            
+            <forward name="_PREPARED_SELECT_KPI" path="/disability/kpi/selectIndicator.jsp"/>            
+            <forward name="_PREPARED_CREATE_KPI" path="/disability/kpi/index.jsp"/>
+            <forward name="_PREPARED_CREATE_MENU_KPI" path="/disability/kpi/index.jsp"/>
+            <forward name="_PREPARED_CREATE_INFO" path="/disability/thongtinTuyen/index.jsp"/>
+            
+            <forward name="_SEARCH" path="/disability/search/index.jsp"/>
+            <forward name="_CHART" path="/disability/chart/index.jsp"/>
+            <forward name="_QUANLYCA" path="/disability/quanLyCa/index.jsp"/>
+            <forward name="_NC_QUANLYCA" path="/disability/quanLyCa/index.jsp"/>
+            <forward name="_LISTDISTRICT" path="/disability/categorys/tinh/tinhView.jsp"/>
+            <forward name="_LIST_DANGTAT" path="/disability/categorys/dangtat/dangTatView.jsp"/>
+            <forward name="_LISTCONDITION" path="/disability/categorys/dieukien/dieuKienView.jsp"/>
+            <forward name="_LIST_QUANHE" path="/disability/categorys/quanhe/quanheView.jsp"/>
+            <forward name="_LIST_DONVI" path="/disability/categorys/donvi/indexView.jsp"/>
+            <forward name="_LIST_MUCDO" path="/disability/categorys/mucdo/indexView.jsp"/>
+            <forward name="_LIST_NGUYENNHAN" path="/disability/categorys/nguyennhan/indexView.jsp"/>
+            <forward name="_LIST_DANTOC" path="/disability/categorys/dantoc/indexView.jsp"/>
+            <forward name="_LIST_DUNGCU" path="/disability/categorys/dungcu/dungcuView.jsp"/>
+            <forward name="_LIST_HOTRO" path="/disability/categorys/hotro/hotroView.jsp"/>
+            <forward name="_LIST_DANHGIA" path="/disability/categorys/danhgia/danhgiaView.jsp"/>
+            <forward name="_LIST_NGUONHOTRO" path="/disability/categorys/nguonhotro/indexView.jsp"/>
+            <forward name="_LIST_DOITUONG" path="/disability/categorys/doituong/indexView.jsp"/>
+            
+            <forward name="_LIST_OBJECT" path="/disability/categorys/object/index.jsp"/>
+            <forward name="_LIST_INDICATOR" path="/disability/categorys/indicator/index.jsp"/>
+            <forward name="_LIST_EVENT" path="/disability/categorys/event/index.jsp"/>
+            <forward name="_LIST_RANK" path="/disability/categorys/rank/index.jsp"/>
+            
+            <forward name="_SEARCH_RESULT" path="/disability/search/list.jsp"/>
+            <forward name="_REPORT" path="/disability/report/index.jsp"/>
+            <forward name="_REPORT_DETAIL" path="/disability/report/reportDetail.jsp"/>
+            <forward name="_REPORT_UNIT" path="/disability/report/reportCommune/index.jsp"/>
+            <forward name="_REPORT_PARAM" path="/disability/report/reportParam/index.jsp"/>
+            <forward name="_REPORT_COMMUNE" path="/disability/report/reportCommune/index.jsp"/>            
+            <forward name="_REPORT_COLLECT_DATA" path="/disability/report/reportCollect/index.jsp"/>
+            <forward name="_REPORT_ANALYSIS_DATA" path="/disability/report/reportAnalysis/index.jsp"/>            
+            <forward name="_REPORT_STATISTICS_DATA" path="/disability/report/reportStatistics/index.jsp"/>            
+            
+            <forward name="_REPORT_STATISTICS" path="/disability/report/reportStatistics/index.jsp"/>             
+            <forward name="_REPORT_QLC_DETAIL" path="/disability/report/reportQLCDetail/index.jsp"/> 
+            <forward name="_REPORT_QLC_COLLECT" path="/disability/report/reportQLCCollect/index.jsp"/> 
+            
+            <forward name="_MANAGER_POPULATION" path="/disability/population/index.jsp"/>
+            <forward name="_MANAGER_DANSOHUYEN" path="/disability/danSoHuyen/index.jsp"/>
+            <forward name="_MANAGER_DANSOTINH" path="/disability/danSoTinh/index.jsp"/>
+            <forward name="_REPORT_KPI" path="/disability/report/reportKpi/index.jsp"/>
+            <forward name="_UNIT" path="/disability/unit/index.jsp"/>
+            <forward name="_UNIT_HOME" path="/disability/unit/indexHome.jsp"/>
+            <forward name="_SEARCH_UNIT" path="/disability/unit/listHomeView.jsp"/>
+        </action>
+        
+        <action name="searchdispeople" path="/searchdispeople" type="com.action.disability.search.ASearch"
+                unknown="false" validate="false">
+            <forward name="_QUANLYCA_RESULT" path="/disability/quanLyCa/searchResult.jsp"/>
+            <forward name="_SEARCH_RESULT" path="/disability/search/searchResult.jsp"/>
+            <forward name="_PREPARED" path="/disability/search/choseFieldReport.jsp"/>
+            <forward name="_PREPARED_CREATE" path="/disability/list/editReport.jsp"/>
+            <forward name="_PREPARED_EDIT" path="/disability/list/edit.jsp"/>
+            <forward name="_EDIT" path="/disability/list/editReport.jsp"/>
+            <forward name="_CREATE" path="/disability/list/editReport.jsp"/>
+            <forward name="_LIST_REPORT" path="/disability/list/list.jsp"/>
+            <forward name="_SELECT_TINH" path="/disability/search/optionTinh.jsp"/>
+            <forward name="_SELECT_DISTRICT" path="/disability/search/optionTinh.jsp"/>
+            <forward name="_SELECT_DATATYPE" path="/disability/search/searchParam.jsp"/>
+            <forward name="_DETAIL" path="/disability/kpi/index.jsp"/>
+        </action>
+        
+        <action name="disability" path="/disability" type="com.action.disability.ADisability" unknown="false"
+                validate="false">
+            <forward name="_CREATE" path="/disability/indexForm.jsp"/>
+            <forward name="_EDIT" path="/disability/indexForm.jsp"/>
+            <forward name="_SHOW_IMG" path="/disability/imgUpload.jsp"/>
+            <forward name="_SEARCH_RESULT" path="/disability/search/list.jsp"/>
+        </action>
+        
+        <action name="kpi_detail" path="/kpi_detail" type="com.action.disability.AIndicatorKpi" unknown="false"
+                validate="false">
+            <forward name="_SUCCESS" path="/disability/kpi/index.jsp"/>
+        </action>
+        
+        <action name="dis_detail" path="/dis_detail" type="com.action.disability.ADisability" unknown="false"
+                validate="false">
+            <forward name="_DETAIL" path="/disability/indexDetail.jsp"/>
+        </action>
+        
+        <action name="relative" path="/relative" type="com.action.disability.ARelative" unknown="false"
+                validate="false">
+            <forward name="_RELATIVE" path="/disability/relative/list.jsp"/>
+            <forward name="_SEARCH" path="/disability/relative/users.jsp"/>
+        </action>
+        
+        <action name="phanloai" path="/phanloai" type="com.action.disability.APhanLoai" unknown="false"
+                validate="false">
+            <forward name="_PHANLOAI" path="/disability/phanloai/list.jsp"/>
+        </action>
+        
+        <action name="rank" path="/rank" type="com.action.disability.ARank" unknown="false" validate="false">
+            <forward name="_TINHHINH" path="/disability/rank/index.jsp"/>
+            <forward name="_RANK" path="/disability/rank/index.jsp"/>
+            <forward name="_LIST" path="/disability/rank/list.jsp"/>
+        </action>
+        
+        <action name="population" path="/population" type="com.action.disability.APopulation" unknown="false"
+                validate="false">
+            <forward name="_POPULATION" path="/disability/population/index.jsp"/>
+            <forward name="_VIEW" path="/disability/population/list.jsp"/>
+        </action>
+        
+        <action name="inforNKT" path="/inforNKT" type="com.action.disability.AInforNKT" unknown="false"
+                validate="false">
+            <forward name="_INFORNKT" path="/disability/inforNKT/index.jsp"/>
+            <forward name="_VIEW" path="/disability/inforNKT/list.jsp"/>
+            <forward name="_CREATE" path="/disability/inforNKT/form.jsp"/>
+        </action>
+        
+        <action name="danSoHuyen" path="/danSoHuyen" type="com.action.disability.ADanSoHuyen" unknown="false"
+                validate="false">
+            <forward name="_DANSOHUYEN" path="/disability/danSoHuyen/index.jsp"/>
+            <forward name="_VIEW" path="/disability/danSoHuyen/list.jsp"/>
+            <forward name="_DANSOHUYEN_DELETE" path="/disability/danSoHuyen/list.jsp"/>
+        </action>
+        
+        <action name="danSoTinh" path="/danSoTinh" type="com.action.disability.ADanSoTinh" unknown="false"
+                validate="false">
+            <forward name="_DANSOTINH" path="/disability/danSoTinh/index.jsp"/>
+            <forward name="_DANSOTINH_DELETE" path="/disability/danSoTinh/list.jsp"/>
+            <forward name="_VIEW" path="/disability/danSoTinh/list.jsp"/>
+            <forward name="_SUCCESS" path="/disability/danSoTinh/index.jsp"/>
+        </action>
+        
+        <action name="thongtinTuyen" path="/thongtinTuyen" type="com.action.disability.AThongTinTuyen" unknown="false"
+                validate="false">
+            <forward name="_VIEW" path="/disability/thongtinTuyen/list.jsp"/>    
+            <forward name="_CREATE" path="/disability/thongtinTuyen/index.jsp"/>
+            <forward name="_SUCCESS" path="/disability/thongtinTuyen/index.jsp"/>
+            <forward name="_PREPARED_CREATE_INFO" path="/disability/thongtinTuyen/index.jsp"/>
+            <forward name="_DELETE" path="/disability/thongtinTuyen/index.jsp"/>
+        </action>
+        
+        <action name="danSoTinhList" path="/danSoTinhList" type="com.action.disability.ADanSoTinh" unknown="false"
+                validate="false">
+            <forward name="_DANSOTINH_DELETE" path="/disability/danSoTinh/list.jsp"/>
+        </action>
+        
+        <action name="support" path="/support" type="com.action.disability.ASupport" unknown="false" validate="false">
+            <forward name="_SUPPORT" path="/disability/hotro/list.jsp"/>
+            <forward name="_LIST_SUPPORT_TYPE" path="/disability/hotro/listSupportType.jsp"/>
+            <forward name="_SUPPORT_DANHGIA" path="/disability/hotro/danhgia.jsp"/>
+            <forward name="_VIEW_LIST" path="/disability/hotro/sublistform.jsp"/>
+        </action>
+        
+        <action name="danhgia_nkt" path="/danhgia_nkt" type="com.action.disability.ADanhGia" unknown="false"
+                validate="false">
+            <forward name="_DANHGIA" path="/disability/danhgia/form.jsp"/>
+            <forward name="_SUCCESS" path="/disability/danhgia/form.jsp"/>
+            <forward name="_PREPARED" path="/disability/danhgia/form.jsp"/>
+        </action>
+        
+        <action name="danhgia_chon" path="/danhgia_chon" type="com.action.disability.ADanhGia" unknown="false"
+                validate="false">
+            <forward name="_SUCCESS" path="/disability/danhgia/list.jsp"/>
+            <forward name="_PREPARED" path="/disability/danhgia/form.jsp"/>
+        </action>
+        
+        <action name="disabilityTab" path="/disabilityTab" type="com.action.disability.ADisability" unknown="false"
+                validate="false">
+            <forward name="_INFORMATION" path="/disability/form.jsp"/>
+            <forward name="_PHANLOAI" path="/disability/phanloai/list.jsp"/>
+            <forward name="_HOTRO" path="/disability/hotro/list.jsp"/>
+            <forward name="_COMMUNE" path="/disability/commune/list.jsp"/>
+            <forward name="_PROFILE" path="/disability/profile/list.jsp"/>
+            <forward name="_TINHHINH" path="/disability/rank/index.jsp"/>
+            <forward name="_TN_NKT" path="/disability/relative/list.jsp"/>
+            <forward name="_TT_NKT" path="/disability/inforNKT/list.jsp"/>
+            <forward name="_DANHGIA" path="/disability/danhgia/form.jsp"/>
+        </action>
+        
+        <action name="list" path="/list" type="com.action.disability.list.AList" unknown="false" validate="false">
+            <forward name="_PREPARED_CREATE" path="/disability/list/editReport.jsp"/>
+            <forward name="_PREPARED_EDIT" path="/disability/list/listReportContent.jsp"/>
+            <forward name="_SUCCESS" path="/TimKiem/searchResult.jsp"/>
+            <forward name="_EDIT" path="/disability/list/listReportContent.jsp"/>
+            <forward name="_CREATE" path="/disability/list/editReport.jsp"/>
+            <forward name="_LIST_REPORT" path="/disability/list/list.jsp"/>
+            <forward name="_SHOW_LISTEMP" path="/disability/list/listEmp.jsp"/>
+            <forward name="_LIST_SHOW" path="/disability/list/listReportContent.jsp"/>
+            <forward name="_DELETE_EMP" path="/disability/list/list.jsp"/>
+            <forward name="_PREPARED" path="/Employee/form/EmpEditDecides.jsp"/>
+            <forward name="_PREPARED_SHOW" path="/disability/list/openListReport.jsp"/>
+        </action>
+        
+        <action name="searchPanel" path="/searchPanel" type="com.action.disability.search.ASearch" unknown="false"
+                validate="false">
+            <forward name="_PANEL_DANGTAT" path="/disability/search/dangtat/dangtatForm.jsp"/>
+            <forward name="_PANEL_NHUCAU" path="/disability/search/nhucau/nhucauForm.jsp"/>
+            <forward name="_PANEL_HOTRO" path="/disability/search/hotro/hotroForm.jsp"/>
+            <forward name="_PANEL_CANTHIEP" path="/disability/search/canthiep/canthiepForm.jsp"/>
+            <forward name="_PANEL_TINHTRANG" path="/disability/search/tinhtrang/tinhtrangForm.jsp"/>
+        </action>
+        
+        <action name="exportExcel" path="/exportExcel" type="com.action.disability.AImport" unknown="false"
+                validate="false">
+            <forward name="_SWAP" path="/disability/import/indexImport.jsp"/>
+        </action>
+    </action-mappings>
+</struts-config>
