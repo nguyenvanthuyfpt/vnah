@@ -113,6 +113,7 @@ public class DHomeVisit extends DSqlDisability {
             bean.setCreateBy(rs.getInt("create_by"));
             bean.setLatitude(rs.getDouble("latitude"));
             bean.setLonggitude(rs.getDouble("longitude"));
+            bean.setLocation(rs.getString("location"));
         } catch (SQLException sqle) {
             if (AppConfigs.APP_DEBUG)
                 throw new EException(LOCATION, sqle);
@@ -120,5 +121,9 @@ public class DHomeVisit extends DSqlDisability {
 
         }
         return bean;
+    }
+    
+    public boolean delete(Connection cnn, int supportId) throws EException {        
+        return delete(cnn, TABLE_DR_HOME_VISIT,  TABLE_DR_HOME_VISIT_SUPPORT_ID + EQUAL + supportId) > 0;
     }
 }

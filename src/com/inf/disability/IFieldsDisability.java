@@ -349,6 +349,8 @@ public interface IFieldsDisability extends IParams {
         public final String HOTRO_CT_GDDB = "ct_gddb";
         public final String HOTRO_CT_CSGN = "ct_csgn";
         public final String HOTRO_STT = "stt";
+        public final String HOTRO_THIEN_TEN = "ngthien_ten";
+        public final String HOTRO_THIEN_CVU = "ngthien_cvu";
         
         public final String[] HOTRO_ALL_FIELDS = {HOTRO_ID_NKT,HOTRO_USER_ID,HOTRO_DATECREATE,HOTRO_RESON,HOTRO_DM_HOTRO_IDS,HOTRO_STATUS_ID,
             HOTRO_DATEFORM,HOTRO_DATETO,HOTRO_NGUONHOTRO,HOTRO_NGUONHOTRO_ID,
@@ -358,7 +360,8 @@ public interface IFieldsDisability extends IParams {
             HOTRO_NHUCAU_DOISONG_KHAC,HOTRO_NHUCAU_GIAODUC_KHAC,
             HOTRO_KN_CHITRA,HOTRO_THE_BHYT,HOTRO_SD_THE,HOTRO_SD_THE_PHCN,
             HOTRO_MTIEU_GDINH,HOTRO_MTIEU_DTRI,HOTRO_CT_VLTL,HOTRO_CT_HDTL,HOTRO_MDO_PTDL,HOTRO_MDO_HLONG,
-            HOTRO_CT_ANTL,HOTRO_THOIDIEM_TAIKHAM,HOTRO_DIADIEM, HOTRO_DOITUONG, HOTRO_CT_GDDB, HOTRO_CT_CSGN, HOTRO_STT}; 
+            HOTRO_CT_ANTL,HOTRO_THOIDIEM_TAIKHAM,HOTRO_DIADIEM, HOTRO_DOITUONG, HOTRO_CT_GDDB, HOTRO_CT_CSGN, 
+            HOTRO_STT,HOTRO_THIEN_TEN,HOTRO_THIEN_CVU}; 
     
     //  SET OF FIELDS ON DANH GIA TABLES
          public final String DANHGIA_NKT_ID="ID";
@@ -883,6 +886,7 @@ public interface IFieldsDisability extends IParams {
         public final String TABLE_DR_HOME_VISIT_CREATE_BY = "create_by";
         public final String TABLE_DR_HOME_VISIT_LATITUDE = "latitude";
         public final String TABLE_DR_HOME_VISIT_LONGITUDE = "longitude";
+        public final String TABLE_DR_HOME_VISIT_LOCATION = "location";
         
         public final String[] DR_HOME_VISIT_ALL_FILEDS = {
                                   TABLE_DR_HOME_VISIT_SUPPORT_ID,
@@ -891,6 +895,7 @@ public interface IFieldsDisability extends IParams {
                                   TABLE_DR_HOME_VISIT_END_AT,
                                   TABLE_DR_HOME_VISIT_CREATE_BY,
                                   TABLE_DR_HOME_VISIT_LATITUDE,
-                                  TABLE_DR_HOME_VISIT_LONGITUDE  
+                                  TABLE_DR_HOME_VISIT_LONGITUDE,
+                                  TABLE_DR_HOME_VISIT_LOCATION
         };
 }

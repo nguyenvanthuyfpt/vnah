@@ -178,6 +178,8 @@ public class FDataHdr extends FSeed {
     private int statusId;
     private int nguonId;
     private String caithienKhac;
+    private String nguoiTHTen;
+    private String nguoiTHCv;
 
     // Person
     private int perLocationId;
@@ -216,7 +218,8 @@ public class FDataHdr extends FSeed {
     private String dateTo;
     private String reson;
     private int ketqua;
-
+    
+    public int hasVisit;
     public int knChiTra;
     public int theBhyte;
     public int sdThe;
@@ -2129,5 +2132,29 @@ public class FDataHdr extends FSeed {
 
     public String getPhcnKhac() {
         return phcnKhac;
+    }
+
+    public void setHasVisit(int hasVisit) {
+        this.hasVisit = hasVisit;
+    }
+
+    public int getHasVisit() {
+        return hasVisit;
+    }
+
+    public void setNguoiTHTen(String nguoiTHTen) {
+        this.nguoiTHTen = nguoiTHTen;
+    }
+
+    public String getNguoiTHTen() {
+        return nguoiTHTen;
+    }
+
+    public void setNguoiTHCv(String nguoiTHCv) {
+        this.nguoiTHCv = nguoiTHCv;
+    }
+
+    public String getNguoiTHCv() {
+        return nguoiTHCv;
     }
 }

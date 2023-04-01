@@ -2783,11 +2783,17 @@ public class AIndicatorKpi extends  ACore {
                 
                 FHomeVisit homeVisit = null;
                 if (homeVisits.size()>0) {
-                   homeVisit = (FHomeVisit)homeVisits.get(0);
+                    homeVisit = (FHomeVisit)homeVisits.get(0);
+                    fSupport.setLatitude(String.valueOf(homeVisit.getLatitude()));
+                    fSupport.setLongitude(String.valueOf(homeVisit.getLonggitude()));
+                    fSupport.setLocation(homeVisit.getLocation());                    
+                    fSupport.setStartAt(homeVisit.getStartAt());
+                    fSupport.setEndAt(homeVisit.getEndAt());                    
+                    fSupport.setHasVisit(1);
+                    
+                    fdataHdr.setHasVisit(1);
+                    fdataHdr.setSupportId(homeVisit.getSupportId());
                 }
-                
-                fSupport.setLatitude(String.valueOf(homeVisit.getLatitude()));
-                fSupport.setLongitude(String.valueOf(homeVisit.getLonggitude()));
                 
                 String supportSel = fSupport.getHotroIds();
                 fSupport.setSupportSel(supportSel);
@@ -2817,8 +2823,12 @@ public class AIndicatorKpi extends  ACore {
             } else if (anchor.equals("_DELETE_SUPPORT")) {
                 fDis.setId(fdataHdr.getNktId());
                 BSupport bo = new BSupport();
+                BHomeVisit boHome = new BHomeVisit();
                 FSupport fSupport = new FSupport();
                 if (bo.delete(fdataHdr.getNktId(), fdataHdr.getStatusId(), fdataHdr.stringToSqlDate(fdataHdr.getDateCreate()),fdataHdr.getStt(), fdataHdr.getNguonId())) {
+                    if (fdataHdr.getHasVisit()==1) {
+                        boHome.deleteHomeVisit(fdataHdr.getSupportId());  
+                    }
                     errors.add("alert", new ActionError("alert.delete.successfull"));
                 } else {
                     errors.add("alert", new ActionError("alert.delete.unSuccessfull"));
@@ -3178,6 +3188,9 @@ public class AIndicatorKpi extends  ACore {
         
         support.setCtGddb(fdataHdr.getCtGddb());
         support.setCtCsgn(fdataHdr.getCtCsgn());
+        
+        support.setNguoiTHTen(fdataHdr.getNguoiTHTen());
+        support.setNguoiTHCv(fdataHdr.getNguoiTHCv());
     }
     
     private void getListDtl(FPerson fPerson, HttpServletRequest request, HttpSession session) {

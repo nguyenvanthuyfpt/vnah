@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 
 public class Formater {
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private static final SimpleDateFormat sdfh = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private static DecimalFormat df = (DecimalFormat)NumberFormat.getNumberInstance(Locale.US);
     private static final int[] quarters = new int[]{ 2, 2, 2, 3, 3, 3, 4, 4, 4, 1, 1, 1};
     
@@ -83,6 +84,12 @@ public class Formater {
         if (d == null)
             return null;
         return sdf.format(d);
+    }
+    
+    public static String dateTime2str(Date d) {
+        if (d == null)
+            return null;
+        return sdfh.format(d);
     }
 
     public static java.sql.Date str2sqldate(String str) throws Exception {

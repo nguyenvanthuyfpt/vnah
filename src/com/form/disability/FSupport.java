@@ -87,12 +87,18 @@ public class FSupport extends FSeed {
     private String sp5;
     
     private int stt;
+    private String nguoiTHTen;
+    private String nguoiTHCv;
     
     private String loaiNhuCau;
     private String tenNhuCau;
     
+    private int hasVisit;
+    private String startAt;
+    private String endAt;
     private String latitude;
     private String longitude;
+    private String location;
     
     public void reset() {
         this.id = 0;
@@ -725,5 +731,53 @@ public class FSupport extends FSeed {
 
     public String getLongitude() {
         return longitude;
+    }
+
+    public void setHasVisit(int hasVisit) {
+        this.hasVisit = hasVisit;
+    }
+
+    public int getHasVisit() {
+        return hasVisit;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setStartAt(String startAt) {
+        this.startAt = startAt;
+    }
+
+    public String getStartAt() {
+        return startAt;
+    }
+
+    public void setEndAt(String endAt) {
+        this.endAt = endAt;
+    }
+
+    public String getEndAt() {
+        return endAt;
+    }
+
+    public void setNguoiTHTen(String nguoiTHTen) {
+        this.nguoiTHTen = nguoiTHTen;
+    }
+
+    public String getNguoiTHTen() {
+        return nguoiTHTen;
+    }
+
+    public void setNguoiTHCv(String nguoiTHCv) {
+        this.nguoiTHCv = nguoiTHCv;
+    }
+
+    public String getNguoiTHCv() {
+        return nguoiTHCv;
     }
 }

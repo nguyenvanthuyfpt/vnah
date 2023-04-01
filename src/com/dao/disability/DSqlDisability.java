@@ -1368,6 +1368,6 @@ public class DSqlDisability extends DSqlAdmin {
     public final String SQL_INSERT_KPI_JOB_LOG  =  INSERT_INTO + TABLE_KPI_JOB_LOG + FIELDS(KPI_JOB_LOG_ALL_FIELDS,true) + VALUES(KPI_JOB_LOG_ALL_FIELDS.length) + " RETURNING id";
     
     public final String SQL_SELECT_HOME_VISIT_BY_PARAM = SELECT + "a.id, a.support_id, a.id_nkt, to_char(a.start_at, 'dd/MM/YYYY HH:mm:ss') as start_at,\n" + 
-          "to_char(a.end_at, 'dd/MM/YYYY HH:mm:ss') as end_at, a.create_by, a.latitude , a.longitude  " + FROM + TABLE_DR_HOME_VISIT + AS + " a " + WHERE + TRUE ;
+          "to_char(a.end_at, 'dd/MM/YYYY HH:mm:ss') as end_at, a.create_by, a.latitude , a.longitude, a.location  " + FROM + TABLE_DR_HOME_VISIT + AS + " a " + WHERE + TRUE ;
 }
   

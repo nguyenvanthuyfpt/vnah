@@ -40,9 +40,7 @@ public class BHomeVisit {
         return result;
     }
 
-    public FHomeVisit getHomeVisit(int nktId,
-                                   String createdAt) throws EException,
-                                                            SQLException {
+    public FHomeVisit getHomeVisit(int nktId, String createdAt) throws EException, SQLException {
         final String LOCATION = this + "->getById()";
         FHomeVisit result = new FHomeVisit();
         Connection conn = null;
@@ -50,6 +48,25 @@ public class BHomeVisit {
             conn = DBConnector.getConnection();
             DBConnector.startTransaction(conn);
             result = dao.getHomeVisit(conn, nktId, createdAt);
+            DBConnector.endTransaction(conn);
+        } catch (EException ex) {
+            DBConnector.rollBackTransaction(conn);
+            if (AppConfigs.APP_DEBUG)
+                throw new EException(LOCATION, ex);
+        } finally {
+            DBConnector.closeConnection(conn);
+        }
+        return result;
+    }
+    
+    public boolean deleteHomeVisit(int supportId) throws EException {
+        final String LOCATION = this + "->delete()";
+        boolean result = false;
+        Connection conn = null;
+        try {
+            conn = DBConnector.getConnection();
+            DBConnector.startTransaction(conn);
+            result = dao.delete(conn, supportId);
             DBConnector.endTransaction(conn);
         } catch (EException ex) {
             DBConnector.rollBackTransaction(conn);

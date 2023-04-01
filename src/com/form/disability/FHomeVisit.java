@@ -11,8 +11,9 @@ public class FHomeVisit extends FSeed {
     private String startAt;
     private String endAt;
     private double latitude;
-    private double longgitude;
-
+    private double longgitude;    
+    private String location;
+    
     private int pageIndex;
     private int totalResult;
 
@@ -94,5 +95,13 @@ public class FHomeVisit extends FSeed {
 
     public double getLonggitude() {
         return longgitude;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getLocation() {
+        return location;
     }
 }

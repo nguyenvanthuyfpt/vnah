@@ -160,20 +160,33 @@
     </td>    
 </tr>
 
-<logic:notEmpty name="support" property="latitude">
+<logic:equal name="support" property="hasVisit" value="1">
 <tr height="25">
     <td colspan="2">         
+        <img src="<%=contextPath%>/images/geography.png" />
         <bean:message key="common.label.geography" bundle="<%=interfaces%>"/>:
         <i><bean:message key="common.label.latitude" bundle="<%=interfaces%>"/> 
         <bean:write name="support" property="latitude"/></i>
         <i><bean:message key="common.label.longitude" bundle="<%=interfaces%>"/>
         <bean:write name="support" property="longitude"/></i>
     </td>
-    <td colspan="2">         
-        <bean:message key="common.label.homevisit" bundle="<%=interfaces%>"/>
+    <td colspan="2">
+        <img src="<%=contextPath%>/images/location.png" />
+        <bean:message key="common.label.homevisit" bundle="<%=interfaces%>"/>:
+        <bean:write name="support" property="location"/>
     </td>
 </tr>
-</logic:notEmpty>
+<tr height="25">
+    <td colspan="2">        
+        <bean:message key="common.label.time.start" bundle="<%=interfaces%>"/>:        
+        <bean:write name="support" property="startAt"/>
+    </td>
+    <td colspan="2">        
+        <bean:message key="common.label.time.end" bundle="<%=interfaces%>"/>:
+        <bean:write name="support" property="endAt"/>
+    </td>
+</tr>
+</logic:equal>
 
 <logic:equal name="support" property="statusId" value="1">
 <tr>
@@ -353,7 +366,22 @@
                 </html:select>
             </td>
         </tr>
-        </logic:equal>        
+        </logic:equal>
+        
+        <tr>
+            <td width="25%"><bean:message key="common.label.support.createdby.name" bundle="<%=interfaces%>" /></td> 
+            <td><html:text name="support" property="nguoiTHTen" style="width:120px;" /></td>
+            <td width="25%"><bean:message key="common.label.support.createdby.position" bundle="<%=interfaces%>" /></td> 
+            <td>
+                <html:select name="kpi" property="nguoiTHCv">
+                    <html:option value="-1"><bean:message key="combo.luachon" bundle="<%=interfaces%>"/></html:option>
+                    <html:option value="1"><bean:message key="common.label.support.createdby.1" bundle="<%=interfaces%>"/></html:option>
+                    <html:option value="2"><bean:message key="common.label.support.createdby.2" bundle="<%=interfaces%>"/></html:option>
+                    <html:option value="3"><bean:message key="common.label.support.createdby.3" bundle="<%=interfaces%>"/></html:option> 
+                    <html:option value="4"><bean:message key="common.label.support.createdby.4" bundle="<%=interfaces%>"/></html:option>
+                </html:select>
+            </td>
+        </tr>
         </table>
     </td>
 </tr>    
