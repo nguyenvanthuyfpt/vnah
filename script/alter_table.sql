@@ -76,3 +76,6 @@ CREATE TABLE public.dr_home_visit (
 	longitude float8 NOT NULL,
 	"location" varchar(255) NULL
 );
+
+
+zuh6WEu2juuTUOUr/667Gw==
