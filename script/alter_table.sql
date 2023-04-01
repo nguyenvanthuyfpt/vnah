@@ -45,3 +45,34 @@ values (303,'Chăm sóc giảm nhẹ','CSGN',6,303,'Chăm sóc giảm nhẹ');
 
 INSERT INTO dr_hotro (hotro_id, name,code,parent_id,order_by,name_htro) 
 values (304,'Giáo dục đặc biệt','GDDB',302,302,'Giáo dục đặc biệt');
+
+update dr_hotro set name = 'Chăm sóc tại nhà', name_htro = 'Chăm sóc tại nhà'
+where hotro_id = 303;
+
+alter  table dr_support add column ngthien_ten varchar(100);
+alter  table dr_support add column ngthien_cvu int;
+
+-- public.dr_home_visit definition
+
+-- Drop table
+
+-- DROP TABLE public.dr_home_visit;
+CREATE SEQUENCE public.dr_home_visit_sid
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START 1
+	CACHE 1
+	NO CYCLE;
+
+CREATE TABLE public.dr_home_visit (
+	id int8 NULL DEFAULT nextval('dr_home_visit_sid'::regclass),
+	support_id int8 NOT NULL,
+	id_nkt int8 NOT NULL,
+	start_at timestamp NULL,
+	end_at timestamp NULL,
+	create_by int8 NOT NULL,
+	latitude float8 NOT NULL,
+	longitude float8 NOT NULL,
+	"location" varchar(255) NULL
+);
