@@ -627,7 +627,7 @@ public class DSupport extends DSqlDisability {
             bean.setCtCsgn(rs.getString(HOTRO_CT_CSGN));
             
             bean.setNguoiTHTen(rs.getString(HOTRO_THIEN_TEN));
-            bean.setNguoiTHCv(rs.getString(HOTRO_THIEN_CVU));
+            bean.setNguoiTHCv(rs.getInt(HOTRO_THIEN_CVU));
         } catch (SQLException sqle) {
             if (AppConfigs.APP_DEBUG)
                 throw new EException(LOCATION, sqle);

@@ -179,7 +179,7 @@ public class FDataHdr extends FSeed {
     private int nguonId;
     private String caithienKhac;
     private String nguoiTHTen;
-    private String nguoiTHCv;
+    private int nguoiTHCv;
 
     // Person
     private int perLocationId;
@@ -2150,11 +2150,11 @@ public class FDataHdr extends FSeed {
         return nguoiTHTen;
     }
 
-    public void setNguoiTHCv(String nguoiTHCv) {
+    public void setNguoiTHCv(int nguoiTHCv) {
         this.nguoiTHCv = nguoiTHCv;
     }
 
-    public String getNguoiTHCv() {
+    public int getNguoiTHCv() {
         return nguoiTHCv;
     }
 }
