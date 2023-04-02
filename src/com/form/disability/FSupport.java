@@ -88,7 +88,7 @@ public class FSupport extends FSeed {
     
     private int stt;
     private String nguoiTHTen;
-    private String nguoiTHCv;
+    private int nguoiTHCv;
     
     private String loaiNhuCau;
     private String tenNhuCau;
@@ -136,6 +136,8 @@ public class FSupport extends FSeed {
         this.doiTuong = -1;
         this.stt = 0;
         this.hotroIds = "";
+        this.nguoiTHCv = -1;
+        this.nguoiTHTen = "";
     }
 
     
@@ -773,11 +775,11 @@ public class FSupport extends FSeed {
         return nguoiTHTen;
     }
 
-    public void setNguoiTHCv(String nguoiTHCv) {
+    public void setNguoiTHCv(int nguoiTHCv) {
         this.nguoiTHCv = nguoiTHCv;
     }
 
-    public String getNguoiTHCv() {
+    public int getNguoiTHCv() {
         return nguoiTHCv;
     }
 }
