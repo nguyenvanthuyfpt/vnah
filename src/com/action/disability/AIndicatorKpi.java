@@ -2728,6 +2728,7 @@ public class AIndicatorKpi extends  ACore {
                 fdataHdr.setDisNgayTK("");
                 fdataHdr.setDisDiaDiem(0);
                 fdataHdr.setDisDoiTuong(0);
+                fdataHdr.setNguoiTHCv(-1);                
                 fdataHdr.setSupportIds(null);
                 request.setAttribute("BSupportTrailers", new BSupport().getAllByIdNkt(fdataHdr.getNktId(), fdataHdr.getStatusId()));
                 request.setAttribute("support", support);
