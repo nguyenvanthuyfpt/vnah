@@ -93,6 +93,7 @@
         <action name="reportkpi" path="/reportkpi" type="com.action.disability.report.AReportKpi" unknown="false"
                 validate="false">
             <forward name="_REPORT_SELECT_TINH" path="/disability/report/reportKpi/formReport.jsp"/>
+            <forward name="_REPORT_SELECT_HUYEN" path="/disability/report/reportKpi/formReport.jsp"/>
             <forward name="_CHANGE_DATATYPE" path="/disability/report/reportKpi/formReport.jsp"/>
             <forward name="_REPORT_KPI" path="/disability/report/reportKpi/index.jsp"/>
         </action>

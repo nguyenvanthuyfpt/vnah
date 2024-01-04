@@ -8,8 +8,8 @@
             extend = chk.checked?"1":"0";
         }
         
-        /*
         var periodType = form.periodType.value;
+        /*
         if (periodType==4){
            if (form.createDateFrom.value==''||form.createDateTo.value==''){
                alert(<bean:message key="alert.not.enough.data" bundle="<%=interfaces%>"/>);
@@ -17,7 +17,6 @@
            }
         }
         */
-        
         post('reportkpi',anchor + ':_REPORT:extend:'+extend);
         remove('reportkpi',anchor);
         remove('reportkpi','extend');
@@ -51,6 +50,8 @@
                         <bean:message key="common.label.function.report.export" bundle="<%=interfaces%>"/>
                         <%}else if ("04.07".equals(subanchor)){%>
                         <bean:message key="common.label.function.report.dis-support-list" bundle="<%=interfaces%>"/>
+                        <%}else if ("04.08".equals(subanchor)){%>
+                        <bean:message key="common.label.function.report.dis-homevisit-list" bundle="<%=interfaces%>"/>
                         <%}else if ("03.02".equals(subanchor)){%>
                         <bean:message key="common.label.function.report.export.2020" bundle="<%=interfaces%>"/>
                         <%}%>
@@ -65,21 +66,22 @@
             <td colspan="2">
                    <table width="100%">
                     <tr>
-                        <th colspan="2">
+                        <th colspan="4">
                             <div class="content-calendar-2" align="left">
                                 <bean:message key="common.parameter.report" bundle="<%=interfaces%>"/>                        
+                                <%=subanchor%>
                             </div>
                         </th>
                     </tr>
                      
                     <tr>
                         <td align="left" width="20%"><bean:message key="location" bundle="<%=interfaces%>"/></td>
-                        <td>
+                        <td colspan="3">
                             <%if("04.01".equals(subanchor)){%>
                             <html:select styleClass="inputbox" name="reportkpi" property="tinhId" onchange="javascript:postAjax('reportkpi','form', anchor + ':_REPORT_SELECT_TINH:subFunction:04.01');">
                             <html:options collection="BTreeTinhs" property="id" labelProperty="name"/>  
                             </html:select>
-                            <%}else if("04.02".equals(subanchor)){%>
+                            <%}else if("04.02".equals(subanchor)||"04.08".equals(subanchor)){%>
                             <html:select styleClass="inputbox" name="reportkpi" property="tinhId" onchange="javascript:postAjax('reportkpi','form', anchor + ':_REPORT_SELECT_TINH:subFunction:04.02');">
                             <html:options collection="BTreeTinhs" property="id" labelProperty="name"/>  
                             </html:select>
@@ -96,7 +98,8 @@
                             <html:options collection="BTreeTinhs" property="id" labelProperty="name"/>  
                             </html:select>
                             <%}else if("04.06".equals(subanchor)||"03.02".equals(subanchor)){%>
-                            <html:select styleClass="inputbox" name="reportkpi" property="tinhId" onchange="javascript:postAjax('reportkpi','form', anchor + ':_REPORT_SELECT_TINH:subFunction:04.06');">
+                            <html:select styleClass="inputbox" name="reportkpi" property="tinhId" 
+                                onchange="javascript:postAjax('reportkpi','form', anchor + ':_REPORT_SELECT_TINH:subFunction:04.06');">
                             <html:options collection="BTreeTinhs" property="id" labelProperty="name"/>  
                             </html:select>
                             <%}else if("04.07".equals(subanchor)){%>
@@ -107,11 +110,36 @@
                             <span style="color:#005BCC"><bean:write name="reportkpi" property="tinhName" /></span>
                         </td>
                     </tr>
-                   
+                    
+                    <%if("04.05".equals(subanchor)||"04.06".equals(subanchor)||"04.07".equals(subanchor)){%>
+                    <logic:notEmpty name="districts"> 
+                    <tr>
+                        <td><bean:message key="district" bundle="<%=interfaces%>" /></td>
+                        <td>
+                            <html:select styleClass="combobox_w150" name="reportkpi" property="qhuId" onchange="postAjax('reportkpi','form',anchor + ':_REPORT_SELECT_HUYEN');">
+                              <logic:present name="districts">
+                                  <html:options collection="districts" property="id" labelProperty="name"/>
+                              </logic:present>
+                            </html:select>
+                        </td>
+                        <td>            
+                            <bean:message key="commune" bundle="<%=interfaces%>" />
+                        </td>
+                        <td>
+                            <html:select styleClass="combobox_w150" name="reportkpi" property="pxaId" >
+                              <logic:present name="communes">
+                                  <html:options collection="communes" property="id" labelProperty="name"/>
+                              </logic:present>
+                            </html:select>
+                        </td>
+                    </tr>
+                    </logic:notEmpty>
+                    <%}%>
+                    
                     <%if(subanchor.startsWith("04")) {%>
                     <tr>
                         <td align="left"><bean:message key="common.label.period.type" bundle="<%=interfaces%>"/></td>
-                        <td>                            
+                        <td colspan="3">                            
                             <%if("04.01".equals(subanchor)){%>
                             <html:select styleClass="inputbox" name="reportkpi" property="periodType" onchange="javascript:postAjax('reportkpi','form', anchor + ':_REPORT_SELECT_TINH:subFunction:04.01');" >                                
                                 <html:option value="1"><bean:message key="common.label.quarter" bundle="<%=interfaces%>"/></html:option>
@@ -124,7 +152,8 @@
                             </html:select>                          
                             <%}else if("04.04".equals(subanchor)){%>
                             <html:select styleClass="inputbox" name="reportkpi" property="periodType" onchange="javascript:postAjax('reportkpi','form', anchor + ':_REPORT_SELECT_TINH:subFunction:04.04');" >
-                                <html:option value="0"><bean:message key="common.label.month" bundle="<%=interfaces%>"/></html:option>                                
+                                <html:option value="0"><bean:message key="common.label.month" bundle="<%=interfaces%>"/></html:option>
+                                <html:option value="4"><bean:message key="common.label.date" bundle="<%=interfaces%>"/></html:option>
                             </html:select>
                             <%}else if ("04.05".equals(subanchor)){%>
                             <html:select styleClass="inputbox" name="reportkpi" property="periodType" onchange="javascript:postAjax('reportkpi','form', anchor + ':_REPORT_SELECT_TINH:subFunction:04.05');" >
@@ -141,13 +170,18 @@
                                 <html:option value="0"><bean:message key="common.label.month" bundle="<%=interfaces%>"/></html:option>
                                 <html:option value="4"><bean:message key="common.label.date" bundle="<%=interfaces%>"/></html:option>
                             </html:select>
+                            <%} else if ("04.08".equals(subanchor)){%>
+                              <html:select styleClass="inputbox" name="reportkpi" property="periodType" onchange="javascript:postAjax('reportkpi','form', anchor + ':_REPORT_SELECT_TINH:subFunction:04.08');" >
+                                <html:option value="0"><bean:message key="common.label.month" bundle="<%=interfaces%>"/></html:option>
+                                <html:option value="4"><bean:message key="common.label.date" bundle="<%=interfaces%>"/></html:option>
+                            </html:select>
                             <%}%>
                         </td>
                     </tr>
                     <%  } else if (subanchor.startsWith("03")){ %>
                      <tr>
                         <td align="left"><bean:message key="common.label.period.type" bundle="<%=interfaces%>"/></td>
-                        <td>
+                        <td colspan="3">
                            <html:select styleClass="inputbox" name="reportkpi" property="periodType">
                                 <html:option value="4"><bean:message key="common.label.date" bundle="<%=interfaces%>"/></html:option>
                             </html:select>
@@ -155,7 +189,7 @@
                     </tr>
                     <tr>
                         <td align="left">Ng&#224;y m&#7903; s&#7893;/ca t&#7915;</td>
-                        <td>                            
+                        <td colspan="3">
                             <input type="text" name="createDateFrom" id="createDateFrom" 
                                 onkeypress="return formatDate(event,this);" 
                                 onblur="isDate(this);" style="width:80px;" 
@@ -182,6 +216,14 @@
                               <html:option value="0"><bean:message key="common.label.dis.project.direct" bundle="<%=interfaces%>"/></html:option>
                               <html:option value="1"><bean:message key="common.label.dis.project.inclusion3" bundle="<%=interfaces%>"/></html:option>
                            </html:select>   
+                        </td>                    
+                        <td><bean:message key="common.label.status.profile" bundle="<%=interfaces%>"/> :</td>
+                        <td align="left">
+                          <html:select styleClass="combobox_w120" name="reportkpi" property="statusId">
+                              <html:option value="-1"><bean:message key="combo.luachon" bundle="<%=interfaces%>"/></html:option>
+                              <html:option value="0"><bean:message key="common.label.status.active" bundle="<%=interfaces%>" /></html:option>
+                              <html:option value="1"><bean:message key="common.label.status.close" bundle="<%=interfaces%>" /></html:option>
+                          </html:select>
                         </td>
                     </tr>
                     <%}%>
@@ -189,7 +231,7 @@
                     <%if("03.02".equals(subanchor)||"04.06".equals(subanchor)){%>
                     <tr>
                         <td align="left">Ng&#224;y m&#7903; s&#7893;/ca t&#7915;</td>
-                        <td>                            
+                        <td colspan="3">                           
                             <input type="text" name="createDateFrom" id="createDateFrom" 
                                 onkeypress="return formatDate(event,this);" 
                                 onblur="isDate(this);" style="width:80px;" 
@@ -207,7 +249,7 @@
                     </tr>
                     <tr>
                         <td align="left">Ng&#224;y nh&#7853;n DV t&#7915;</td>
-                        <td>                            
+                        <td colspan="3">                            
                             <input type="text" name="dvuDateFrom" id="dvuDateFrom" 
                                 onkeypress="return formatDate(event,this);" 
                                 onblur="isDate(this);" style="width:80px;" 
@@ -227,7 +269,7 @@
                     </tr>
                     <tr>
                         <td align="left">Ng&#224;y t&#225;i &#272;G t&#7915;</td>
-                        <td>                            
+                        <td colspan="3">                            
                             <input type="text" name="tdgDateFrom" id="tdgDateFrom" 
                                 onkeypress="return formatDate(event,this);" 
                                 onblur="isDate(this);" style="width:80px;" 
@@ -247,7 +289,7 @@
                     </tr>
                     <tr>
                         <td align="left">Ng&#224;y &#273;&#243;ng/m&#7903; ca t&#7915;</td>
-                        <td>                            
+                        <td colspan="3">                            
                             <input type="text" name="dmcDateFrom" id="dmcDateFrom" 
                                 onkeypress="return formatDate(event,this);" 
                                 onblur="isDate(this);" style="width:80px;" 
@@ -437,7 +479,7 @@
                     </logic:equal>
                     
                      <!-- periodType = 4 -->
-                     <% if ("04.07".equals(subanchor) && "4".equals(periodtype)) { %>
+                     <% if (("04.07".equals(subanchor)||"04.04".equals(subanchor)||"04.08".equals(subanchor)) && "4".equals(periodtype)) { %>
                      <tr>
                         <td align="left"  width="20%">Ng&#224;y h&#7895; tr&#7907; t&#7915;
                             <bean:message key="alert.type.information" bundle="<%=interfaces%>"/>
@@ -462,7 +504,7 @@
                     </table>             
              </td>
         </tr>
-        <% if("04.04|04.05|03.02|04.07".indexOf(subanchor)==-1){%>
+        <% if("04.04|04.05|03.02|04.07|04.08".indexOf(subanchor)==-1){%>
         <tr>
             <td colspan="2">
                 <div id="alert">
@@ -497,6 +539,3 @@
         </table>
     </div>
 </html:form>
-
-
-

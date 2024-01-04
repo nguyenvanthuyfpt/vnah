@@ -102,7 +102,11 @@ public class IKeyDisability extends IKey {
     public static final String REPORT_FILE_KPI_REPORT_HEALTH_INSURANCE = getValue("REPORT.FILE.KPI.REPORT.HEALTH.INSURANCE");
   
     public static final String REPORT_FILE_KPI_REPORT_SUPPORT = getValue("REPORT.FILE.KPI.REPORT.SUPPORT");
+
+    public static final String REPORT_FILE_KPI_REPORT_SUPPORT_2023 = getValue("REPORT.FILE.KPI.REPORT.SUPPORT.2023");
     
+    public static final String REPORT_FILE_KPI_REPORT_HOME_VISIT = getValue("REPORT.FILE.KPI.REPORT.HOME.VISIT");
+        
     public static final String REPORT_FILE_KPI_REPORT_COMMUNE_SUMMARY = getValue("REPORT.FILE.KPI.REPORT.COMMUNE.SUMMARY");
     
     public static final String REPORT_FILE_KPI_REPORT_COMMUNE_DETAIL = getValue("REPORT.FILE.KPI.REPORT.COMMUNE.DETAIL");

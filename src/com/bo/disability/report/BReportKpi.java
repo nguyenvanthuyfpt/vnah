@@ -98,14 +98,14 @@ public class BReportKpi {
         return beans;
     }
            
-    public FBeans getDataReportSupport(int locationId, String period) throws EException, SQLException {
+    public FBeans getDataReportSupport(int locationId, String periodType, String period) throws EException, SQLException {
         final String LOCATION = this + "->getDataReportSupport()";
         FBeans beans = new FBeans();
         Connection conn = null;
         try {
             conn = DBConnector.getConnection();
             DBConnector.startTransaction(conn);
-            beans = dao.getDataReportSupport(conn, locationId, period);
+            beans = dao.getDataReportSupport(conn, locationId, periodType, period);
             DBConnector.endTransaction(conn);
         } catch (EException ex) {
             DBConnector.rollBackTransaction(conn);
@@ -117,7 +117,26 @@ public class BReportKpi {
         return beans;
     }
     
-    public FBeans getDataDisExport(int lvl, int locationId, int duAnId,
+    public FBeans getDataReportHomeVisit(int locationId, String periodType, String period) throws EException, SQLException {
+        final String LOCATION = this + "->getDataReportHomeVisit()";
+        FBeans beans = new FBeans();
+        Connection conn = null;
+        try {
+            conn = DBConnector.getConnection();
+            DBConnector.startTransaction(conn);
+            beans = dao.getDataReportHomeVisit(conn, locationId, periodType, period);
+            DBConnector.endTransaction(conn);
+        } catch (EException ex) {
+            DBConnector.rollBackTransaction(conn);
+            if (AppConfigs.APP_DEBUG)
+                throw new EException(LOCATION, ex);
+        } finally {
+            DBConnector.closeConnection(conn);
+        }
+        return beans;
+    }
+    
+    public FBeans getDataDisExport(int lvl, int locationId, int duAnId, int statusId,
                                        String createDateFrom, String createDateTo, 
                                        String dvuDateFrom, String dvuDateTo,
                                        String tdgDateFrom, String tdgDateTo,
@@ -128,7 +147,7 @@ public class BReportKpi {
         try {
             conn = DBConnector.getConnection();
             DBConnector.startTransaction(conn);
-            beans = dao.getDataDisExport(conn, lvl, locationId, duAnId,
+            beans = dao.getDataDisExport(conn, lvl, locationId, duAnId, statusId,
                                   createDateFrom, createDateTo,
                                   dvuDateFrom, dvuDateTo, 
                                   tdgDateFrom, tdgDateTo, 

@@ -113,7 +113,8 @@ public class DSqlDisability extends DSqlAdmin {
             "       kn_chitra, sp.the_bhyt, sp.sd_the, sp.sd_the_phcn, sp.mtieu_gdinh, sp.mtieu_dtri, sp.\n" + 
             "       ct_vltl, sp.ct_hdtl, sp.ct_antl, sp.mdo_ptdl, sp.mdo_hlong, " + 
             "       rpt.ktbt_thuongxuyen::text as P1, rpt.ktbt_tapdung::text as P2, rpt.dctg_phuhop::text as P3, rpt.dctg_thuongxuyen::text as P4, " + 
-            "       rpt.dctg_baoquan::text as P5, rpt.hd_ncs::text as P6, rpt.huong_ct::text as P7, rpt.htro_dkien as P8 "
+            "       rpt.dctg_baoquan::text as P5, rpt.hd_ncs::text as P6, rpt.huong_ct::text as P7, rpt.htro_dkien as P8, "
+            + " get_num_homevisit(DR_DISABILITYPEOPLE.ID) num_homevisit"                                                
             + FROM + TABLE_DISABILITYPEOPLE 
             + LEFT_JOIN + TABLE_TINH + ON + TABLE_DISABILITYPEOPLE + STOP + NKT_ID_TINH + EQUAL + TABLE_TINH + STOP + TINH_TINH_ID
             + " left join dr_area dis on DR_DISABILITYPEOPLE.id_district = dis.TINH_ID "                                                  
@@ -204,7 +205,7 @@ public class DSqlDisability extends DSqlAdmin {
 
     public final String SQL_SELECT_MAX_CODE_3 =  "SELECT MAX(CAST(SPLIT_PART(MA, '.', 3) AS INT)) FROM DR_DISABILITYPEOPLE WHERE ID_TINH= ?";
     
-    public final String SQL_SELECT_MAX_CODE_2 =  "SELECT MAX(CAST(SPLIT_PART(MA, '.', 2) AS INT)) FROM DR_DISABILITYPEOPLE WHERE ID_TINH= ?";
+    public final String SQL_SELECT_MAX_CODE_2 =  "SELECT MAX(CAST(SPLIT_PART(MA, '.', 2) AS INT)) as num FROM DR_DISABILITYPEOPLE WHERE ID_TINH= ?";
     
     //public final String SQL_SELECT_MAX_CODE_4 =  "SELECT MAX(CAST(SPLIT_PART(MA, '.', 4) AS INT)) FROM DR_DISABILITYPEOPLE WHERE ID_TINH= ?";
     
@@ -1330,11 +1331,10 @@ public class DSqlDisability extends DSqlAdmin {
     public String SQL_SELECT_KPI_DIS_EXPORT = "SELECT a.* FROM \n" + 
                                                       "(SELECT a.*, b.du_an, b.id_tinh as id_tinh, b.id_district as id_district,  b.id_commune as id_commune \n" +
                                                       "FROM kpi_report_temp a LEFT JOIN dr_disabilitypeople b ON a.id = b.id \n" + 
-                                                      "WHERE 1=1 \n" +
+                                                      "WHERE 1=1 [$TU_DVU$] [$DEN_DVU$] \n" +                                                      
                                                       "ORDER BY a.stt ASC, a.maso ASC, a.order_by ASC) a \n" + 
                                                       "LEFT JOIN kpi_report_temp_2020 b ON a.id=b.id WHERE 1=1 \n" +
-                                                       " [$TU_NGAY$] [$DEN_NGAY$] \n" + 
-                                                       " [$TU_DVU$] [$DEN_DVU$] \n" +
+                                                       " [$TU_NGAY$] [$DEN_NGAY$] \n" +                                                        
                                                        " [$TU_TDG$] [$DEN_TDG$] \n" +
                                                        " [$TU_DMC$] [$DEN_DMC$] \n";
   

@@ -1,6 +1,9 @@
 package com.dao.disability;
 
 
+import com.action.disability.dto.KpiEvent;
+import com.action.disability.dto.KpiPerson;
+
 import com.dao.DCore;
 
 import com.exp.EException;
@@ -21,8 +24,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -35,7 +40,7 @@ import org.apache.poi.ss.usermodel.Row;
 
 public class DImport extends DCore {
 
-    public FImport readFileExcel(String fileName,
+    public FImport readFileExcel(String fileName, int typeImport,
                                  int rowBegin) throws ServletException,
                                                       IOException {
         FImport bean = new FImport();
@@ -102,6 +107,119 @@ public class DImport extends DCore {
             System.out.println(ex.toString());
         }
         return bean;
+    }
+    
+    public List<KpiPerson> readFileExcelPerson(String fileName, int typeImport, int rowBegin) throws ServletException,
+                                                      IOException {
+        List<KpiPerson> listImport = new ArrayList<KpiPerson>();
+        try {
+            File xlsfile = new File(fileName);
+            FileInputStream file = new FileInputStream(xlsfile);
+            Workbook wb = Workbook.getWorkbook(file);
+            Sheet sheet = null;
+            int rows = 0, cols = 0, r = 0;
+            
+            // READ SHEET 0
+            sheet = wb.getSheet(0);
+            rows = sheet.getRows();
+            cols = sheet.getColumns();
+            r = 0;
+            
+            for (int row = rowBegin; row < rows; row++) {
+                KpiPerson person = new KpiPerson();
+                String stt = sheet.getCell(0, row).getContents();
+                System.out.println("stt " + stt);
+                
+                if ("".equals(stt)) {
+                    break;
+                }
+                for (int col = 0; col < cols; col++) {                   
+                    if (col==1) {
+                        person.setFullName(sheet.getCell(col, row).getContents() + "");
+                    }
+                    
+                    if (col==2) {
+                        person.setSex("".equals(sheet.getCell(col, row).getContents())?0:1);
+                    }
+                    
+                    if (col==4) {
+                       person.setTitle(sheet.getCell(col, row).getContents() + "");
+                    }
+                    
+                    if (col==5){
+                       person.setAgency(sheet.getCell(col, row).getContents() + "");
+                    }
+                    
+                    if (col==11){
+                       person.setContact(sheet.getCell(col, row).getContents() + "");
+                    }
+                }
+                listImport.add(person);
+                r++;
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+        return listImport;
+    }
+    
+    public List<KpiEvent> readFileExcelEvent(String fileName, int typeImport, int rowBegin) throws ServletException,
+                                                      IOException {
+        
+        List<KpiEvent> listImport = new ArrayList<KpiEvent>();
+        try {
+            File xlsfile = new File(fileName);
+            FileInputStream file = new FileInputStream(xlsfile);
+            Workbook wb = Workbook.getWorkbook(file);
+            Sheet sheet = null;
+            int rows = 0, cols = 0, r = 0;
+            
+            // READ SHEET 0
+            sheet = wb.getSheet(0);
+            rows = sheet.getRows();
+            cols = sheet.getColumns();
+            r = 0;
+            
+            for (int row = rowBegin; row < rows; row++) {
+                KpiEvent event = new KpiEvent();
+                String stt = sheet.getCell(0, row).getContents();
+                // System.out.println("stt " + stt);
+                
+                if ("".equals(stt)) {
+                    break;
+                }
+                for (int col = 0; col < cols; col++) {                   
+                    if (col==1) {
+                        event.setLocationId(Integer.parseInt(sheet.getCell(col, row).getContents()+""));
+                    }
+                    
+                    if (col==3) {
+                        event.setCreateDate(sheet.getCell(col, row).getContents()+"");
+                    }
+                    
+                    if (col==4) {
+                       event.setStartDate(sheet.getCell(col, row).getContents() + "");
+                    }
+                    
+                    if (col==5){
+                       event.setEndDate(sheet.getCell(col, row).getContents() + "");
+                    }
+                    
+                    if (col==6){
+                       event.setActivity(sheet.getCell(col, row).getContents() + "");
+                    }
+                    
+                    if (col==7){
+                       event.setLocation(sheet.getCell(col, row).getContents() + "");
+                    }
+                }
+                listImport.add(event);
+                r++;
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+        return listImport;
     }
 
     /*public boolean insert(Connection cnn, FSeed seed, String[][] data) throws EException {

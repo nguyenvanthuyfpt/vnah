@@ -11,8 +11,9 @@ public class FImport extends FSeed {
     private String fileName;
     private String[] nameField;
     private String[] typeData;
-    private int rowDataStart = 3;
-    private int rowBegin = 3;
+    private int rowDataStart = 2;
+    private int rowBegin = 2;
+    private int hasReadFile = 0;
     private String tableName;
     private String dataSheet0[][];
     private String dataSheet1[][];
@@ -20,9 +21,11 @@ public class FImport extends FSeed {
     private String dataSheet3[][];
 
     private int typeImport = 1;
+    private int eventId;
+    private int objId;
     private int noUpdate;
     private int noInsert;
-
+    private String importMsg;
 
     private FormFile upFile;
 
@@ -161,5 +164,37 @@ public class FImport extends FSeed {
 
     public int getRowBegin() {
         return rowBegin;
+    }
+
+    public void setHasReadFile(int hasReadFile) {
+        this.hasReadFile = hasReadFile;
+    }
+
+    public int getHasReadFile() {
+        return hasReadFile;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setObjId(int objId) {
+        this.objId = objId;
+    }
+
+    public int getObjId() {
+        return objId;
+    }
+
+    public void setImportMsg(String importMsg) {
+        this.importMsg = importMsg;
+    }
+
+    public String getImportMsg() {
+        return importMsg;
     }
 }

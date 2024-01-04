@@ -1,0 +1,8 @@
+
+deploy/deploy.rar
+deploy/spring-boot-jpa-postgresql-0.0.1-SNAPSHOT.war
+*.class
+*.jdb
+*.class
+*.war
+public_html/WEB-INF/classes/.data/kpi.cdi_javac

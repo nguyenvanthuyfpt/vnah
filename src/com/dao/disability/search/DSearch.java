@@ -320,7 +320,6 @@ public class DSearch extends DSqlDisability {
                   SQL_COUNT += AND + "sp" + STOP + HOTRO_STATUS_ID + EQUAL + "1";
             }
             
-            
             // Ngay-Tai-Kham-Tu-Den
             if ((!"".equals(bean.getHt_taiKhamTu()) && bean.getHt_taiKhamTu()!=null) && (!"".equals(bean.getHt_taiKhamDen()) && bean.getHt_taiKhamDen()!=null)) {
                 mapParam.put("htroTaiKhamFrom", bean.getHt_taiKhamTu());
@@ -347,6 +346,29 @@ public class DSearch extends DSqlDisability {
                 SQL_COUNT += AND + "sp" + STOP + HOTRO_DIADIEM + "=" + bean.getHt_diaDiemTK();
             }
             
+            if (bean.getDisDoiTuong()>0) {
+                mapParam.put("disDoiTuong", String.valueOf(bean.getDisDoiTuong()));
+                SQL_SEARCH += AND + "sp" + STOP + HOTRO_DOITUONG + "=" + bean.getDisDoiTuong();
+                SQL_COUNT += AND + "sp" + STOP + HOTRO_DOITUONG + "=" + bean.getDisDoiTuong();
+            } 
+            
+            if (!"".equals(bean.getNguoiTHTen()) && bean.getNguoiTHTen()!=null) {
+                mapParam.put("nguoiTHTen", bean.getNguoiTHTen());
+                SQL_SEARCH += AND + "sp" + STOP + HOTRO_THIEN_TEN + LIKE + "'" + PER_CENT + bean.getNguoiTHTen() + PER_CENT + "'";
+                SQL_COUNT += AND + "sp" + STOP + HOTRO_THIEN_TEN + LIKE + "'" + PER_CENT + bean.getNguoiTHTen() + PER_CENT + "'";
+            }
+            
+            if (bean.getNguoiTHCv()>0) {
+                mapParam.put("nguoiTHCv", String.valueOf(bean.getNguoiTHCv()));
+                SQL_SEARCH += AND + "sp" + STOP + HOTRO_THIEN_CVU + "=" + bean.getNguoiTHCv();
+                SQL_COUNT += AND + "sp" + STOP + HOTRO_THIEN_CVU + "=" + bean.getNguoiTHCv();   
+            }
+            
+            if (bean.getIsHomeVisit()==1){
+                mapParam.put("isHomeVisit", String.valueOf(bean.getNguoiTHCv()));
+                SQL_SEARCH += AND + " exists (select * from dr_home_visit dhv where dhv.id_nkt=dr_disabilitypeople.id) ";
+                SQL_COUNT += AND + " exists (select * from dr_home_visit dhv where dhv.id_nkt=dr_disabilitypeople.id) ";
+            }
             
             /*
             else {
@@ -869,7 +891,7 @@ public class DSearch extends DSqlDisability {
     
     public FBeans getReportAll(Connection cnn, FSeed seed, String SQL_REPORT, List params, Map<String, String> mapParam) throws EException {
         final String LOCATION = this.toString() + "getReport()";
-        String SQL_REPORT_DIS = "SELECT * FROM dr_report_param a WHERE 1=1 ";
+        String SQL_REPORT_DIS = "SELECT a.*, get_num_homevisit(a.nkt_id) num_homevisit FROM dr_report_param a WHERE 1=1 ";
         String SQL_REPORT_DIS_COMMUNE = "select\n" + 
                                         "	krt.*,\n" +
                                         " to_char(rpt.create_date,'dd/MM/yyyy') as dv_tuyenxa_ngay, \n" + 
@@ -1086,7 +1108,8 @@ public class DSearch extends DSqlDisability {
             // Location
             bean.setTinhId(rs.getInt("location_id"));
             bean.setTinhName(rs.getString("location_name"));
-            
+            bean.setHuyenName(rs.getString("qhu_name"));
+            bean.setPxaName(rs.getString("pxa_name"));
             // NKT
             bean.setLastupdate(rs.getString("create_date"));
             bean.setId(rs.getInt("nkt_id"));
@@ -1122,6 +1145,7 @@ public class DSearch extends DSqlDisability {
             bean.setDTatNgayTaiKham(rs.getString("dtat_ngay_kham"));
             bean.setDTatDiaDiemKham(rs.getString("dtat_ddiem_kham"));
             bean.setDTatTDiemKT(rs.getString("dtat_tdiem_ktat"));
+            bean.setDTatTinhTrang(rs.getString("dtat_ttrang_ktat"));
             bean.setDTatNguyenNhan(rs.getString("dtat_nnhan_ktat"));
             bean.setDTatMucDo(rs.getString("dtat_mdo_ktat"));            
             
@@ -1158,6 +1182,7 @@ public class DSearch extends DSqlDisability {
             
             bean.setHtNhaO(rs.getString("htro_tcan_nhao"));
             bean.setHtNgay(rs.getString("htro_phcn_ngay"));
+            bean.setNumHomeVisit(rs.getInt("num_homevisit"));
             
         } catch (SQLException sqle) {
             if (AppConfigs.APP_DEBUG)
@@ -1175,7 +1200,6 @@ public class DSearch extends DSqlDisability {
             // Location
             bean.setTinhId(rs.getInt("location_id"));
             bean.setTinhName(rs.getString("location_name"));
-            bean.setHuyenName(rs.getString("qhu_name"));
             
             // NKT
             bean.setLastupdate(rs.getString("create_date"));

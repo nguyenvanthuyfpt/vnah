@@ -2728,7 +2728,8 @@ public class AIndicatorKpi extends  ACore {
                 fdataHdr.setDisNgayTK("");
                 fdataHdr.setDisDiaDiem(0);
                 fdataHdr.setDisDoiTuong(0);
-                fdataHdr.setNguoiTHCv(-1);                
+                fdataHdr.setNguoiTHCv(-1);
+                fdataHdr.setNguoiTHTen("");
                 fdataHdr.setSupportIds(null);
                 request.setAttribute("BSupportTrailers", new BSupport().getAllByIdNkt(fdataHdr.getNktId(), fdataHdr.getStatusId()));
                 request.setAttribute("support", support);
@@ -2807,6 +2808,8 @@ public class AIndicatorKpi extends  ACore {
                 fdataHdr.setDisNgayTK(ngayTaiKham);
                 fdataHdr.setDisDiaDiem(fSupport.getDiaDiemKham()); 
                 fdataHdr.setDisDoiTuong(fSupport.getDoiTuong());
+                fdataHdr.setNguoiTHTen(fSupport.getNguoiTHTen());
+                fdataHdr.setNguoiTHCv(fSupport.getNguoiTHCv());
                 fDis = (FDisability)request.getAttribute("NKT");
                 if (fDis!=null) {
                     supportSel = Utilities.parseArr2Str(fdataHdr.getSupportIds(), "#");                          

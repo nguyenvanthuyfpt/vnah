@@ -43,7 +43,7 @@
 		    <tr>
             <td>
                 <% checkBox=(hotroIdsTemp.indexOf("#"+bean.getId()+"#")>=0)?"checked":""; %>
-                <input type="checkbox" name="ht_phanLoaiIds" id="ht_phanLoaiIds" <%=checkBox%> value="<%=bean.getId()%>" onclick="showCongcu('hotro_'+this.value,this.checked);">		        
+                <input type="checkbox" name="ht_phanLoaiIds" id="ht_phanLoaiIds" <%=checkBox%> value="<%=bean.getId()%>" onclick="showCongcu('hotro_'+this.value,this.checked);">
                 <%=bean.getName()%>
                     
                 <logic:notEmpty name="BTemps"> 
@@ -100,6 +100,19 @@
     </td>
 </tr>
 
+<tr>
+    <td><bean:message key="hotro.list.label.tkham.from" bundle="<%=interfaces%>"/>:</td>
+    <td>
+        <html:text name="timkiem" property="ht_taiKhamTu" maxlength="10" onkeypress="return formatDate(event,this);" onblur="isDate(this);" styleId="ht_taiKhamTu" style="width:80px" styleClass="textfield_date"/>
+        <img src="<%=contextPath%>/images/ew_calendar.gif" alt='option date' onClick="popUpCalendar(this,'ht_taiKhamTu','dd/mm/yyyy');return false;">
+    </td>
+    <td><bean:message key="hotro.list.label.toDate" bundle="<%=interfaces%>"/>:</td>
+    <td>
+        <html:text name="timkiem" property="ht_taiKhamDen" maxlength="10" onkeypress="return formatDate(event,this);" onblur="isDate(this);" styleId="ht_taiKhamDen" style="width:80px" styleClass="textfield_date"/>
+        <img src="<%=contextPath%>/images/ew_calendar.gif" alt='option date' onClick="popUpCalendar(this,'ht_taiKhamDen','dd/mm/yyyy');return false;">
+    </td>
+</tr>
+
 <!--<tr>
     <td><bean:message key="common.label.disability.support" bundle="<%=interfaces%>"/></td>
     <td colspan="3">
@@ -111,41 +124,64 @@
 
 <tr>
     <td><bean:message key="common.label.disability.support" bundle="<%=interfaces%>"/></td>
-    <td colspan="3">
+    <td>
         <html:select styleClass="inputbox" name="timkiem" property="nguonHoTroIds" multiple="true">
             <logic:present name="BNguonHoTros">
               <html:options collection="BNguonHoTros" property="id" labelProperty="name"/>
             </logic:present>
          </html:select>
     </td>
-</tr>
-
-<tr>
-    <td><bean:message key="hotro.list.label.tkham.from" bundle="<%=interfaces%>"/>:</td>
+    <td><bean:message key="common.label.object.support" bundle="<%=interfaces%>"/>:</td>
     <td>
-        <html:text name="timkiem" property="ht_taiKhamTu" maxlength="10" onkeypress="return formatDate(event,this);" onblur="isDate(this);" styleId="ht_taiKhamTu" style="width:80px" styleClass="textfield_date"/>
-        <img src="<%=contextPath%>/images/ew_calendar.gif" alt='option date' onClick="popUpCalendar(this,'ht_taiKhamTu','dd/mm/yyyy');return false;">
-    </td>
-    <td><bean:message key="hotro.list.label.tkham.from" bundle="<%=interfaces%>"/>:</td>
-    <td>
-        <html:text name="timkiem" property="ht_taiKhamDen" maxlength="10" onkeypress="return formatDate(event,this);" onblur="isDate(this);" styleId="ht_taiKhamDen" style="width:80px" styleClass="textfield_date"/>
-        <img src="<%=contextPath%>/images/ew_calendar.gif" alt='option date' onClick="popUpCalendar(this,'ht_taiKhamDen','dd/mm/yyyy');return false;">
+        <html:select name="timkiem" property="disDoiTuong" styleClass="combobox_w150">
+            <html:option value="-1"><bean:message key="combo.luachon" bundle="<%=interfaces%>"/></html:option>
+            <html:option value="1"><bean:message key="kpi.dis.support.vnah" bundle="<%=interfaces%>"/></html:option>
+            <html:option value="2"><bean:message key="kpi.dis.support.province" bundle="<%=interfaces%>"/></html:option>
+            <html:option value="3"><bean:message key="kpi.dis.support.district" bundle="<%=interfaces%>"/></html:option> 
+            <html:option value="4"><bean:message key="kpi.dis.support.ward" bundle="<%=interfaces%>"/></html:option>
+        </html:select>
     </td>
 </tr>
 
 <tr>
+    <td><bean:message key="common.label.support.createdby.name" bundle="<%=interfaces%>" /></td> 
+    <td><html:text name="timkiem" property="nguoiTHTen" style="width:120px;" /></td>
+    <td><bean:message key="common.label.support.createdby.position" bundle="<%=interfaces%>" /></td> 
+    <td>
+        <html:select name="support" property="nguoiTHCv" styleClass="combobox_w150">
+            <html:option value="-1"><bean:message key="combo.luachon" bundle="<%=interfaces%>"/></html:option>
+            <html:option value="1"><bean:message key="common.label.support.createdby.1" bundle="<%=interfaces%>"/></html:option>
+            <html:option value="2"><bean:message key="common.label.support.createdby.2" bundle="<%=interfaces%>"/></html:option>
+            <html:option value="3"><bean:message key="common.label.support.createdby.3" bundle="<%=interfaces%>"/></html:option> 
+            <html:option value="4"><bean:message key="common.label.support.createdby.4" bundle="<%=interfaces%>"/></html:option>
+        </html:select>
+    </td>
+</tr>
+
+<tr>
+    <td><bean:message key="common.label.support.other" bundle="<%=interfaces%>"/> :</td>
+    <td><html:text name="timkiem" property="dungCuKhac" style="width:120px;" onkeypress="return searchKeyPress(event);"/></td>
     <td><bean:message key="hotro.list.label.diadiem" bundle="<%=interfaces%>"/>:</td>
-    <td colspan="3">
-        <html:select name="timkiem" property="ht_diaDiemTK" >
-            <html:option value="0"><bean:message key="combo.luachon" bundle="<%=interfaces%>"/></html:option>
+    <td>
+        <html:select name="timkiem" property="ht_diaDiemTK" styleClass="combobox_w150">
+            <html:option value="-1"><bean:message key="combo.luachon" bundle="<%=interfaces%>"/></html:option>
             <html:options collection="mapPLoaiDDiem" property="key" labelProperty="value" />
         </html:select>
     </td>
 </tr>
+
 <tr>
-    <td><bean:message key="common.label.support.other" bundle="<%=interfaces%>"/> :</td>
-    <td colspan="3"><html:text name="timkiem" property="dungCuKhac" style="width:200px" onkeypress="return searchKeyPress(event);"/></td>
+    <td><bean:message key="disability.search.form.mobile" bundle="<%=interfaces%>"/></td>
+    <td>
+        <html:select name="timkiem" property="isHomeVisit" styleClass="combobox_w150">
+            <html:option value="-1"><bean:message key="combo.luachon" bundle="<%=interfaces%>"/></html:option>
+            <html:option value="0"><bean:message key="common.no" bundle="<%=interfaces%>"/></html:option>
+            <html:option value="1"><bean:message key="common.yes" bundle="<%=interfaces%>"/></html:option> 
+        </html:select>
+    </td>
+    <td colspan="2">&nbsp;</td>
 </tr>
+
 <tr>
     <td colspan="4" align="center">
       <div style="padding:16px 0">

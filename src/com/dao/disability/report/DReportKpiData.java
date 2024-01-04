@@ -147,7 +147,7 @@ public class DReportKpiData extends FExportExcel {
         } else if (dataType==Constant.KPI_DATA_DIS) {
             for (int h = 0; h < beanTemp.getFields().length; h++) {
                 createCell(row, (h+1), beanTemp.ncrToString(IConstantsDisability.HEADER_DIS[beanTemp.getFields()[h]]), wb, styleHeader);
-            }
+            }            
         } else if (dataType==Constant.KPI_DATA_PERSON) {
             int[] fields = {0,1,2,3,4,5,6,7,8,9};
             beanTemp.setFields(fields);
@@ -162,7 +162,7 @@ public class DReportKpiData extends FExportExcel {
             }
         } 
         
-        String arrSex[] = { "N&#7919;", "Nam"};
+        String arrSex[] = { "N&#7919;", "Nam"};        
         String arrSelect[] = {"Kh&#244;ng","C&#243;"};
         String arrPeriod[] = {"Th&#225;ng","Qu&#253;","N&#259;m"};
         String arrDiaDiem[] = {"T&#7841;i nh&#224;","T&#7841;i BV T&#7881;nh/Huy&#7879;n","T&#7841;i tr&#7841;m Y t&#7871; X&#227;/Ph&#432;&#7901;ng","Kh&#225;c"};
@@ -281,61 +281,64 @@ public class DReportKpiData extends FExportExcel {
                     String columValues[] =
                     {
                         //1
-                        beanC.getTinhName(),
+                        beanC.getTinhName(),  //0
                         beanC.getLastupdate(),
                         beanC.getMa(),
                         beanC.getNkt(),
-                        beanC.getMaSo(),
+                        beanC.getMaSo(),      //4
                         //2
-                        beanC.getNgaySinh(),
-                        beanC.getPhoneNumber(),
-                        beanC.getDanTocName(),
-                        beanC.getGioiTinh(),
-                        beanC.getDaCam(),
+                        beanC.getNgaySinh(),    //5
+                        beanC.getPhoneNumber(), //6
+                        beanC.getDanTocName(),  //7
+                        beanC.getGioiTinh(),    //8
+                        beanC.getDaCam(),       //9
                         //3
-                        beanC.getNgheNghiep(),
-                        beanC.getTrangthai(),
-                        beanC.getDuAnHT(),
+                        beanC.getNgheNghiep(),  //10
+                        beanC.getTrangthai(),   //11
+                        beanC.getDuAnHT(),      //12
                         
                         //4  NCS
-                        beanC.getNcsTen(),
-                        beanC.getNcsNamSinh(),
-                        beanC.getNcsQuanHeName(),
-                        beanC.getNcsDienThoai(),
-                        beanC.getNcsGioiTinhName(),
+                        beanC.getNcsTen(),          //13
+                        beanC.getNcsNamSinh(),      //14
+                        beanC.getNcsQuanHeName(),   //15
+                        beanC.getNcsDienThoai(),    //16
+                        beanC.getNcsGioiTinhName(), //17
 
                         //5 Phan-Loai
-                        beanC.getDTatName(),
-                        beanC.getDTatNgayCapNhat(),
-                        beanC.getDTatNgayTaiKham(),
-                        beanC.getDTatDiaDiemKham(),
-                        beanC.getDTatTDiemKT(),
-                        beanC.getDTatTinhTrang(),
-                        beanC.getDTatNguyenNhan(),
-                        beanC.getDTatMucDo(),
+                        beanC.getDTatName(),          //18
+                        beanC.getDTatNgayCapNhat(),   //19
+                        beanC.getDTatNgayTaiKham(),   //20
+                        beanC.getDTatDiaDiemKham(),   //21
+                        beanC.getDTatTDiemKT(),       //22
+                        beanC.getDTatTinhTrang(),     //23
+                        beanC.getDTatNguyenNhan(),    //24
+                        beanC.getDTatMucDo(),         //25
 
                         // 6 NhuCau-HoTro
-                        beanC.getNcauName(),
-                        beanC.getNcauDungCuKhac(),
-                        beanC.getHtroName(),
-                        beanC.getHtroTgianNhan(),
-                        beanC.getNguonHoTro(),
-                        beanC.getKnChiTraName(),
-                        beanC.getTheBhyteName(),
-                        beanC.getSdTheName(),
-                        beanC.getSdThePhcnName(),
-                        beanC.getMtieuGdinh(),
-                        beanC.getMtieuDtri(),
-                        beanC.getCtVltl(),
-                        beanC.getCtHdtl(),
-                        beanC.getCtAntl(),
-                        beanC.getMdoPtdl(),
-                        beanC.getMdoHlong(),
-                        beanC.getPhcnDungCuKhac(),
-                        beanC.getMoTaDCTG()
+                        beanC.getNcauName(),          //26
+                        beanC.getNcauDungCuKhac(),    //27
+                        beanC.getHtroName(),          //28
+                        beanC.getHtroTgianNhan(),     //29
+                        beanC.getNguonHoTro(),        //30
+                        beanC.getKnChiTraName(),      //31
+                        beanC.getTheBhyteName(),      //32
+                        beanC.getSdTheName(),         //33
+                        beanC.getSdThePhcnName(),     //34    
+                        beanC.getMtieuGdinh(),        //35
+                        beanC.getMtieuDtri(),         //36
+                        beanC.getCtVltl(),            //37
+                        beanC.getCtHdtl(),            //38
+                        beanC.getCtAntl(),            //39
+                        beanC.getMdoPtdl(),           //40
+                        beanC.getMdoHlong(),          //41
+                        beanC.getPhcnDungCuKhac(),    //42 
+                        beanC.getMoTaDCTG(),          //43                      
+                        String.valueOf(beanC.getNumHomeVisit())
                     };
-
+                    
+                    
                     for (int h = 0; h < beanTemp.getFields().length; h++) {
+                        System.out.println("-- " + h + " - " + columValues[beanTemp.getFields()[h]]);
                         createCell(row, h+1, columValues[beanTemp.getFields()[h]], wb, style);
                     }
 
@@ -365,13 +368,32 @@ public class DReportKpiData extends FExportExcel {
                     createCell(row, cot++, beanC.getNkt(), wb, csLeft);
                     createCell(row, cot++, beanC.getMaSo(), wb, csLeft);
                     createCell(row, cot++, beanC.getSoNha(), wb, csLeft);
+                    createCell(row, cot++, beanC.getHuyenName(), wb, csLeft);
+                    createCell(row, cot++, beanC.getPxaName(), wb, csLeft);
+                    
                     createCell(row, cot++, beanC.getNamSinh(), wb, csLeft);
                     createCell(row, cot++, beanC.getGioiTinh(), wb, csLeft);
                     createCell(row, cot++, beanC.getPhoneNumber(), wb, csLeft);
+                    
+                    // Jun-2023 Add
+                    createCell(row, cot++, beanC.getDanTocName(), wb, csLeft);
+                    createCell(row, cot++, beanC.getNgheNghiep(), wb, csLeft);                    
+                    createCell(row, cot++, beanC.getDaCam(), wb, csLeft);
+                    createCell(row, cot++, beanC.getNcsTen(), wb, csLeft);
+                    createCell(row, cot++, beanC.getNcsQuanHeName(), wb, csLeft);
+                    createCell(row, cot++, beanC.getNcsDienThoai(), wb, csLeft);
+                  
                     createCell(row, cot++, beanC.getDTatName(), wb, csLeft);
+                    createCell(row, cot++, beanC.getDTatTinhTrang(), wb, csLeft);
+                    // Jun-2023
+                    createCell(row, cot++, beanC.getDTatNguyenNhan(), wb, csLeft);
+                    
                     createCell(row, cot++, beanC.getDTatMucDo(), wb, csLeft);
                     createCell(row, cot++, beanC.getLastupdate(), wb, csLeft);
                   
+                    // Jun-203
+                    createCell(row, cot++, beanC.getNcauName(), wb, csLeft);
+                    
                     createCell(row, cot++, beanC.getPhcnCanThiep(), wb, csLeft);
                     createCell(row, cot++, beanC.getPhcnDungCu(), wb, csLeft);
                     createCell(row, cot++, beanC.getPhcnDungCuKhac(), wb, csLeft);

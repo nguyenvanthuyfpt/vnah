@@ -119,9 +119,8 @@
                 &nbsp;&#272;&#7883;a &#273;i&#7875;m kh&#225;m
             </td>
             <td nowrap align="left">
-                <!--<input type="checkbox" name="fields" value="22">
-                &nbsp;Th&#7901;i &#273;i&#7875;m m&#7855;c KT-->
-                &nbsp;
+                <input type="checkbox" name="fields" value="22">
+                &nbsp;Th&#7901;i &#273;i&#7875;m m&#7855;c KT                
             </td>
         </tr>
         <tr>
@@ -161,7 +160,7 @@
                 &nbsp;Th&#7901;i gian nh&#7853;n h&#7895; tr&#7907;
             </td>
             <td nowrap align="left">
-                <input type="checkbox" name="fields" value="20">
+                <input type="checkbox" name="fields" value="30">
                 &nbsp;Ngu&#7891;n h&#7895; tr&#7907;
             </td>            
         </tr>
@@ -226,7 +225,11 @@
                 <input type="checkbox" name="fields" value="43">
                 &nbsp;D&#7909;ng c&#7909; tr&#7907; gi&#250;p (M&#244; t&#7843;)
             </td>
-            <td colspan="2">&nbsp;</td>
+            <td nowrap align="left">
+                <input type="checkbox" name="fields" value="44">
+                &nbsp;<bean:message key="disability.search.form.mobile" bundle="<%=interfaces%>"/>
+            </td>
+            <td>&nbsp;</td>
         </tr>
         </table>    
     </td>

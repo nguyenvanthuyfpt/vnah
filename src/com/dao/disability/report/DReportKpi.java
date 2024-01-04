@@ -481,6 +481,7 @@ public class DReportKpi extends FExportExcel {
 
 
     public String exportReportSupport(FReportKpi beanTemp, FSeed seed,
+                                     String periodType,
                                      String excelFile) throws EException,
                                                               FileNotFoundException,
                                                               IOException {
@@ -558,9 +559,14 @@ public class DReportKpi extends FExportExcel {
         createCell(row, 0, bean.getTinhName(), wb, csLeftB);
 
         row = sheet.getRow(4);
-        createCell(row, 1,
-                   bean.ncrToString("Th&#225;ng : ") + beanTemp.getVal(), wb,
-                   csCenterWrap);
+        String periodPrint = "";
+        if ("4".equals(periodType)) {
+            periodPrint = bean.ncrToString("T&#7915; ng&#224;y: ") + beanTemp.getVal().replace("-", bean.ncrToString(" - &#272;&#7871;n ng&#224;y: "));
+        } else {
+            periodPrint = bean.ncrToString("Th&#225;ng : ") + beanTemp.getVal();
+        }
+        
+        createCell(row, 1, periodPrint, wb, csCenterWrap);
 
         int len = beanTemp.getStore().size();        
         int cot = 2;
@@ -637,6 +643,131 @@ public class DReportKpi extends FExportExcel {
         return excelDown;
     }
 
+    public String exportReportHomeVisit(FReportKpi beanTemp, FSeed seed,
+                                     String periodType,
+                                     String excelFile) throws EException,
+                                                              FileNotFoundException,
+                                                              IOException {
+        String LOCATION = toString() + "~>exportReportHomeVisit()";
+        FReportKpi bean = (FReportKpi)seed;
+        String excelPath =
+            AppConfigs.APP_SYSTEM_PATH + "disability" + AppConfigs.SYSTEM_FILE_SCHIP +
+            "report" + AppConfigs.SYSTEM_FILE_SCHIP + "xls";
+  
+  
+        String excelDown = excelPath + seed.me.getSessionID();
+        HSSFWorkbook wb = null;
+        HSSFSheet sheet = null;
+  
+        File file = new File(excelPath, excelFile);
+        if (file.exists()) {
+            FileInputStream fis = null;
+            try {
+                fis = new FileInputStream(file);
+                wb = new HSSFWorkbook(fis);
+            } catch (Exception e) {
+                wb = new HSSFWorkbook();
+            } finally {
+                if (fis != null) {
+                    fis.close();
+                }
+            }
+        } else {
+            wb = new HSSFWorkbook();
+        }
+        sheet = wb.getSheetAt(0);
+        sheet.setAutobreaks(true);
+        HSSFFont font11 =
+            getFont(wb, "Times New Roman", Integer.valueOf(11), false);
+  
+        HSSFFont fontB12 =
+            getFont(wb, "Times New Roman", Integer.valueOf(12), true);
+  
+  
+        CellStyle csLeftNone =
+            getStyle(wb, font11, (short)1, (short)3, (short)0, (short)0,
+                     (short)0, (short)0);
+  
+  
+        CellStyle csRight =
+            getStyle(wb, font11, (short)3, (short)3, (short)1, (short)1,
+                     (short)1, (short)1);
+  
+  
+        CellStyle csCenterWrap =
+            getStyle(wb, fontB12, (short)2, (short)3, (short)0, (short)0,
+                     (short)0, (short)0);
+  
+        CellStyle csLeft =
+          getStyle(wb, font11, (short)1, (short)3, (short)1, (short)1,
+                   (short)1, (short)1);
+      
+        CellStyle csLeftB =
+            getStyle(wb, fontB12, (short)1, (short)3, (short)0, (short)0,
+                     (short)0, (short)0);
+  
+        
+        csCenterWrap.setWrapText(true);
+  
+        int dong = 6;
+        HSSFRow row = null;
+  
+        row = sheet.createRow(0);
+        createCell(row, 0,
+                   beanTemp.ncrToString("Ng&#224;y k&#7871;t xu&#7845;t: ") +
+                   Utilities.getStringDateFormat("dd/MM/yyyy"), wb,
+                   csLeftNone);
+  
+  
+        row = sheet.createRow(1);
+        createCell(row, 0, bean.getTinhName(), wb, csLeftB);
+  
+        row = sheet.getRow(4);
+        String periodPrint = "";
+        if ("4".equals(periodType)) {
+            periodPrint = bean.ncrToString("T&#7915; ng&#224;y: ") + beanTemp.getVal().replace("-", bean.ncrToString(" - &#272;&#7871;n ng&#224;y: "));
+        } else {
+            periodPrint = bean.ncrToString("Th&#225;ng : ") + beanTemp.getVal();
+        }
+        
+        createCell(row, 6, periodPrint, wb, csCenterWrap);
+  
+        int len = beanTemp.getStore().size();        
+        int cot = 0;
+        dong = 8;
+        int inc=1;
+        for (int i = 0; i < len; i++) {           
+            bean = (FReportKpi)beanTemp.getStore().get(i);  
+            row = sheet.createRow(dong++);
+            createCell(row, cot++, inc++, wb, csLeft);
+            
+            // createCell(row, cot++, bean.getSoTT(), wb, csLeft);
+            createCell(row, cot++, bean.getMaSo(), wb, csLeft);
+            createCell(row, cot++, bean.getTen(), wb, csLeft);
+            createCell(row, cot++, "1".equals(bean.getSex())?bean.ncrToString("Nam"):bean.ncrToString("N&#7919;"), wb, csLeft);
+            createCell(row, cot++, bean.getYearBirth(), wb, csLeft);
+            createCell(row, cot++, bean.getSoNha(), wb, csLeft);
+            createCell(row, cot++, bean.getTinhName(), wb, csLeft);
+            createCell(row, cot++, bean.getQhuName(), wb, csLeft);
+            
+            createCell(row, cot++, bean.getCreatedBy(), wb, csLeft);
+            createCell(row, cot++, bean.getStartTime(), wb, csLeft);
+            createCell(row, cot++, bean.getEndTime(), wb, csLeft);
+            createCell(row, cot++, bean.getRehab(), wb, csLeft);
+            createCell(row, cot++, bean.getHomecare(), wb, csLeft);
+            cot=0;
+        }
+    
+        sheet.setHorizontallyCenter(true);
+        sheet.setMargin((short)2, 0.0D);
+        sheet.setMargin((short)3, 2.5D);
+        sheet.setMargin((short)0, 0.25D);
+        sheet.setMargin((short)1, 0.25D);
+        FileOutputStream fos = new FileOutputStream(excelDown);
+        wb.write(fos);
+        fos.close();
+        return excelDown;
+    }
 
     public FBeans getDataReportObject(Connection cnn, 
                                       int periodType,
@@ -797,7 +928,9 @@ public class DReportKpi extends FExportExcel {
             // String param = tinh_id+"#"+year+"#"+parameter; 
             String sql =
                 "SELECT dis_ten, dis_ma, dis_sonha, dis_namsinh, dis_gioi, dis_dthoai, dis_dangtat, dis_tt_ktat, dis_ngay_hso, " +
-                "tinh_name, huyen_name, pxa_name, kham_lamsang, tai_kham, num_dctg, num_htro " +
+                "tinh_name, huyen_name, pxa_name, kham_lamsang, tai_kham, num_dctg, num_htro, " +
+                "htro_dcht, htro_tuidd, htro_cvu1, htro_cvu2, htro_cvu3, htro_cvu4, " + 
+                "htro_rehab, htro_homecare, dis_ttrang, dis_ngay_hso_dong, dis_ldo_hso_dong, dis_ng_hso_dong " +
                 "FROM kpi_report_support_summary WHERE 1=1 ORDER BY tinh_id, huyen_id, pxa_id, dis_ma";
   
             prpstm = prepareStatement(cnn, sql, null);
@@ -823,7 +956,23 @@ public class DReportKpi extends FExportExcel {
                 bean.setKhamNum1(rs.getInt(i++));
                 bean.setKhamNum2(rs.getInt(i++));
                 bean.setKhamNum3(rs.getInt(i++));
-                bean.setKhamNum4(rs.getInt(i++));                
+                bean.setKhamNum4(rs.getInt(i++));
+                
+                bean.setHTroDungCu(rs.getString(i++));
+                bean.setHTroTuiDDuong(rs.getString(i++));
+                bean.setHTroCVu1(rs.getInt(i++));
+                bean.setHTroCVu2(rs.getInt(i++));
+                bean.setHTroCVu3(rs.getInt(i++));
+                bean.setHTroCVu4(rs.getInt(i++));
+                
+                bean.setHTroRehad(rs.getInt(i++));
+                bean.setHTroHomecare(rs.getInt(i++));
+                
+                bean.setTrangThai(rs.getString(i++));
+                bean.setNgayDongHS(rs.getString(i++));
+                bean.setLyDoDongHS(rs.getString(i++));
+                bean.setNguoiDongHS(rs.getString(i++));
+                
                 beans.add(bean);
             }
         } catch (SQLException sqle) {
@@ -890,6 +1039,7 @@ public class DReportKpi extends FExportExcel {
 
     public FBeans getDataReportSupport(Connection cnn, 
                                        int locationId,
+                                       String periodType,
                                        String period) throws EException,
                                                              SQLException {
         String LOCATION = toString() + "~~>getDataToExport()";
@@ -898,11 +1048,13 @@ public class DReportKpi extends FExportExcel {
         FBeans beans = new FBeans();
         FReportKpi bean = new FReportKpi();
         try {
-            CallableStatement state = cnn.prepareCall("{call report_support(?, ?)}");
-            logger.debug("{call report_support("+locationId+",'"+ period + "')}");
+            String proc = "4".equals(periodType) ? "report_support_2023":"report_support";
+            CallableStatement state = cnn.prepareCall("{call "+proc+"(?, ?)}");
+            logger.debug("{call "+proc+"("+locationId+",'"+ period + "')}");
             state.setInt(1, locationId);
             state.setString(2, period);
             state.execute();
+            
             String sql =
                 "select * from (\n" + 
                 "select sum(total_dis_sp) total_dis_sp, \n" + 
@@ -943,9 +1095,15 @@ public class DReportKpi extends FExportExcel {
                 "sum(total_dis_old_lv2) total_dis_old_lv2,\n" + 
                 "sum(total_dis_old_lv3) total_dis_old_lv3,\n" + 
                 "sum(total_dis_old_lv4) total_dis_old_lv4, \n" + 
-                "sum(total_dis_ins) total_dis_old_ins, \n" + 
-                "stt, project \n" + 
-                "FROM kpi_report_support GROUP BY ROLLUP(stt, project)) a where a.stt IS NOT NULL ORDER BY a.project, a.stt";
+                "sum(total_dis_ins) total_dis_old_ins, \n";
+            
+            if ("4".equals(periodType)) {
+              sql += "project \n" + 
+                  "FROM kpi_report_support GROUP BY project) a WHERE 1=1 ORDER BY a.project";
+            } else {
+              sql += "stt, project \n" + 
+                  "FROM kpi_report_support GROUP BY ROLLUP(stt, project)) a WHERE a.stt IS NOT NULL ORDER BY a.project, a.stt";
+            }
 
             prpstm = prepareStatement(cnn, sql, null);
             rs = prpstm.executeQuery();
@@ -1012,6 +1170,81 @@ public class DReportKpi extends FExportExcel {
         return beans;
     }
 
+    public FBeans getDataReportHomeVisit(Connection cnn, 
+                                       int locationId,
+                                       String periodType,
+                                       String period) throws EException,
+                                                             SQLException {
+        String LOCATION = toString() + "~~>getDataReportHomeVisit()";
+        PreparedStatement prpstm = null;
+        ResultSet rs = null;
+        FBeans beans = new FBeans();
+        FReportKpi bean = new FReportKpi();
+        try {            
+            String sql =
+                "SELECT dd.ma, dd.maso, dd.ten, dd.sex, to_char(dd.ngaysinh,'yyyy') ngaysinh, \n" +
+                "dd.sonha, DR_AREA.NAME ttp_name, dis.name qhu_name, \n" + 
+                "u.fullname, to_char(dhv.start_at, 'dd/MM/yyyy HH:mm') as start_time,\n" + 
+                "to_char(dhv.end_at, 'dd/MM/yyyy HH:mm') as end_time,\n" + 
+                "dhv.rehab, dhv.homecare  \n" + 
+                "FROM dr_home_visit dhv \n" + 
+                "LEFT JOIN dr_disabilitypeople dd ON dhv.id_nkt= dd.id \n" + 
+                "LEFT JOIN users u ON dhv.create_by = u.user_id \n" +
+                "LEFT JOIN dr_area ON dd.ID_TINH=dr_area.TINH_ID \n" + 
+                "LEFT JOIN dr_area dis ON dd.id_district = dis.TINH_ID \n" + 
+                "WHERE 1=1 [$LOCATION$] [$START_AT$] ORDER BY dhv.start_at DESC";
+            
+            if (locationId>0) {
+                sql = sql.replace("[$LOCATION$]", " AND dd.id_tinh = " +locationId);
+            } else {
+                sql = sql.replace("[$LOCATION$]", "");
+            }
+            
+            if ("0".equals(periodType)) {
+                sql = sql.replace("[$START_AT$]", " AND dhv.start_at::date BETWEEN fn_firstdate_of_month('"+period+"') AND fn_lastdate_of_month('"+period+"')");
+            } else {
+                String start = period.substring(0, period.indexOf("-"));
+                String end = period.substring(period.indexOf("-")+1);
+                sql = sql.replace("[$START_AT$]", " AND dhv.start_at::date BETWEEN to_date('"+start+"','dd/MM/YYYY') AND to_date('"+end+"','dd/MM/YYYY')");    
+            }
+            
+            // System.out.println("sql " + sql);
+                        
+            prpstm = prepareStatement(cnn, sql, null);
+            rs = prpstm.executeQuery();
+            while ((rs != null) && (rs.next())) {
+                int i = 1;
+                bean = new FReportKpi();
+                
+                bean.setSoTT(rs.getString(i++));
+                bean.setMaSo(rs.getString(i++));
+                bean.setTen(rs.getString(i++));
+                bean.setSex(rs.getString(i++));
+                bean.setYearBirth(rs.getInt(i++));
+                bean.setSoNha(rs.getString(i++));
+                bean.setTinhName(rs.getString(i++));
+                bean.setQhuName(rs.getString(i++));
+                
+                bean.setCreatedBy(rs.getString(i++));
+                bean.setStartTime(rs.getString(i++));
+                bean.setEndTime(rs.getString(i++));
+                
+                bean.setRehab(rs.getString(i++));
+                bean.setHomecare(rs.getString(i++));
+                                
+                beans.add(bean);
+            }
+        } catch (SQLException sqle) {
+            if (AppConfigs.APP_DEBUG) {
+                throw new EException(LOCATION, sqle);
+            }
+            logger.error(sqle.toString());
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(prpstm);
+        }
+        return beans;
+    }
 
     public String reportDisExport(FReportKpi beanTemp, FSeed seed,
                                   String excelFile) throws EException,
@@ -1096,33 +1329,47 @@ public class DReportKpi extends FExportExcel {
         int r = 4;
         int c = 0;
         int inc = 1;
+        String currMaSo = "", currDisName = "", currSex= "", currSoNha = "", currDienThoai = "";
+        String currDanToc = "", currNgheNghiep = "";
+        int currYearBirth = 0;
         for (int i = 0; i < beanTemp.getStore().size(); i++) {
             bean = (FReportKpi)beanTemp.getStore().get(i);
             row = sheet.createRow(r);
             
             boolean disProject = false;
+            int currDisId = 0;
+            
             if (bean.getTinhName()!=null) {
                disProject = true;
+               currMaSo = bean.getMaSo();
+               currDisName = bean.getTen();
+               currYearBirth = bean.getYearBirth();
+               currSex = bean.getSex();
+               currSoNha = bean.getSoNha();
+               currDienThoai = bean.getDienThoai();
+               currDanToc = bean.getDanToc();
+               currNgheNghiep = bean.getNgheNghiep();
             }
              
             createCell(row, c++, disProject ? inc++:"", wb, csLeft);
             createCell(row, c++, bean.getTinhName(), wb, csLeft);
-            createCell(row, c++, bean.getMaSo(), wb, csLeft);
+            createCell(row, c++, disProject ? bean.getMaSo():currMaSo, wb, csLeft);
             
-            createCell(row, c++, bean.getTen(), wb, csLeft);
-            createCell(row, c++,
-                       bean.getYearBirth() == 0 ? "" : Integer.valueOf(bean.getYearBirth()),
-                       wb, csCenterWrap);
-
-
-            createCell(row, c++, bean.getSex(), wb, csLeft);
-            createCell(row, c++, bean.getSoNha(), wb, csLeft);
-            createCell(row, c++, bean.getDienThoai(), wb, csLeft);
+            createCell(row, c++, disProject ? bean.getTen():currDisName, wb, csLeft);
+            createCell(row, c++, disProject ? bean.getYearBirth():currYearBirth, wb, csCenterWrap);
+            
+            createCell(row, c++, disProject ? bean.getSex(): currSex, wb, csLeft);
+            createCell(row, c++, disProject ? bean.getDanToc(): currDanToc, wb, csLeft);          // Dan-Toc
+            createCell(row, c++, disProject ? bean.getNgheNghiep(): currNgheNghiep, wb, csLeft);  // Nghe-Nghiep
+            
+            createCell(row, c++, disProject ? bean.getSoNha(): currSoNha, wb, csLeft);
+            createCell(row, c++, disProject ? bean.getDienThoai(): currDienThoai, wb, csLeft);
             createCell(row, c++, bean.getCreateDate(), wb, csCenterWrap);
 
             createCell(row, c++, bean.getNcsTen(), wb, csLeft);
             createCell(row, c++, bean.getNcsSdt(), wb, csLeft);
             createCell(row, c++, bean.getNcsSex(), wb, csLeft);
+            createCell(row, c++, bean.getNcsQheNKT(), wb, csLeft);      // Quan-He-Voi-NKT
 
             createCell(row, c++, bean.getDaCam(), wb, csLeft);
             createCell(row, c++, bean.getTrangThai(), wb, csLeft);
@@ -1130,6 +1377,8 @@ public class DReportKpi extends FExportExcel {
 
             createCell(row, c++, bean.getDangTat(), wb, csLeft);
             createCell(row, c++, bean.getMucDo(), wb, csLeft);
+            createCell(row, c++, bean.getNguyenNhanKTat(), wb, csLeft);  // Nguyen-nhan
+            createCell(row, c++, bean.getTTrangKTat(), wb, csLeft);      // Tinh-trang-khuyet-tat
 
             createCell(row, c++, bean.getNgayDangTat(), wb, csCenterWrap);
 
@@ -1145,6 +1394,7 @@ public class DReportKpi extends FExportExcel {
             createCell(row, c++, bean.getHTroCTaoCTVS(), wb, csLeft);
             createCell(row, c++, bean.getHTroNguon(), wb, csLeft);
             createCell(row, c++, bean.getNgayHoTro(), wb, csCenterWrap);
+            createCell(row, c++, bean.getLuotHoTro(), wb, csLeft);
             
             String projectName = bean.getProjectId()==0?"Direct":"Inclusion 3";
             createCell(row, c++, disProject==true?projectName:"", wb, csLeft);
@@ -1152,6 +1402,7 @@ public class DReportKpi extends FExportExcel {
             r++;
             c = 0;
             disProject = false;
+            currDisId = bean.getId();
         }
         sheet.setHorizontallyCenter(true);
         sheet.setMargin((short)2, 0.0D);
@@ -1438,7 +1689,26 @@ public class DReportKpi extends FExportExcel {
             createCell(row, c++, bean.getKhamNum1(), wb, csRight);
             createCell(row, c++, bean.getKhamNum2(), wb, csRight);
             createCell(row, c++, bean.getKhamNum3(), wb, csRight);
+            
+            // Add 2023-Aug-16
+            createCell(row, c++, bean.getHTroDungCu(), wb, csLeft);      // Ten-Dung-Cu-HT
+            createCell(row, c++, bean.getHTroTuiDDuong(), wb, csRight);   // Tui-Dinh-Duong
+            
+            createCell(row, c++, bean.getHTroCVu1(), wb, csRight);
+            createCell(row, c++, bean.getHTroCVu2(), wb, csRight);
+            createCell(row, c++, bean.getHTroCVu3(), wb, csRight);
+            createCell(row, c++, bean.getHTroCVu4(), wb, csRight);
+            
+            createCell(row, c++, bean.getHTroRehad(), wb, csRight);
+            createCell(row, c++, bean.getHTroHomecare(), wb, csRight);
+            
             createCell(row, c++, bean.getKhamNum4(), wb, csRight);
+            
+            // Add 2023-Aug-16
+            createCell(row, c++, bean.getTrangThai(), wb, csLeft);
+            createCell(row, c++, bean.getNgayDongHS(), wb, csCenterWrap);
+            createCell(row, c++, bean.getLyDoDongHS(), wb, csLeft);
+            createCell(row, c++, bean.getNguoiDongHS(), wb, csLeft);
             
             r++;
             c = 0;
@@ -1455,7 +1725,7 @@ public class DReportKpi extends FExportExcel {
     }
 
     public FBeans getDataDisExport(Connection cnn, int lvl,
-                                   int locationId, int duAnId,
+                                   int locationId, int duAnId, int statusId,
                                    String createDateFrom, String createDateTo,
                                    String dvuDateFrom, String dvuDateTo,
                                    String tdgDateFrom, String tdgDateTo,
@@ -1486,14 +1756,14 @@ public class DReportKpi extends FExportExcel {
                       
             // Ngay-Nhan-Dich-Vu
             if (!"".equals(dvuDateFrom)) {
-                sql = sql.replace("[$TU_DVU$]", " AND TO_DATE(b.ngay_ho_tro,'DD/MM/YYYY') >= ?");
+                sql = sql.replace("[$TU_DVU$]", " AND TO_DATE(a.ngay_ho_tro,'DD/MM/YYYY') >= ?");
                 params.add(bean.stringToSqlDate(dvuDateFrom));
             } else  {
                 sql = sql.replace("[$TU_DVU$]", " ");
             }
             
             if (!"".equals(dvuDateTo)) {
-                sql = sql.replace("[$DEN_DVU$]", " AND TO_DATE(b.ngay_ho_tro,'DD/MM/YYYY') <= ?");
+                sql = sql.replace("[$DEN_DVU$]", " AND TO_DATE(a.ngay_ho_tro,'DD/MM/YYYY') <= ?");
                 params.add(bean.stringToSqlDate(dvuDateTo));
             } else  {
                 sql = sql.replace("[$DEN_DVU$]", " ");
@@ -1533,6 +1803,11 @@ public class DReportKpi extends FExportExcel {
                 sql += " AND a.du_an = "+duAnId;
             }
             
+            if (statusId>-1) {
+                String strTrangThai = statusId==1 ? bean.ncrToString("&#272;"):"Ch";
+                sql += " AND b.trangthai like '%"+strTrangThai+"%'";
+            }
+            
             if (lvl==1) {
                 sql += " AND a.id_tinh="+locationId;
             } else if (lvl==2) {
@@ -1555,6 +1830,9 @@ public class DReportKpi extends FExportExcel {
                 bean.setTen(rs.getString("ten"));
                 bean.setYearBirth(rs.getInt("year_of_birthday"));
                 bean.setSex(rs.getString("sex"));
+                bean.setDanToc((rs.getString("dantoc")));
+                bean.setNgheNghiep(rs.getString("nghe_nghiep_ht"));
+                
                 bean.setSoNha(rs.getString("sonha"));
                 bean.setDienThoai(rs.getString("dienthoai"));
                 bean.setCreateDate(rs.getString("create_date"));
@@ -1562,11 +1840,14 @@ public class DReportKpi extends FExportExcel {
                 bean.setNcsTen(rs.getString("ten_ncs"));
                 bean.setNcsSdt(rs.getString("sdt_ncs"));
                 bean.setNcsSex(rs.getString("gioitinh_ncs"));
-
+                bean.setNcsQheNKT((rs.getString("quanhe_ncs")));
+                
                 bean.setTrangThai(rs.getString("trangthai"));
                 bean.setNgayDongHS(rs.getString("ngay_dong_hs"));
                 bean.setDangTat(rs.getString("dang_tat"));
                 bean.setMucDo(rs.getString("muc_do"));
+                bean.setNguyenNhanKTat(rs.getString("ktat_nguyennhan"));
+                bean.setTTrangKTat(rs.getString("ktat_tinhtrang"));
 
                 bean.setNgayDangTat(rs.getString("ngay_phat_hien_ktat"));
                 bean.setDaCam(rs.getString("da_cam"));
@@ -1583,9 +1864,9 @@ public class DReportKpi extends FExportExcel {
                 bean.setHTroCThiepCN(rs.getString("hotro_can_thiep_cn"));
                 bean.setHTroDungCu(rs.getString("hotro_ten_dung_cu"));
                 bean.setHTroCTaoCTVS(rs.getString("hotro_cai_thien_ctvs"));
-                bean.setHTroNguon((rs.getString("hotro_nguon")));
-                
+                bean.setHTroNguon((rs.getString("hotro_nguon")));                
                 bean.setNgayHoTro(rs.getString("ngay_ho_tro"));
+                bean.setLuotHoTro(rs.getString("hotro_luot"));
                 bean.setProjectId(rs.getInt("du_an"));
                 beans.add(bean);
             }
@@ -1734,6 +2015,7 @@ public class DReportKpi extends FExportExcel {
                 // bean.setHTroNguon(rs.getString("hotro_nguon"));
                 
                 bean.setNgayHoTro(rs.getString("ngay_ho_tro"));
+                // bean.setTgianHoTro(rs.getString("tgian_ho_tro"));
                 
                 bean.setDangTatVanDong(rs.getString("dangtat_vdong"));
                 bean.setNcauVLTL(rs.getString("ncau_vltl"));

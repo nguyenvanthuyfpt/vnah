@@ -48,6 +48,7 @@ public class FReportKpi extends FSeed {
     private String pxaName;
 
     private int projectId;
+    private int statusId = -1;
 
     private String func;
     private int objNum;
@@ -184,29 +185,47 @@ public class FReportKpi extends FSeed {
     private int paramvalue_42;
     private int stt;
     private int id;
+    private String soTT;
     private String maSo;
     private String ten;
     private int yearBirth;
     private String sex;
+    private String danToc;
+    private String ngheNghiep;
     private String soNha;
     private String dienThoai;
     private String createDate;
     private String ncsTen;
     private String ncsSdt;
     private String ncsSex;
+    private String ncsQheNKT;
     private String trangThai;
     private String dangTat;
     private String tTrangKTat;
     private String dangTatVanDong;
     private String mucDo;
+    private String nguyenNhanKTat;
     private String ngayDangTat;
     private String daCam;
     private String ngayDongHS;
+    private String lyDoDongHS;
+    private String nguoiDongHS;
     private String ngayMoHS;
+    
     private String hTroPHCN;
     private String hTroCThiepCN;
     private String hTroDungCu;
     private String hTroCTaoCTVS;
+    private String hTroTuiDDuong;
+    
+    private int hTroCVu1 = 0; 
+    private int hTroCVu2 = 0;
+    private int hTroCVu3 = 0;
+    private int hTroCVu4 = 0;
+    
+    private int hTroRehad = 0;
+    private int hTroHomecare = 0;
+  
     private String hTroNguon;
     private int ncauId;
     private String nhuCau;
@@ -220,6 +239,8 @@ public class FReportKpi extends FSeed {
     private String hoTroNoiNhan;
     private String dungCu;
     private String ngayHoTro;
+    private String tgianHoTro;
+    private String luotHoTro;
     private String commNgay;
     private String commHoTen;
     private String commMaSo;
@@ -270,7 +291,13 @@ public class FReportKpi extends FSeed {
     private int khamNum2;
     private int khamNum3;
     private int khamNum4;
-
+    
+    private String createdBy;
+    private String startTime;
+    private String endTime;
+    private String rehab;
+    private String homecare;
+    
     public FReportKpi() {
     }
 
@@ -2117,5 +2144,181 @@ public class FReportKpi extends FSeed {
 
     public int getDuAnId() {
         return duAnId;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
+    }
+
+    public int getStatusId() {
+        return statusId;
+    }
+
+    public void setHTroTuiDDuong(String hTroTuiDDuong) {
+        this.hTroTuiDDuong = hTroTuiDDuong;
+    }
+
+    public String getHTroTuiDDuong() {
+        return hTroTuiDDuong;
+    }
+
+    public void setHTroCVu1(int hTroCVu1) {
+        this.hTroCVu1 = hTroCVu1;
+    }
+
+    public int getHTroCVu1() {
+        return hTroCVu1;
+    }
+
+    public void setHTroCVu2(int hTroCVu2) {
+        this.hTroCVu2 = hTroCVu2;
+    }
+
+    public int getHTroCVu2() {
+        return hTroCVu2;
+    }
+
+    public void setHTroCVu3(int hTroCVu3) {
+        this.hTroCVu3 = hTroCVu3;
+    }
+
+    public int getHTroCVu3() {
+        return hTroCVu3;
+    }
+
+    public void setHTroCVu4(int hTroCVu4) {
+        this.hTroCVu4 = hTroCVu4;
+    }
+
+    public int getHTroCVu4() {
+        return hTroCVu4;
+    }
+
+    public void setHTroRehad(int hTroRehad) {
+        this.hTroRehad = hTroRehad;
+    }
+
+    public int getHTroRehad() {
+        return hTroRehad;
+    }
+
+    public void setHTroHomecare(int hTroHomecare) {
+        this.hTroHomecare = hTroHomecare;
+    }
+
+    public int getHTroHomecare() {
+        return hTroHomecare;
+    }
+
+    public void setLyDoDongHS(String lyDoDongHS) {
+        this.lyDoDongHS = lyDoDongHS;
+    }
+
+    public String getLyDoDongHS() {
+        return lyDoDongHS;
+    }
+
+    public void setNguoiDongHS(String nguoiDongHS) {
+        this.nguoiDongHS = nguoiDongHS;
+    }
+
+    public String getNguoiDongHS() {
+        return nguoiDongHS;
+    }
+
+    public void setTgianHoTro(String tgianHoTro) {
+        this.tgianHoTro = tgianHoTro;
+    }
+
+    public String getTgianHoTro() {
+        return tgianHoTro;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setRehab(String rehab) {
+        this.rehab = rehab;
+    }
+
+    public String getRehab() {
+        return rehab;
+    }
+
+    public void setHomecare(String homecare) {
+        this.homecare = homecare;
+    }
+
+    public String getHomecare() {
+        return homecare;
+    }
+
+    public void setLuotHoTro(String luotHoTro) {
+        this.luotHoTro = luotHoTro;
+    }
+
+    public String getLuotHoTro() {
+        return luotHoTro;
+    }
+
+    public void setSoTT(String soTT) {
+        this.soTT = soTT;
+    }
+
+    public String getSoTT() {
+        return soTT;
+    }
+
+    public void setDanToc(String danToc) {
+        this.danToc = danToc;
+    }
+
+    public String getDanToc() {
+        return danToc;
+    }
+
+    public void setNgheNghiep(String ngheNghiep) {
+        this.ngheNghiep = ngheNghiep;
+    }
+
+    public String getNgheNghiep() {
+        return ngheNghiep;
+    }
+
+    public void setNcsQheNKT(String ncsQheNKT) {
+        this.ncsQheNKT = ncsQheNKT;
+    }
+
+    public String getNcsQheNKT() {
+        return ncsQheNKT;
+    }
+
+    public void setNguyenNhanKTat(String nguyenNhanKTat) {
+        this.nguyenNhanKTat = nguyenNhanKTat;
+    }
+
+    public String getNguyenNhanKTat() {
+        return nguyenNhanKTat;
     }
 }

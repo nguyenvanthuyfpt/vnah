@@ -47,6 +47,7 @@ public class FSearch extends FSeed {
     private int pxaId;
     private String tinhName;
     private String huyenName;
+    private String pxaName;
     private String chuanDoan;
     private String searchHTVaDT;
 
@@ -79,9 +80,12 @@ public class FSearch extends FSeed {
     private String htroDiaDiemTK;
     private String ngayTKhamTu;
     private String ngayTKhamDen;
+    private int numHomeVisit;    
     
     private String moTaDCTG;
-
+    private String thoiGianTK;
+    private int isHomeVisit = -1;
+    
     // Dang tat
     private String dTatName;
     private String dTatNgayCapNhat;
@@ -291,6 +295,11 @@ public class FSearch extends FSeed {
     private int statusId = -1;
     private int duAnId = -1;
     private int dioxin = -1;
+    
+    private int disDoiTuong= -1; 
+    private String nguoiTHTen;
+    private int nguoiTHCv = -1;
+   
     private FBeans store = new FBeans();
 
     public void reset() {
@@ -328,6 +337,7 @@ public class FSearch extends FSeed {
         this.nc_phanLoaiIds = null;
         this.ct_phanLoaiIds = null;
         this.tt_phanLoaiIds = null;
+        this.isHomeVisit = -1;
 
         this.ht_statusId = -1;
         this.quanLyCa = 0;
@@ -2358,5 +2368,61 @@ public class FSearch extends FSeed {
 
     public String getMoTaDCTG() {
         return moTaDCTG;
+    }
+
+    public void setPxaName(String pxaName) {
+        this.pxaName = pxaName;
+    }
+
+    public String getPxaName() {
+        return pxaName;
+    }
+
+    public void setDisDoiTuong(int disDoiTuong) {
+        this.disDoiTuong = disDoiTuong;
+    }
+
+    public int getDisDoiTuong() {
+        return disDoiTuong;
+    }
+
+    public void setNguoiTHTen(String nguoiTHTen) {
+        this.nguoiTHTen = nguoiTHTen;
+    }
+
+    public String getNguoiTHTen() {
+        return nguoiTHTen;
+    }
+
+    public void setNguoiTHCv(int nguoiTHCv) {
+        this.nguoiTHCv = nguoiTHCv;
+    }
+
+    public int getNguoiTHCv() {
+        return nguoiTHCv;
+    }
+
+    public void setIsHomeVisit(int isHomeVisit) {
+        this.isHomeVisit = isHomeVisit;
+    }
+
+    public int getIsHomeVisit() {
+        return isHomeVisit;
+    }
+
+    public void setThoiGianTK(String thoiGianTK) {
+        this.thoiGianTK = thoiGianTK;
+    }
+
+    public String getThoiGianTK() {
+        return thoiGianTK;
+    }
+
+    public void setNumHomeVisit(int numHomeVisit) {
+        this.numHomeVisit = numHomeVisit;
+    }
+
+    public int getNumHomeVisit() {
+        return numHomeVisit;
     }
 }

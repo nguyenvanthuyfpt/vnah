@@ -69,11 +69,11 @@
                 </ul> 
     </li>
 
-    <!--<li>
+    <li>
         <div class="bgr10">
             <a href="javascript:excutePostCategorys('_IMPORT_DATA','_IMPORT_DATA');">
-                <bean:message key="common.label.function.report.export" bundle="<%=interfaces%>" /></a></div>
-    </li>-->
+                <bean:message key="common.label.function.import" bundle="<%=interfaces%>" /></a></div>
+    </li>
     
     <li>
         <div class="bgr7">
@@ -97,7 +97,10 @@
                     
                 <li><a <%="04.07".equals(sub_func)?"class='select'":""%> href="javascript:excutePostCategorys('_REPORT_KPI','_REPORT_SUPPORT_LIST');" >
                     <bean:message key="common.label.function.report.dis-support-list" bundle="<%=interfaces%>" /></a></li>
-                                  
+                
+                <li><a <%="04.08".equals(sub_func)?"class='select'":""%> href="javascript:excutePostCategorys('_REPORT_KPI','_REPORT_HOMEVISIT_LIST');" >
+                    <bean:message key="common.label.function.report.dis-homevisit-list" bundle="<%=interfaces%>" /></a></li>
+                                                  
                 <!--<li><a <%="04.06".equals(sub_func)?"class='select'":""%> href="javascript:excutePostCategorys('_REPORT_KPI','_REPORT_EXPORT');">
                     <bean:message key="common.label.function.report.export" bundle="<%=interfaces%>" /></a></li>-->
                     

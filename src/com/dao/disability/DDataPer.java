@@ -32,6 +32,19 @@ public class DDataPer extends DSqlDisability {
         return result;
     }
     
+    public boolean insertImp(Connection cnn, FSeed seed) throws EException {
+        final String LOCATION = this.toString() + INSERT;
+        Boolean result = false;
+        try {
+            List params = setParamsImp(seed);
+            result = execute(cnn, SQL_INSERT_DATA_PERSON, params) > 0;
+        } catch (Exception sqle) {
+            if (AppConfigs.APP_DEBUG)
+                throw new EException(LOCATION, sqle);
+        }
+        return result;
+    }
+    
     public boolean update(Connection cnn, FSeed seed) throws EException {
         final String LOCATION = this.toString() + INSERT;
         Boolean result = false;
@@ -114,6 +127,25 @@ public class DDataPer extends DSqlDisability {
         return params;
     }
 
+    public List setParamsImp(FSeed seed) throws EException {
+        final String LOCATION = "->setParams()";
+        FDataPer bean = (FDataPer)seed;
+        List params = new ArrayList();
+        try {
+            params.add(bean.stringToSqlDate(bean.getCreateDate()));
+            params.add(bean.getDataId());
+            params.add(bean.getPerId());
+            params.add(bean.getEventId());
+            params.add(bean.getResult());
+            params.add(bean.getHours());
+        } catch (Exception exp) {
+            if (AppConfigs.APP_DEBUG)
+                throw new EException(LOCATION, exp);
+        } finally {
+        }
+        return params;
+    }
+    
     public boolean delete(Connection cnn, FSeed seed) throws EException {
         final String LOCATION = this.toString() + DELETE;
         FDataPer bean = (FDataPer)seed;

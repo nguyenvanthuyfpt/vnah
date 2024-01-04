@@ -188,7 +188,7 @@ public class ASearch extends  ACore {
             characters="/ ";
             member="";
             
-            if((bean.me.getDepartmentName()!=null)&&(!bean.me.getDepartmentName().equals(""))){
+            if((bean.me.getDepartmentName()!=null)&&(!bean.me.getDepartmentName().equals("*"))){
                 member=bean.me.getDepartmentName();
                 String memberRule = member.substring(1,member.length()-1);
                 bean.setMembersRule(memberRule);
@@ -234,10 +234,11 @@ public class ASearch extends  ACore {
             bean.setHt_phanLoaiIds(null);
             bean.setCt_phanLoaiIds(null);
             bean.setNguonHoTroIds(null);
+            bean.setIsHomeVisit(-1);
             bean.setHt_statusId(-1);            
             bean.setCheckEmpAll(0);
             request.setAttribute("timkiem",bean);
-            target =anchor;    
+            target = anchor;    
         } else if(anchor.equals("_SELECT_TINH")||anchor.equals("_SELECT_DATATYPE")||anchor.equals("_SELECT_DISTRICT")){
             locationId =  bean.getTinhId();
             districtId = bean.getQhuyenId();

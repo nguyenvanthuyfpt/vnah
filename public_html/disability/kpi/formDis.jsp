@@ -142,7 +142,7 @@
                 <img src="<%=contextPath%>/images/ew_calendar.gif" alt='option date' onClick="popUpCalendar(this,'createDate','dd/mm/yyyy');return false;">
             </td>
             <td><bean:message key="common.label.dis.code" bundle="<%=interfaces%>" /></td>                 
-            <td><html:text name="kpi" property="disCode" readonly="true" style="width:120px;" /></td>
+            <td><html:text name="kpi" property="disCode" style="width:120px;" /></td>
         </tr>
         <tr>
             <td>

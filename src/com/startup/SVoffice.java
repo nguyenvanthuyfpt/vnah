@@ -108,7 +108,7 @@ public class SVoffice{
             }
                         
             int userId = (int)bean.me.getId();
-            if (userId==375||userId==667) { // VNAH
+            if (userId==375||userId==667||userId==684) { // VNAH
                 beans = new BTinh().getAllRecordByParentId(0);
                 FTinh beanTinh = (FTinh)beans.get(0);
                 defaultLocation = beanTinh.getId();
@@ -134,11 +134,20 @@ public class SVoffice{
                 if (userName.startsWith("policy")) {
                     defaultLocation = 2748;
                 } else if (userName.startsWith("dongnai")) {
-                  defaultLocation = 537;
-                } else {
-                    defaultLocation = userName.startsWith("binhphuoc") ? 2746:2747;
-                }
-                                
+                    defaultLocation = 537;
+                } else if (userName.startsWith("binhphuoc")) {
+                    defaultLocation = 2746;
+                } else if (userName.startsWith("tayninh")) {
+                    defaultLocation = 2747;
+                } else if (userName.startsWith("baclieu")) {
+                    defaultLocation = 2749;
+                } else if (userName.startsWith("camau")) {
+                    defaultLocation = 2750;
+                } else if (userName.startsWith("quangnam")) {
+                    defaultLocation = 2751;
+                } else if (userName.startsWith("quangtri")) {
+                    defaultLocation = 2752;
+                }            
                 bean.setId(defaultLocation);
                 FTinh beanTinh = new FTinh();
                 beanTinh.setId(defaultLocation);

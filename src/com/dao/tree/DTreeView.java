@@ -98,6 +98,8 @@ public class DTreeView extends DSqlAdmin
                 
                 if(member.equals(""))
                     beans.add(bean);
+                else if ("*".equals(member)) 
+                    beans.add(bean);
                 else
                     if(member.indexOf((new StringBuilder()).append(",").append(bean.getId()).append(",").toString()) >= 0)
                         beans.add(bean);

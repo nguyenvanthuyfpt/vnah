@@ -128,6 +128,7 @@ public class ADisabilityFuntion extends ACore {
             FBeans beans = new FBeans();
             
             int userId = (int)bean.me.getId();
+            String depart = bean.me.getDepartmentName();
             int defaultLocation = 0;
             String defaultLocationName = "";
             String anchor = ((FSeed)form).getValue(APP_ANCHOR, "");
@@ -141,6 +142,9 @@ public class ADisabilityFuntion extends ACore {
             
             // Tree Indicator        
             FBeans optIndicators = new FBeans();
+            
+            FBeans districts = new FBeans();
+            FBeans communes = new FBeans();
             
             // Category
             FBeans beansNguonHoTro  = (FBeans)request.getSession().getAttribute("LIST_NGUONHOTRO");
@@ -276,8 +280,8 @@ public class ADisabilityFuntion extends ACore {
                     defaultLocation = beanTinh.getId();
                     defaultLocationName = beanTinh.getName();
                 }
-                FBeans districts = map_district.get(String.valueOf(defaultLocation));
-                FBeans communes = map_commune.get(String.valueOf(0));
+                districts = map_district.get(String.valueOf(defaultLocation));
+                communes = map_commune.get(String.valueOf(0));
                 request.setAttribute("districts", districts);
                 request.setAttribute("communes", communes);
                 
@@ -316,7 +320,7 @@ public class ADisabilityFuntion extends ACore {
                 BSearch bo = new BSearch();
                 FSearch beanSearch = new FSearch();
                 
-                if ((bean.me.getDepartmentName() != null) && (!bean.me.getDepartmentName().equals(""))) {
+                if ((bean.me.getDepartmentName() != null) && (!bean.me.getDepartmentName().equals("*"))) {
                     member = bean.me.getDepartmentName();
                     String memberRule = member.substring(1, member.length() - 1);
                     beanSearch.setMembersRule(memberRule);
@@ -486,8 +490,8 @@ public class ADisabilityFuntion extends ACore {
                     locationName = defaultLocationName;
                 }
                 
-                FBeans districts = map_district.get(String.valueOf(locationId));
-                FBeans communes = null;
+                districts = map_district.get(String.valueOf(locationId));
+                communes = null;
                 int total = 0 ;
                 String strYearReport = (String)request.getParameter("yearReport");
                 int yearReport =  (strYearReport!=null)? Integer.parseInt(strYearReport): Utilities.getCurrentYear(seed.getCurrentDate());
@@ -835,8 +839,8 @@ public class ADisabilityFuntion extends ACore {
                     defaultLocation = beanTinh.getId();
                     defaultLocationName = beanTinh.getName();
                 }
-                FBeans districts = map_district.get(String.valueOf(defaultLocation));
-                FBeans communes = map_commune.get(String.valueOf(0));
+                districts = map_district.get(String.valueOf(defaultLocation));
+                communes = map_commune.get(String.valueOf(0));
                 request.setAttribute("districts", districts);
                 request.setAttribute("communes", communes);
                 request.setAttribute("reportcommune", beanP);            
@@ -1005,11 +1009,16 @@ public class ADisabilityFuntion extends ACore {
                     request.setAttribute("anchor", "04");
                     request.setAttribute("subanchor", "04.06"); 
                 } else if ("_REPORT_SUPPORT_LIST".equals(func)) {
-                      //beanP.setJobMsg(!"".equals(jobLastUpdate)?beanP.ncrToString(msgJob.replace("[$last-update$]", jobLastUpdate)):beanP.ncrToString(msgInit));
-                      //beanP.setYearReport(bean.getYear(bean.getCurrentSqlDate()));
-                      beanP.setSubFunction("04.07");
-                      request.setAttribute("anchor", "04");
-                      request.setAttribute("subanchor", "04.07");
+                    //beanP.setJobMsg(!"".equals(jobLastUpdate)?beanP.ncrToString(msgJob.replace("[$last-update$]", jobLastUpdate)):beanP.ncrToString(msgInit));
+                    //beanP.setYearReport(bean.getYear(bean.getCurrentSqlDate()));
+                    beanP.setSubFunction("04.07");
+                    request.setAttribute("anchor", "04");
+                    request.setAttribute("subanchor", "04.07");
+                } else if ("_REPORT_HOMEVISIT_LIST".equals(func)) {                        
+                    beanP.setYearReport(bean.getYear(bean.getCurrentSqlDate()));
+                    beanP.setSubFunction("04.08");
+                    request.setAttribute("anchor", "04");
+                    request.setAttribute("subanchor", "04.08");
                 } else if ("_REPORT_EXPORT_2020".equals(func)) {
                     beanP.setJobMsg(!"".equals(jobLastUpdate)?beanP.ncrToString(msgJob.replace("[$last-update$]", jobLastUpdate)):beanP.ncrToString(msgInit));
                     beanP.setYearReport(bean.getYear(bean.getCurrentSqlDate()));
@@ -1023,7 +1032,9 @@ public class ADisabilityFuntion extends ACore {
                     request.setAttribute("div_report", "true");
                 }
                 request.setAttribute("reportkpi", beanP);
-                request.setAttribute("BTreeTinhs", ("|_REPORT_EXPORT|_REPORT_COMMUNE|_REPORT_EXPORT_2020|_REPORT_SUPPORT_LIST|".indexOf("|"+func+"|")>-1)? beansTree:beans);           
+                request.setAttribute("BTreeTinhs", (!"*".equals(depart)? beansTree:beans));
+                request.setAttribute("districts", districts);
+                request.setAttribute("communes", communes);
                 target = anchor;
             } else if (anchor.equals("_LISTDISTRICT")) {
                 if (bean.getId() > 0) {

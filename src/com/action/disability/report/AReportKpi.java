@@ -57,10 +57,15 @@ public class AReportKpi extends  ACore {
         FReportKpi bean = (FReportKpi)form;        
 
         String periodType = bean.getPeriodType();
+        String depart = bean.me.getDepartmentName();
         int locationId = bean.getTinhId();
+        int districtId = 0;
+        int commId = 0;
         int extend = bean.getExtend();
         String subFunction = bean.getSubFunction();
         FTinh beanTinh = new FTinh();
+        FBeans districts = new FBeans();
+        FBeans communes = new FBeans();
         BTinh boTinh = new BTinh();
         
         beanTinh.setId(bean.getTinhId());
@@ -68,6 +73,9 @@ public class AReportKpi extends  ACore {
         String tinh_name = beanTinh.getName();
         
         Map<String, FTinh> map_location = (HashMap<String, FTinh>)request.getSession().getAttribute("MAP_LOCATION");
+        Map<String, FBeans> map_district = (HashMap<String, FBeans>)request.getSession().getAttribute("MAP_DISTRICT");
+        Map<String, FBeans> map_commune = (HashMap<String, FBeans>)request.getSession().getAttribute("MAP_COMMUNE");
+        
         FBeans beans = new FBeans();
         FBeans tinhs = new FBeans();
         String SQL = "SELECT tinh_id,parent_id,name FROM dr_area WHERE parent_id = ? ";
@@ -81,6 +89,10 @@ public class AReportKpi extends  ACore {
         tinhs = new BTreeView().getTree(0, false, SQL, characters, member);        
         beans = (FBeans)request.getSession().getAttribute("BTreeTinhs");        
         int level = 0;
+        locationId =  bean.getTinhId();
+        districtId = bean.getQhuId();
+        commId =  bean.getPxaId();
+        
         if(bean.getTinhId()>0){
             List params     = new ArrayList();
             FTinh beanCa    = new FTinh();
@@ -101,7 +113,7 @@ public class AReportKpi extends  ACore {
         bean.setTinhId(locationId);
         bean.setSubFunction(subFunction);
         
-        if(anchor.equals("_REPORT_SELECT_TINH")){
+        if(anchor.equals("_REPORT_SELECT_TINH") || anchor.equals("_REPORT_SELECT_HUYEN")){
             String tinhName = "";
             int defaultLocation = 0;
             if (bean.getTinhId()>0) {
@@ -126,6 +138,8 @@ public class AReportKpi extends  ACore {
             } else if ("03.02".equals(subFunction)) {
                 func = "_REPORT_EXPORT_2020";
                 bean.setPeriodType("-1");
+            } else if ("04.08".equals(subFunction)) {
+                func = "_REPORT_HOMEVISIT_LIST";
             }
             
             String msgJob = "B&#225;o c&#225;o/D&#7919; li&#7879;u NKT &#273;&#227; k&#7871;t xu&#7845;t th&#224;nh c&#244;ng v&#224;o l&#250;c [$last-update$], B&#7841;n c&#243; th&#7875; khai th&#225;c th&#244;ng tin.";
@@ -144,7 +158,17 @@ public class AReportKpi extends  ACore {
             
             bean.setJobMsg(!"".equals(jobLastUpdate)?bean.ncrToString(msgJob.replace("[$last-update$]", jobLastUpdate)):bean.ncrToString(msgInit));
             bean.setTinhName(tinhName);      
-            request.setAttribute("BTreeTinhs", ("04.01|04.02|04.04".indexOf(subFunction)>-1)? beans:tinhs);
+            request.setAttribute("BTreeTinhs", !"*".equals(depart)? tinhs:beans);
+            
+            if(anchor.equals("_REPORT_SELECT_TINH")){
+                districtId = 0;
+            }
+                
+            districts = map_district.get(String.valueOf(locationId));
+            communes = (districtId>0) ? map_commune.get(String.valueOf(districtId)):new FBeans();
+            
+            request.setAttribute("districts", districts);
+            request.setAttribute("communes", communes);
             request.setAttribute("subanchor", bean.getSubFunction());
             request.setAttribute("reportkpi", bean);
             target=anchor;
@@ -182,6 +206,8 @@ public class AReportKpi extends  ACore {
                   reportDtl = "_REPORT_EXPORT";
               } else if ("04.07".equals(bean.getSubFunction())) {
                     reportDtl = "_REPORT_SUPPORT_LIST";
+              } else if ("04.08".equals(bean.getSubFunction())) {
+                  reportDtl = "_REPORT_HOMEVISIT_LIST";
               } else if ("03.02".equals(bean.getSubFunction())) {
                   reportDtl = "_REPORT_EXPORT_2020";
                   bean.setPeriodType("-1");
@@ -190,9 +216,14 @@ public class AReportKpi extends  ACore {
               bean.setTinhName(tinh_name);
               try {                  
                   int lvl = 1;
-                  FTinh tinh = (FTinh)map_location.get(String.valueOf(locationId));
+                  FTinh tinh = (FTinh)map_location.get(String.valueOf(commId>0?commId:(districtId>0?districtId:locationId)));
                   if (tinh!=null) {
-                      lvl = (tinh.getName().indexOf("3")>-1)?3:((tinh.getName().indexOf("2")>-1)?2:1);                      
+                      lvl = (tinh.getName().indexOf("3")>-1)?3:((tinh.getName().indexOf("2")>-1)?2:1);
+                      if (lvl==2) {
+                          locationId = districtId;
+                      } else if (lvl==3) {
+                          locationId =  commId;
+                      }
                   }
                   
                   String fileName = "", report = "";
@@ -223,14 +254,14 @@ public class AReportKpi extends  ACore {
                       beanTemp.setStore(beans);
                       report = new DReportKpi().exportReportInsurance(beanTemp, bean, fileName);
                   } else if ("_REPORT_SUPPORT".equals(reportDtl)) {
-                      beans = new BReportKpi().getDataReportSupport(locationId, strVal);
-                      fileName = IKeyDisability.REPORT_FILE_KPI_REPORT_SUPPORT;                                                
+                      beans = new BReportKpi().getDataReportSupport(locationId, periodType, strVal);
+                      fileName = "4".equals(periodType) ? IKeyDisability.REPORT_FILE_KPI_REPORT_SUPPORT_2023 : IKeyDisability.REPORT_FILE_KPI_REPORT_SUPPORT;                                                
                       FReportKpi beanTemp = new FReportKpi();
                       bean.setTinhId(locationId);                    
                       beanTemp.setPeriodType(periodType);
                       beanTemp.setVal(strVal);
                       beanTemp.setStore(beans);
-                      report = new DReportKpi().exportReportSupport(beanTemp, bean, fileName);                                           
+                      report = new DReportKpi().exportReportSupport(beanTemp, bean, periodType, fileName);                                           
                   } else if ("_REPORT_COMMUNE".equals(reportDtl)) {
                       if (extend==0) {
                             beans = new BReportKpi().getDataDisCommuneSummary(lvl, locationId, strVal);
@@ -248,6 +279,7 @@ public class AReportKpi extends  ACore {
                       report = new DReportKpi().reportCommune(beanTemp, bean, fileName);
                    } else if ("_REPORT_EXPORT".equals(reportDtl)) {
                       int duAnId = bean.getDuAnId(); 
+                      int statusId = bean.getStatusId();
                       String createDateFrom = bean.getCreateDateFrom();
                       String createDateTo = bean.getCreateDateTo();
                       String dvuDateFrom = bean.getDvuDateFrom();
@@ -257,7 +289,7 @@ public class AReportKpi extends  ACore {
                       String dmcDateFrom = bean.getDmcDateFrom();
                       String dmcDateTo = bean.getDmcDateTo();
                       
-                      beans = new BReportKpi().getDataDisExport(lvl, locationId, duAnId, createDateFrom, createDateTo,
+                      beans = new BReportKpi().getDataDisExport(lvl, locationId, duAnId, statusId, createDateFrom, createDateTo,
                                                                     dvuDateFrom, dvuDateTo, tdgDateFrom, tdgDateTo, 
                                                                     dmcDateFrom, dmcDateTo);                      
                       fileName = IKeyDisability.REPORT_FILE_KPI_REPORT_EXPORT;                      
@@ -289,6 +321,15 @@ public class AReportKpi extends  ACore {
                       beanTemp.setVal(strVal);
                       beanTemp.setStore(beans);
                       report = new DReportKpi().reportDisSupport(beanTemp, seed, fileName);
+                  } else if ("_REPORT_HOMEVISIT_LIST".equals(reportDtl)) {
+                      beans = new BReportKpi().getDataReportHomeVisit(locationId, periodType, strVal);                      
+                      fileName = IKeyDisability.REPORT_FILE_KPI_REPORT_HOME_VISIT;
+                      FReportKpi beanTemp = new FReportKpi();
+                      bean.setTinhId(locationId);                    
+                      beanTemp.setPeriodType(periodType);
+                      beanTemp.setVal(strVal);
+                      beanTemp.setStore(beans);
+                      report = new DReportKpi().exportReportHomeVisit(beanTemp, bean, periodType, fileName); 
                   }
                   
                   bean.download(report,fileName,null);

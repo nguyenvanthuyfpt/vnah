@@ -539,14 +539,12 @@ function checkHideComboBox() {
     }
 }
 
-function resetEleDiv(div) {
-    /*
+function resetEleDiv(div) {    
     var container = document.getElementById(div);
     var children = container.getElementsByTagName('select');
     for (var i = 0; i < children.length; i++) {        
-        children[i].selectedIndex = 0;
-    }
-    */
+        children[i].selectedIndex = -1;
+    }    
     //$("#tinhId").
     
     $("#"+div).find('input[type=checkbox]:checked').removeAttr('checked');

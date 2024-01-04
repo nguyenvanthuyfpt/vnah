@@ -373,7 +373,7 @@
             <td><html:text name="support" property="nguoiTHTen" style="width:120px;" /></td>
             <td width="25%"><bean:message key="common.label.support.createdby.position" bundle="<%=interfaces%>" /></td> 
             <td>
-                <html:select name="kpi" property="nguoiTHCv">
+                <html:select name="support" property="nguoiTHCv">
                     <html:option value="-1"><bean:message key="combo.luachon" bundle="<%=interfaces%>"/></html:option>
                     <html:option value="1"><bean:message key="common.label.support.createdby.1" bundle="<%=interfaces%>"/></html:option>
                     <html:option value="2"><bean:message key="common.label.support.createdby.2" bundle="<%=interfaces%>"/></html:option>

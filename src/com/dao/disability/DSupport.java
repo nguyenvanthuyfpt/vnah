@@ -39,7 +39,7 @@ public class DSupport extends DSqlDisability {
             " WHERE a.id_nkt=? AND a.status_id=? ORDER BY a.datecreate DESC";*/
         
       String sql = "SELECT DISTINCT a.id_nkt, a.datecreate, u.fullname, get_ncau_htro(a.id_nkt, a.datecreate::date,"+statusId+") ncau_htro, " +
-          " a.diadiem_kham, '' as thoidiem_taikham, a.nguonhotro_id, 0 as doi_tuong, dm.name as nguonhotro, \n" +
+          " '' as thoidiem_taikham, a.nguonhotro_id, 0 as doi_tuong, dm.name as nguonhotro, \n" +
           " count_ncau_htro(a.id_nkt, a.datecreate::date, 1, a.nguonhotro_id) stt \n" + 
           " FROM dr_support a LEFT JOIN users u ON a.user_id=u.user_id " +
           " LEFT JOIN dr_nguonhotro dm ON a.nguonhotro_id = dm.nguonhotro_id " +
@@ -702,7 +702,7 @@ public class DSupport extends DSqlDisability {
             bean.setFullName(rs.getString(USERS_FULLNAME));
             bean.setNCauHtro(rs.getString("ncau_htro"));
             bean.setThoiDiemTK(rs.getString(HOTRO_THOIDIEM_TAIKHAM));
-            bean.setDiaDiemKham(rs.getInt(HOTRO_DIADIEM));
+            // bean.setDiaDiemKham(rs.getInt(HOTRO_DIADIEM));
             bean.setDoiTuong(rs.getInt(HOTRO_DOITUONG));
             bean.setNguonId(rs.getInt("nguonhotro_id"));
             bean.setNguonhotro(rs.getString("nguonhotro"));
